@@ -1,0 +1,1542 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>卡片盒写作法</title>
+  <link rel="icon" href="https://minimax-algeng-chat-tts.oss-cn-wulanchabu.aliyuncs.com/ccv2%2F2026-04-22%2FMiniMax-M2.7%2F2044322364073710454%2Fc5d98bf99a80cbc41ce58537b1a09c53c60d764235db48944a37f7c699232e0d..png?Expires=1776930911&OSSAccessKeyId=LTAI5tGLnRTkBjLuYPjNcKQ8&Signature=gqU%2BzmpNJVp3Oa%2B9gxu6Bx6mujI%3D" type="image/png">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #F8F9FA;
+      --bg-card: #FFFFFF;
+      --text: #1a1a1a;
+      --text-secondary: #666666;
+      --text-muted: #999999;
+      --border: #E5E7EB;
+      --primary: #6366F1;
+      --primary-hover: #4F46E5;
+      --primary-light: #818CF8;
+      --accent: #06B6D4;
+      --danger: #EF4444;
+      --success: #10B981;
+      --warning: #F59E0B;
+      --shadow: 0 1px 3px rgba(0,0,0,0.08);
+      --shadow-hover: 0 4px 12px rgba(0,0,0,0.1);
+      --radius: 12px;
+      --radius-sm: 8px;
+    }
+
+    [data-theme="dark"] {
+      --bg: #111827;
+      --bg-card: #1F2937;
+      --text: #F9FAFB;
+      --text-secondary: #9CA3AF;
+      --text-muted: #6B7280;
+      --border: #374151;
+      --shadow: 0 1px 3px rgba(0,0,0,0.3);
+      --shadow-hover: 0 4px 12px rgba(0,0,0,0.4);
+    }
+
+    body {
+      font-family: 'Microsoft YaHei', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    /* 顶部导航 */
+    .header {
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .header-logo {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+    }
+
+    .logo-text {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .header-nav {
+      display: flex;
+      gap: 4px;
+      margin-left: 24px;
+    }
+
+    .nav-btn {
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      color: var(--text-secondary);
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      transition: all 0.2s;
+    }
+
+    .nav-btn:hover {
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .nav-btn.active {
+      background: var(--primary);
+      color: white;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .icon-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      transition: all 0.2s;
+    }
+
+    .icon-btn:hover {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: white;
+    }
+
+    /* 主容器 */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* 页面面板 */
+    .page {
+      display: none;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 新建卡片区域 */
+    .create-section {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      padding: 24px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      margin: 24px 0;
+    }
+
+    .create-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .create-desc {
+      color: var(--text-secondary);
+      font-size: 13px;
+      margin-bottom: 14px;
+    }
+
+    .create-area {
+      display: flex;
+      gap: 12px;
+    }
+
+    .create-input {
+      flex: 1;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      font-size: 14px;
+      color: var(--text);
+      resize: none;
+      height: 84px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .create-input:focus {
+      border-color: var(--primary);
+    }
+
+    .create-input::placeholder {
+      color: var(--text-muted);
+    }
+
+    .btn {
+      padding: 10px 18px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-hover);
+    }
+
+    .btn-secondary {
+      background: var(--bg);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      background: var(--border);
+    }
+
+    .btn-danger {
+      background: var(--bg);
+      color: var(--danger);
+      border: 1px solid var(--danger);
+    }
+
+    .btn-danger:hover {
+      background: var(--danger);
+      color: white;
+    }
+
+    .btn-success {
+      background: var(--success);
+      color: white;
+    }
+
+    .btn-warning {
+      background: var(--warning);
+      color: white;
+    }
+
+    /* 发现区域 */
+    .discover-section {
+      padding: 24px 0;
+    }
+
+    .section-header {
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .discover-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 18px;
+    }
+
+    .discover-card {
+      position: relative;
+      height: 220px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .discover-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .discover-card-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.3s;
+    }
+
+    .discover-card:hover .discover-card-bg {
+      transform: scale(1.05);
+    }
+
+    .discover-card-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.75) 100%);
+    }
+
+    .discover-card-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 18px;
+      color: white;
+    }
+
+    .discover-card-text {
+      font-size: 13px;
+      line-height: 1.7;
+      margin-bottom: 10px;
+      font-style: italic;
+    }
+
+    .discover-card-author {
+      font-size: 11px;
+      opacity: 0.8;
+      margin-bottom: 10px;
+    }
+
+    .discover-card-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .discover-card-tag {
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(8px);
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 11px;
+    }
+
+    .discover-card-actions {
+      display: flex;
+      gap: 6px;
+    }
+
+    .discover-action-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255,255,255,0.2);
+      color: white;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      transition: all 0.2s;
+      backdrop-filter: blur(8px);
+    }
+
+    .discover-action-btn:hover {
+      background: var(--primary);
+    }
+
+    .discover-action-btn.collected {
+      background: var(--warning);
+    }
+
+    /* 页面头部 */
+    .page-header {
+      padding: 20px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .page-title {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    /* 操作栏 */
+    .action-bar {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .action-bar .count {
+      margin-left: auto;
+      color: var(--text-secondary);
+      font-size: 13px;
+    }
+
+    /* 卡片网格 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .note-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+      position: relative;
+      transition: all 0.2s;
+    }
+
+    .note-card:hover {
+      box-shadow: var(--shadow-hover);
+      border-color: var(--primary-light);
+    }
+
+    .note-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .note-card-checkbox {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+
+    .note-card-actions {
+      display: flex;
+      gap: 6px;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .note-card:hover .note-card-actions {
+      opacity: 1;
+    }
+
+    .note-card-btn {
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      transition: all 0.2s;
+    }
+
+    .note-card-btn.edit {
+      background: rgba(99, 102, 241, 0.1);
+      color: var(--primary);
+    }
+
+    .note-card-btn.edit:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    .note-card-btn.link {
+      background: rgba(6, 182, 212, 0.1);
+      color: var(--accent);
+    }
+
+    .note-card-btn.link:hover {
+      background: var(--accent);
+      color: white;
+    }
+
+    .note-card-btn.delete {
+      background: rgba(239, 68, 68, 0.1);
+      color: var(--danger);
+    }
+
+    .note-card-btn.delete:hover {
+      background: var(--danger);
+      color: white;
+    }
+
+    .note-card-content {
+      font-size: 14px;
+      line-height: 1.7;
+      white-space: pre-line;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    .note-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .note-card-time {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .note-card-link-badge {
+      font-size: 11px;
+      background: rgba(6, 182, 212, 0.1);
+      color: var(--accent);
+      padding: 3px 8px;
+      border-radius: 10px;
+    }
+
+    /* 收藏卡片 - 发现页样式 */
+    .collected-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 14px;
+      position: relative;
+      transition: all 0.2s;
+    }
+
+    .collected-card:hover {
+      box-shadow: var(--shadow-hover);
+    }
+
+    .collected-card-text {
+      font-size: 14px;
+      line-height: 1.8;
+      margin-bottom: 10px;
+      font-style: italic;
+      color: var(--text);
+    }
+
+    .collected-card-author {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .collected-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .collected-card-tag {
+      font-size: 11px;
+      background: rgba(99, 102, 241, 0.1);
+      color: var(--primary);
+      padding: 3px 10px;
+      border-radius: 10px;
+    }
+
+    .collected-card-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .collected-card-btn {
+      padding: 5px 12px;
+      border-radius: var(--radius-sm);
+      border: none;
+      font-size: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.2s;
+    }
+
+    .collected-card-btn.use {
+      background: rgba(99, 102, 241, 0.1);
+      color: var(--primary);
+    }
+
+    .collected-card-btn.use:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    .collected-card-btn.remove {
+      background: rgba(239, 68, 68, 0.1);
+      color: var(--danger);
+    }
+
+    .collected-card-btn.remove:hover {
+      background: var(--danger);
+      color: white;
+    }
+
+    /* 链接视图 */
+    .link-view-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 14px;
+    }
+
+    .link-view-content {
+      font-size: 14px;
+      line-height: 1.7;
+      white-space: pre-line;
+      margin-bottom: 10px;
+    }
+
+    .link-view-meta {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .link-view-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .link-tag {
+      background: rgba(99, 102, 241, 0.1);
+      color: var(--primary);
+      padding: 5px 10px;
+      border-radius: 14px;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .link-tag button {
+      background: none;
+      border: none;
+      color: inherit;
+      cursor: pointer;
+      font-size: 13px;
+      opacity: 0.7;
+    }
+
+    .link-tag button:hover {
+      opacity: 1;
+    }
+
+    /* 模态框 */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    .modal-content {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      padding: 24px;
+      max-width: 480px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .modal-title {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .modal-close {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: none;
+      background: var(--bg);
+      color: var(--text);
+      cursor: pointer;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-close:hover {
+      background: var(--border);
+    }
+
+    .modal-textarea {
+      width: 100%;
+      height: 140px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 14px;
+      font-size: 14px;
+      color: var(--text);
+      resize: none;
+      outline: none;
+    }
+
+    .modal-textarea:focus {
+      border-color: var(--primary);
+    }
+
+    .modal-footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .link-option {
+      display: flex;
+      align-items: flex-start;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+    }
+
+    .link-option:last-child {
+      border-bottom: none;
+    }
+
+    .link-option input {
+      margin-right: 10px;
+      margin-top: 3px;
+      accent-color: var(--primary);
+    }
+
+    .link-option-content {
+      flex: 1;
+    }
+
+    .link-option-text {
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .link-option-time {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .article-output {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      min-height: 180px;
+      white-space: pre-wrap;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    /* 空状态 */
+    .empty-state {
+      text-align: center;
+      padding: 48px 20px;
+      color: var(--text-muted);
+    }
+
+    .empty-state-icon {
+      font-size: 40px;
+      margin-bottom: 12px;
+      opacity: 0.5;
+    }
+
+    .empty-state-text {
+      font-size: 14px;
+    }
+
+    /* Toast 提示 */
+    .toast {
+      position: fixed;
+      top: 70px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-120%);
+      background: var(--primary);
+      color: white;
+      padding: 10px 20px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      z-index: 2000;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    /* 响应式 */
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 16px;
+      }
+
+      .header {
+        padding: 12px 16px;
+      }
+
+      .header-nav {
+        display: none;
+      }
+
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .discover-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .action-bar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .action-bar .count {
+        margin-left: 0;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- 顶部导航 -->
+<header class="header">
+  <div class="header-left">
+    <img class="header-logo" src="https://minimax-algeng-chat-tts.oss-cn-wulanchabu.aliyuncs.com/ccv2%2F2026-04-22%2FMiniMax-M2.7%2F2044322364073710454%2Fc5d98bf99a80cbc41ce58537b1a09c53c60d764235db48944a37f7c699232e0d..png?Expires=1776930911&OSSAccessKeyId=LTAI5tGLnRTkBjLuYPjNcKQ8&Signature=gqU%2BzmpNJVp3Oa%2B9gxu6Bx6mujI%3D" alt="logo">
+    <span class="logo-text">卡片盒写作法</span>
+    <div class="header-nav">
+      <button class="nav-btn active" onclick="switchPage('home')" id="navHome">首页</button>
+      <button class="nav-btn" onclick="switchPage('cards')" id="navCards">卡片盒</button>
+      <button class="nav-btn" onclick="switchPage('links')" id="navLinks">链接</button>
+      <button class="nav-btn" onclick="switchPage('favorites')" id="navFavorites">收藏</button>
+    </div>
+  </div>
+  <div class="header-right">
+    <button class="icon-btn" onclick="toggleTheme()" title="切换主题" id="themeBtn">🌙</button>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- ================== 首页 ================== -->
+  <div class="page active" id="pageHome">
+    <!-- 新建卡片 -->
+    <section class="create-section">
+      <h1 class="create-title">🧠 记录闪念</h1>
+      <p class="create-desc">原子化原则：一句话、一个想法、不解释、不展开</p>
+      <div class="create-area">
+        <textarea class="create-input" id="newContent" placeholder="写下你的想法……"></textarea>
+        <button class="btn btn-primary" onclick="saveNote()">保存</button>
+      </div>
+    </section>
+
+    <!-- 发现区域 -->
+    <section class="discover-section">
+      <div class="section-header">
+        <h2 class="section-title">📖 发现的美好</h2>
+        <p class="section-desc">名人名言 · 书籍摘抄 · 人生哲学</p>
+      </div>
+      <div class="discover-grid" id="discoverGrid"></div>
+    </section>
+  </div>
+
+  <!-- ================== 卡片盒页面 ================== -->
+  <div class="page" id="pageCards">
+    <div class="page-header">
+      <h1 class="page-title">📚 我的卡片盒</h1>
+    </div>
+
+    <div class="action-bar">
+      <button class="btn btn-success" onclick="generateArticle()">📝 生成文章</button>
+      <button class="btn btn-secondary" onclick="selectAll()">全选</button>
+      <button class="btn btn-secondary" onclick="deselectAll()">取消</button>
+      <button class="btn btn-danger" onclick="clearAll()">清空</button>
+      <span class="count" id="selectedCount">已选 0</span>
+    </div>
+
+    <div class="card-grid" id="noteBox"></div>
+    <div class="empty-state" id="emptyTip" style="display: none;">
+      <div class="empty-state-icon">📭</div>
+      <div class="empty-state-text">暂无卡片，快去首页新建吧～</div>
+    </div>
+  </div>
+
+  <!-- ================== 链接页面 ================== -->
+  <div class="page" id="pageLinks">
+    <div class="page-header">
+      <h1 class="page-title">🔗 卡片链接</h1>
+    </div>
+
+    <div id="linksView"></div>
+    <div class="empty-state" id="linksEmpty" style="display: none;">
+      <div class="empty-state-icon">🔗</div>
+      <div class="empty-state-text">暂无链接关系，先去创建卡片并建立链接吧</div>
+    </div>
+  </div>
+
+  <!-- ================== 收藏页面 ================== -->
+  <div class="page" id="pageFavorites">
+    <div class="page-header">
+      <h1 class="page-title">⭐ 我的收藏</h1>
+    </div>
+
+    <div id="favoritesList"></div>
+    <div class="empty-state" id="favoritesEmpty" style="display: none;">
+      <div class="empty-state-icon">☆</div>
+      <div class="empty-state-text">暂无收藏，去发现页收藏喜欢的句子吧～</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Toast 提示 -->
+<div class="toast" id="toast">✅ 已保存</div>
+
+<!-- 链接选择模态框 -->
+<div class="modal" id="linkModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 class="modal-title">🔗 选择要链接的卡片</h3>
+      <button class="modal-close" onclick="closeLinkModal()">×</button>
+    </div>
+    <div id="linkOptions"></div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeLinkModal()">取消</button>
+      <button class="btn btn-primary" onclick="confirmLinks()">确认</button>
+    </div>
+  </div>
+</div>
+
+<!-- 编辑卡片模态框 -->
+<div class="modal" id="editModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 class="modal-title">✏️ 编辑卡片</h3>
+      <button class="modal-close" onclick="closeEditModal()">×</button>
+    </div>
+    <textarea class="modal-textarea" id="editContent" placeholder="修改卡片内容……"></textarea>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeEditModal()">取消</button>
+      <button class="btn btn-primary" onclick="confirmEdit()">保存</button>
+    </div>
+  </div>
+</div>
+
+<!-- 文章生成模态框 -->
+<div class="modal" id="articleModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 class="modal-title">📄 生成的 文章</h3>
+      <button class="modal-close" onclick="closeArticleModal()">×</button>
+    </div>
+    <div class="article-output" id="articleOutput"></div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeArticleModal()">关闭</button>
+      <button class="btn btn-primary" onclick="copyArticle()">复制</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const STORAGE_KEY = 'luhmann_notes_v3';
+  const FAVORITES_KEY = 'luhmann_favorites';
+  let currentLinkCardId = null;
+  let currentEditCardId = null;
+
+  // 发现页素材 - 名人名言/书籍摘抄/人生哲学
+  const discoverData = [
+    { text: "生命中真正重要的不是你遭遇了什么，而是你记住了哪些事，又是如何铭记的。", author: "马尔克斯《百年孤独》", tag: "文学经典" },
+    { text: "我们听过无数的道理，却仍旧过不好这一生。", author: "韩寒《后会无期》", tag: "人生感悟" },
+    { text: "一个人知道自己为什么而活，就可以忍受任何一种生活。", author: "尼采", tag: "哲学思想" },
+    { text: "人生就像一盒巧克力，你永远不知道下一颗是什么味道。", author: "《阿甘正传》", tag: "影视名言" },
+    { text: "所有的大人都曾经是小孩，虽然，只有少数的人记得。", author: "圣埃克苏佩里《小王子》", tag: "文学经典" },
+    { text: "当你凝视深渊时，深渊也在凝视着你。", author: "尼采《善恶的彼岸》", tag: "哲学思想" },
+    { text: "生活不可能像你想象的那么好，但也不会像你想象的那么糟。", author: "莫泊桑《一生》", tag: "文学经典" },
+    { text: "人的一切痛苦，本质上都是对自己无能的愤怒。", author: "王小波", tag: "人生感悟" },
+    { text: "世界上只有一种真正的英雄主义，那就是在认清生活的真相后依然热爱生活。", author: "罗曼·罗兰", tag: "人生哲学" },
+    { text: "我荒废了时间，时间便把我荒废了。", author: "莎士比亚", tag: "名人名言" },
+    { text: "你那么憎恨那些人，和他们斗了那么久，最终却变得和他们一样。", author: "尼采", tag: "哲学思想" },
+    { text: "命运所有的馈赠，早已暗中标好了价格。", author: "茨威格《断头王后》", tag: "文学经典" },
+    { text: "凡是过往，皆为序章。", author: "莎士比亚《暴风雨》", tag: "名人名言" },
+    { text: "这世上真正重要的，从来不是钱，而是有一件你愿意做一辈子的事。", author: "Unknown", tag: "人生感悟" },
+    { text: "一个人至少拥有一个梦想，有一个理由去坚强。", author: "三毛《眼泪的名字》", tag: "文学经典" },
+    { text: "我们终此一生，就是要摆脱他人的期待，找到真正的自己。", author: "《无声告白》", tag: "文学经典" },
+    { text: "不要因为走得太远，忘了我们为什么出发。", author: "纪伯伦《先知》", tag: "名人名言" },
+    { text: "最困难的事情就是认识自己。", author: "泰勒斯", tag: "哲学思想" },
+    { text: "当你老了，回顾一生，就会发觉：什么时候出国读书、什么时候决定做第一份职业、何时选定了对象而恋爱、什么时候结婚，其实都是命运的巨变。", author: "陶杰《杀鹌鹑的少女》", tag: "人生感悟" },
+    { text: "我将于茫茫人海中访我唯一灵魂之伴侣；得之，我幸；不得，我命。", author: "徐志摩", tag: "名人名言" },
+    { text: "真正的自由不是你想做什么就做什么，而是你不想做什么就可以不做什么。", author: "康德", tag: "哲学思想" },
+    { text: "教育不是注满一桶水，而是点燃一把火。", author: "叶芝", tag: "名人名言" },
+    { text: "在这个世界上，所有真性情的人，想法总是与众不同。", author: "沈从文《边城》", tag: "文学经典" },
+    { text: "优于别人，并不高贵，真正的高贵应该是优于过去的自己。", author: "海明威《真实的高贵》", tag: "名人名言" },
+    { text: "人可以被毁灭，但不能被打败。", author: "海明威《老人与海》", tag: "文学经典" },
+    { text: "有些事不是看到了希望才去坚持，而是因为坚持才会看到希望。", author: "《加油，好男儿》", tag: "人生感悟" },
+    { text: "我们听过无数的道理，却仍旧过不好这一生。", author: "韩寒", tag: "人生感悟" },
+    { text: "醉过方知酒浓，爱过才知情重。你不能做我的诗，正如我不能做你的梦。", author: "胡适《梦与诗》", tag: "名人名言" },
+    { text: "一个人知道自己为什么而活，就可以忍受任何一种生活。", author: "尼采", tag: "哲学思想" },
+    { text: "我行过许多地方的桥，看过许多次数的云，喝过许多种类的酒，却只爱过一个正当最好年龄的人。", author: "沈从文《湘行散记》", tag: "文学经典" },
+    { text: "人生天地之间，若白驹过隙，忽然而已。", author: "庄子", tag: "哲学思想" },
+    { text: "世界以痛吻我，要我报之以歌。", author: "泰戈尔《飞鸟集》", tag: "名人名言" },
+    { text: "从前的日色变得慢，车、马、邮件都慢，一生只够爱一个人。", author: "木心《从前慢》", tag: "文学经典" },
+    { text: "眼睛为她下着雨，心却为她打着伞，这就是爱情。", author: "泰戈尔《吉檀迦利》", tag: "名人名言" },
+    { text: "人最宝贵的是生命，生命对人来说只有一次。人的一生应当这样度过：当他回首往事时，不会因为碌碌无为、虚度年华而悔恨。", author: "奥斯特洛夫斯基《钢铁是怎样炼成的》", tag: "文学经典" },
+    { text: "黑夜无论怎样悠长，白昼总会到来。", author: "莎士比亚《麦克白》", tag: "名人名言" },
+    { text: "纵有疾风起，人生不言弃。", author: "保罗·瓦雷里《海滨墓园》", tag: "名人名言" },
+    { text: "没有人是一座孤岛，在大海里独踞。", author: "约翰·多恩《丧钟为谁而鸣》", tag: "名人名言" },
+    { text: "你那么合群，该有多平凡。", author: "Unknown", tag: "人生感悟" },
+    { text: "勇敢是处于逆境时的光芒。", author: "茨威格", tag: "名人名言" },
+    { text: "所有的大人都曾经是小孩，虽然，只有少数的人记得。", author: "圣埃克苏佩里《小王子》", tag: "文学经典" },
+  ];
+
+  // 切换页面
+  function switchPage(page) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(n => n.classList.remove('active'));
+
+    document.getElementById('page' + capitalize(page)).classList.add('active');
+    document.getElementById('nav' + capitalize(page)).classList.add('active');
+
+    if (page === 'cards') renderNotes();
+    if (page === 'links') renderLinksView();
+    if (page === 'favorites') renderFavorites();
+  }
+
+  function capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+
+  // 切换主题
+  function toggleTheme() {
+    const body = document.body;
+    const btn = document.getElementById('themeBtn');
+    if (body.dataset.theme === 'dark') {
+      body.dataset.theme = '';
+      btn.textContent = '🌙';
+    } else {
+      body.dataset.theme = 'dark';
+      btn.textContent = '☀️';
+    }
+  }
+
+  // 获取卡片
+  function getNotes() {
+    const data = localStorage.getItem(STORAGE_KEY);
+    if (!data) return [];
+    return JSON.parse(data).map(n => ({ ...n, links: n.links || [] }));
+  }
+
+  // 获取收藏
+  function getFavorites() {
+    const data = localStorage.getItem(FAVORITES_KEY);
+    return data ? JSON.parse(data) : [];
+  }
+
+  // 保存卡片
+  function saveNote() {
+    const content = document.getElementById('newContent').value.trim();
+    if (!content) return alert('请输入卡片内容');
+
+    const note = {
+      id: Date.now(),
+      content,
+      time: new Date().toLocaleString(),
+      links: []
+    };
+
+    const list = getNotes();
+    list.unshift(note);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+
+    document.getElementById('newContent').value = '';
+    showToast('✅ 已保存到卡片盒');
+  }
+
+  // 显示提示
+  function showToast(message) {
+    const toast = document.getElementById('toast');
+    toast.textContent = message;
+    toast.classList.add('show');
+    setTimeout(() => {
+      toast.classList.remove('show');
+    }, 2000);
+  }
+
+  // 渲染卡片盒
+  function renderNotes() {
+    const list = getNotes();
+    const box = document.getElementById('noteBox');
+    const empty = document.getElementById('emptyTip');
+
+    if (list.length === 0) {
+      box.innerHTML = '';
+      empty.style.display = 'block';
+      return;
+    }
+
+    empty.style.display = 'none';
+    box.innerHTML = list.map(n => `
+      <div class="note-card" data-id="${n.id}">
+        <div class="note-card-header">
+          <input type="checkbox" class="note-card-checkbox" onchange="updateSelectedCount()">
+          <div class="note-card-actions">
+            <button class="note-card-btn edit" onclick="openEditModal(${n.id})" title="编辑">✏️</button>
+            <button class="note-card-btn link" onclick="openLinkModal(${n.id})" title="链接">🔗</button>
+            <button class="note-card-btn delete" onclick="delNote(${n.id})" title="删除">×</button>
+          </div>
+        </div>
+        <div class="note-card-content">${escapeHtml(n.content)}</div>
+        <div class="note-card-footer">
+          <span class="note-card-time">${n.time}</span>
+          ${n.links.length > 0 ? `<span class="note-card-link-badge">🔗 ${n.links.length}</span>` : ''}
+        </div>
+      </div>
+    `).join('');
+    updateSelectedCount();
+  }
+
+  // HTML转义
+  function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+
+  // 删除卡片
+  function delNote(id) {
+    if (!confirm('确定删除这张卡片？')) return;
+    let list = getNotes();
+    list = list.filter(n => {
+      if (n.id === id) return false;
+      n.links = n.links.filter(lid => lid !== id);
+      return true;
+    });
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+    renderNotes();
+    showToast('🗑️ 已删除');
+  }
+
+  // 清空所有
+  function clearAll() {
+    if (!confirm('确定清空所有卡片？此操作不可恢复！')) return;
+    localStorage.removeItem(STORAGE_KEY);
+    renderNotes();
+    showToast('🗑️ 已清空');
+  }
+
+  // 更新已选数量
+  function updateSelectedCount() {
+    const checked = document.querySelectorAll('.note-card-checkbox:checked').length;
+    document.getElementById('selectedCount').textContent = `已选 ${checked}`;
+  }
+
+  // 全选
+  function selectAll() {
+    document.querySelectorAll('.note-card-checkbox').forEach(cb => cb.checked = true);
+    updateSelectedCount();
+  }
+
+  // 取消全选
+  function deselectAll() {
+    document.querySelectorAll('.note-card-checkbox').forEach(cb => cb.checked = false);
+    updateSelectedCount();
+  }
+
+  // 打开编辑模态框
+  function openEditModal(cardId) {
+    event.stopPropagation();
+    currentEditCardId = cardId;
+    const card = getNotes().find(n => n.id === cardId);
+    if (!card) return;
+    document.getElementById('editContent').value = card.content;
+    document.getElementById('editModal').classList.add('show');
+  }
+
+  // 关闭编辑模态框
+  function closeEditModal() {
+    document.getElementById('editModal').classList.remove('show');
+    currentEditCardId = null;
+  }
+
+  // 确认编辑
+  function confirmEdit() {
+    if (!currentEditCardId) return;
+    const content = document.getElementById('editContent').value.trim();
+    if (!content) return alert('内容不能为空');
+
+    let list = getNotes();
+    list = list.map(n => n.id === currentEditCardId ? { ...n, content } : n);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+
+    closeEditModal();
+    renderNotes();
+    showToast('✅ 修改已保存');
+  }
+
+  // 打开链接模态框
+  function openLinkModal(cardId) {
+    event.stopPropagation();
+    currentLinkCardId = cardId;
+    const card = getNotes().find(n => n.id === cardId);
+    const existingLinks = card ? card.links : [];
+
+    const otherCards = getNotes().filter(n => n.id !== cardId);
+
+    if (otherCards.length === 0) {
+      document.getElementById('linkOptions').innerHTML = '<div style="padding: 20px; text-align: center; color: var(--text-muted);">没有其他卡片可链接</div>';
+    } else {
+      document.getElementById('linkOptions').innerHTML = otherCards.map(n => `
+        <div class="link-option">
+          <input type="checkbox" id="link_${n.id}" value="${n.id}" ${existingLinks.includes(n.id) ? 'checked' : ''}>
+          <div class="link-option-content">
+            <div class="link-option-text">${escapeHtml(n.content.substring(0, 50))}${n.content.length > 50 ? '...' : ''}</div>
+            <div class="link-option-time">${n.time}</div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    document.getElementById('linkModal').classList.add('show');
+  }
+
+  // 关闭链接模态框
+  function closeLinkModal() {
+    document.getElementById('linkModal').classList.remove('show');
+    currentLinkCardId = null;
+  }
+
+  // 确认链接
+  function confirmLinks() {
+    if (!currentLinkCardId) return;
+
+    const checked = document.querySelectorAll('#linkOptions input:checked');
+    const selectedIds = Array.from(checked).map(cb => parseInt(cb.value));
+
+    let list = getNotes();
+    list = list.map(n => {
+      if (n.id === currentLinkCardId) {
+        return { ...n, links: selectedIds };
+      }
+      if (selectedIds.includes(n.id)) {
+        if (!n.links.includes(currentLinkCardId)) {
+          return { ...n, links: [...n.links, currentLinkCardId] };
+        }
+      } else {
+        return { ...n, links: n.links.filter(id => id !== currentLinkCardId) };
+      }
+      return n;
+    });
+
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+    closeLinkModal();
+    renderNotes();
+    renderLinksView();
+    showToast('🔗 链接已更新');
+  }
+
+  // 渲染链接视图
+  function renderLinksView() {
+    const list = getNotes();
+    const view = document.getElementById('linksView');
+    const empty = document.getElementById('linksEmpty');
+
+    const linkedCards = list.filter(n => n.links && n.links.length > 0);
+
+    if (linkedCards.length === 0) {
+      view.innerHTML = '';
+      empty.style.display = 'block';
+      return;
+    }
+
+    empty.style.display = 'none';
+    view.innerHTML = linkedCards.map(card => {
+      const linked = list.filter(n => card.links.includes(n.id));
+      return `
+        <div class="link-view-card">
+          <div class="link-view-content">${escapeHtml(card.content)}</div>
+          <div class="link-view-meta">${card.time} · 链接了 ${card.links.length} 张</div>
+          <div class="link-view-links">
+            ${linked.map(l => `
+              <span class="link-tag">
+                ${escapeHtml(l.content.substring(0, 15))}...
+                <button onclick="unlinkCard(${card.id}, ${l.id})">×</button>
+              </span>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  // 解除链接
+  function unlinkCard(cardId, linkId) {
+    let list = getNotes();
+    list = list.map(n => {
+      if (n.id === cardId) return { ...n, links: n.links.filter(id => id !== linkId) };
+      if (n.id === linkId) return { ...n, links: n.links.filter(id => id !== cardId) };
+      return n;
+    });
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+    renderLinksView();
+    renderNotes();
+    showToast('🔗 已解除链接');
+  }
+
+  // 渲染发现页
+  function renderDiscover() {
+    const grid = document.getElementById('discoverGrid');
+    const favorites = getFavorites();
+
+    grid.innerHTML = discoverData.map((item, index) => {
+      const isCollected = favorites.some(f => f.text === item.text);
+      return `
+        <div class="discover-card" onclick="useDiscoverCard(${index})">
+          <div class="discover-card-bg" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
+          <div class="discover-card-overlay"></div>
+          <div class="discover-card-content">
+            <div class="discover-card-text">"${item.text}"</div>
+            <div class="discover-card-author">—— ${item.author}</div>
+            <div class="discover-card-meta">
+              <span class="discover-card-tag">${item.tag}</span>
+              <div class="discover-card-actions">
+                <button class="discover-action-btn ${isCollected ? 'collected' : ''}" onclick="toggleFavorite(event, ${index})" title="${isCollected ? '已收藏' : '收藏'}">
+                  ${isCollected ? '★' : '☆'}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  // 切换收藏状态
+  function toggleFavorite(event, index) {
+    event.stopPropagation();
+    const item = discoverData[index];
+    let favorites = getFavorites();
+
+    const existIndex = favorites.findIndex(f => f.text === item.text);
+
+    if (existIndex >= 0) {
+      favorites.splice(existIndex, 1);
+      showToast('☆ 已取消收藏');
+    } else {
+      favorites.push(item);
+      showToast('★ 已收藏');
+    }
+
+    localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites));
+    renderDiscover();
+    renderFavorites();
+  }
+
+  // 使用发现页卡片
+  function useDiscoverCard(index) {
+    const item = discoverData[index];
+    switchPage('home');
+    document.getElementById('newContent').value = `"${item.text}" —— ${item.author}`;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // 渲染收藏页
+  function renderFavorites() {
+    const favorites = getFavorites();
+    const list = document.getElementById('favoritesList');
+    const empty = document.getElementById('favoritesEmpty');
+
+    if (favorites.length === 0) {
+      list.innerHTML = '';
+      empty.style.display = 'block';
+      return;
+    }
+
+    empty.style.display = 'none';
+    list.innerHTML = favorites.map((item, index) => `
+      <div class="collected-card">
+        <div class="collected-card-text">"${item.text}"</div>
+        <div class="collected-card-author">—— ${item.author}</div>
+        <div class="collected-card-footer">
+          <span class="collected-card-tag">${item.tag}</span>
+          <div class="collected-card-actions">
+            <button class="collected-card-btn use" onclick="useFavorite(${index})">📝 使用</button>
+            <button class="collected-card-btn remove" onclick="removeFavorite(${index})">☆ 移除</button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // 使用收藏
+  function useFavorite(index) {
+    const favorites = getFavorites();
+    const item = favorites[index];
+    switchPage('home');
+    document.getElementById('newContent').value = `"${item.text}" —— ${item.author}`;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // 移除收藏
+  function removeFavorite(index) {
+    let favorites = getFavorites();
+    favorites.splice(index, 1);
+    localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites));
+    renderFavorites();
+    renderDiscover();
+    showToast('☆ 已移除收藏');
+  }
+
+  // 生成文章
+  function generateArticle() {
+    const checked = document.querySelectorAll('.note-card-checkbox:checked');
+    if (checked.length === 0) {
+      alert('请先选择要生成文章的卡片');
+      return;
+    }
+
+    const selectedIds = Array.from(checked).map(cb => parseInt(cb.closest('.note-card').dataset.id));
+    const allIds = new Set(selectedIds);
+    const list = getNotes();
+
+    selectedIds.forEach(id => {
+      const card = list.find(n => n.id === id);
+      if (card && card.links) {
+        card.links.forEach(lid => allIds.add(lid));
+      }
+    });
+
+    const cards = Array.from(allIds).map(id => list.find(n => n.id === id)).filter(Boolean);
+
+    if (cards.length === 0) {
+      alert('没有可用的卡片');
+      return;
+    }
+
+    let article = cards.length === 1
+      ? `【主题卡片】
+
+${cards[0].content}
+
+---
+这是一张卡片的思考，可在此基础上继续扩展。`
+      : `【引言】
+
+${cards[0].content}
+
+【正文】
+
+${cards.slice(1).map((card, i) => {
+  if (i === cards.length - 2) {
+    return `${card.content}\n\n【总结】`;
+  }
+  return card.content + '\n';
+}).join('\n')}
+
+综上所述，这些卡片揭示了一个核心观点：${cards[0].content.substring(0, 20)}...
+
+---
+📌 共整合 ${cards.length} 张卡片生成`;
+
+    document.getElementById('articleOutput').textContent = article;
+    document.getElementById('articleModal').classList.add('show');
+  }
+
+  // 关闭文章模态框
+  function closeArticleModal() {
+    document.getElementById('articleModal').classList.remove('show');
+  }
+
+  // 复制文章
+  function copyArticle() {
+    const text = document.getElementById('articleOutput').textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      closeArticleModal();
+      showToast('📋 已复制到剪贴板');
+    }).catch(() => {
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+      closeArticleModal();
+      showToast('📋 已复制到剪贴板');
+    });
+  }
+
+  // 初始化
+  document.addEventListener('DOMContentLoaded', function() {
+    renderDiscover();
+  });
+</script>
+</body>
+</html>
