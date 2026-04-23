@@ -57,23 +57,24 @@
 .section-desc { font-size: 13px; color: var(--text-secondary); }
 .discover-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; }
 .loading-tip { grid-column: 1 / -1; text-align: center; padding: 24px; color: #bbb; font-size: 14px; letter-spacing: 1px; }
-.discover-card { position: relative; height: 280px; border-radius: var(--radius); overflow: hidden; cursor: pointer; transition: all 0.3s; }
-.discover-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
-.discover-card-bg { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-size: cover; background-position: center; transition: transform 0.4s; }
-.discover-card:hover .discover-card-bg { transform: scale(1.08); }
-.discover-card-loading {
-  background-color: #e5e7eb;
+.discover-card {
+  background: #fff;
+  border-radius: 6px;
+  padding: 28px 24px 24px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  transition: box-shadow 0.2s;
+  cursor: default;
 }
-.discover-card-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.7) 100%); }
+.discover-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
 .discover-card-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 18px; color: white; }
-.discover-card-text { font-size: 14px; line-height: 1.8; margin-bottom: 10px; }
-.discover-card-author { font-size: 11px; opacity: 0.8; margin-bottom: 10px; }
-.discover-card-meta { display: flex; align-items: center; justify-content: space-between; }
-.discover-card-tag { background: rgba(255,255,255,0.2); backdrop-filter: blur(8px); padding: 3px 10px; border-radius: 12px; font-size: 11px; }
+.discover-card-text { font-size: 15px; line-height: 2; color: #1a1a1a; letter-spacing: 0.3px; }
+.discover-card-author { font-size: 12px; color: #bbb; margin-top: 12px; }
+.discover-card-meta { display: flex; align-items: center; justify-content: space-between; margin-top: 16px; padding-top: 14px; border-top: 1px solid #f0f0f0; }
+.discover-card-tag { font-size: 11px; color: #ccc; letter-spacing: 1px; }
 .discover-card-actions { display: flex; gap: 6px; }
-.discover-action-btn { width: 28px; height: 28px; border-radius: 50%; border: none; background: rgba(255,255,255,0.2); color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 13px; transition: all 0.2s; backdrop-filter: blur(8px); }
-.discover-action-btn:hover { background: var(--primary); }
-.discover-action-btn.collected { background: var(--warning); }
+.discover-action-btn { width: 26px; height: 26px; border-radius: 50%; border: 1px solid #eee; background: #fff; color: #ccc; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 13px; transition: all 0.2s; }
+.discover-action-btn:hover { border-color: #ccc; color: #999; }
+.discover-action-btn.collected { color: #f5a623; border-color: #f5a623; }
 .page-header { padding: 20px 0; display: flex; align-items: center; justify-content: space-between; }
 .page-title { font-size: 18px; font-weight: 600; }
 .action-bar { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 16px; }
@@ -319,8 +320,6 @@ async function loadDiscover() {
   // 先显示灰色骨架 + 加载中提示
   grid.innerHTML = Array.from({ length: INIT_COUNT }, (_, i) => `
     <div class="discover-card" id="discover-card-${i}">
-      <div class="discover-card-bg discover-card-loading" id="discover-img-${i}"></div>
-      <div class="discover-card-overlay"></div>
       <div class="discover-card-content"></div>
     </div>`).join('') + '<div id="loading-tip" class="loading-tip">加载中...</div>';
 
@@ -371,8 +370,6 @@ async function loadMore() {
   grid.insertAdjacentHTML('beforeend',
     Array.from({ length: toLoad }, (_, i) => `
       <div class="discover-card" id="discover-card-${startIdx + i}">
-        <div class="discover-card-bg discover-card-loading" id="discover-img-${startIdx + i}"></div>
-        <div class="discover-card-overlay"></div>
         <div class="discover-card-content"></div>
       </div>`).join('') + '<div id="loading-tip" class="loading-tip">加载中...</div>'
   );
@@ -424,16 +421,12 @@ function renderDiscoverMore(startIdx, newItems) {
     const card = document.getElementById('discover-card-' + idx);
     if (!card) return;
     card.innerHTML = `
-      <div class="discover-card-bg discover-card-loading" id="discover-img-${idx}" data-index="${idx}"></div>
-      <div class="discover-card-overlay"></div>
-      <div class="discover-card-content">
-        <div class="discover-card-text">${item.text}</div>
-        ${item.author ? `<div class="discover-card-author">—— ${item.author}</div>` : ''}
-        <div class="discover-card-meta">
-          <span class="discover-card-tag">发现</span>
-          <div class="discover-card-actions">
-            <button class="discover-action-btn ${favorites.some(f => f.text === item.text) ? 'collected' : ''}" onclick="event.stopPropagation();toggleFav(${idx})">${favorites.some(f => f.text === item.text) ? '★' : '☆'}</button>
-          </div>
+      <div class="discover-card-text">${item.text}</div>
+      ${item.author ? `<div class="discover-card-author">—— ${item.author}</div>` : ''}
+      <div class="discover-card-meta">
+        <span class="discover-card-tag">发现</span>
+        <div class="discover-card-actions">
+          <button class="discover-action-btn ${favorites.some(f => f.text === item.text) ? 'collected' : ''}" onclick="event.stopPropagation();toggleFav(${idx})">${favorites.some(f => f.text === item.text) ? '★' : '☆'}</button>
         </div>
       </div>`;
   });
@@ -466,16 +459,12 @@ function renderDiscover() {
   }
   grid.innerHTML = discoverItems.map((item, index) => `
     <div class="discover-card" id="discover-card-${index}">
-      <div class="discover-card-bg discover-card-loading" id="discover-img-${index}" data-index="${index}"></div>
-      <div class="discover-card-overlay"></div>
-      <div class="discover-card-content">
-        <div class="discover-card-text">${item.text}</div>
-        ${item.author ? `<div class="discover-card-author">—— ${item.author}</div>` : ''}
-        <div class="discover-card-meta">
-          <span class="discover-card-tag">发现</span>
-          <div class="discover-card-actions">
-            <button class="discover-action-btn ${favorites.some(f => f.text === item.text) ? 'collected' : ''}" onclick="event.stopPropagation();toggleFav(${index})">${favorites.some(f => f.text === item.text) ? '★' : '☆'}</button>
-          </div>
+      <div class="discover-card-text">${item.text}</div>
+      ${item.author ? `<div class="discover-card-author">—— ${item.author}</div>` : ''}
+      <div class="discover-card-meta">
+        <span class="discover-card-tag">发现</span>
+        <div class="discover-card-actions">
+          <button class="discover-action-btn ${favorites.some(f => f.text === item.text) ? 'collected' : ''}" onclick="event.stopPropagation();toggleFav(${index})">${favorites.some(f => f.text === item.text) ? '★' : '☆'}</button>
         </div>
       </div>
     </div>`).join('');
