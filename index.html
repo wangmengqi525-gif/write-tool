@@ -457,43 +457,6 @@ function saveNote() {
   renderDiscover();
 }
 
-function renderDiscover() {
-  const grid = document.getElementById('discoverGrid');
-  if (discoverData.length === 0) {
-    grid.innerHTML = '<div class="empty-state"><div class="empty-state-icon">◇</div><div class="empty-state-text">暂无内容，等待每日更新...</div></div>';
-    return;
-  }
-  grid.innerHTML = discoverData.map((item, index) => {
-    const { text, author } = parseText(item.text || '');
-    const isFav = favorites.some(f => f.text === item.text);
-    const imagePath = 'images/' + (item.image || `${String(index + 1).padStart(2, '0')}.jpg`);
-    return `<div class="discover-card">
-      <div class="discover-card-bg" style="background-image:url('${imagePath}')"></div>
-      <div class="discover-card-overlay"></div>
-      <div class="discover-card-content">
-        <div class="discover-card-text">${text}</div>
-        ${author ? `<div class="discover-card-author">—— ${author}</div>` : ''}
-        <div class="discover-card-meta">
-          <span class="discover-card-tag">发现</span>
-          <div class="discover-card-actions">
-            <button class="discover-action-btn ${isFav ? 'collected' : ''}" onclick="event.stopPropagation();toggleFav(${index})">${isFav ? '★' : '☆'}</button>
-          </div>
-        </div>
-      </div>
-    </div>`;
-  }).join('');
-}
-
-function toggleFav(index) {
-  const item = discoverData[index];
-  if (!item) return;
-  const idx = favorites.findIndex(f => f.text === item.text);
-  if (idx > -1) { favorites.splice(idx, 1); showToast('已取消收藏'); }
-  else { favorites.push(item); showToast('已收藏！'); }
-  localStorage.setItem('favorites', JSON.stringify(favorites));
-  renderDiscover();
-}
-
 function renderNotes() {
   const box = document.getElementById('noteBox');
   const tip = document.getElementById('emptyTip');
