@@ -262,23 +262,41 @@ let pendingLinkNoteId = null;
 // 发现页数据：文字从一言API拉，图片从Unsplash拉
 let discoverItems = [];
 const CARD_COUNT = 12;
-const UNSPLASH_KEY = '46_Ae5vHvkMX9IvWXjEN13hD7_0St9DZZ-DiRarGfgw';
-const CACHE_KEY = 'unsplash_cache';
-const CACHE_HOUR_MS = 6 * 60 * 60 * 1000; // 缓存6小时
 
-// 从一言API获取句子
-async function fetchHitokoto(count) {
-  const promises = [];
-  for (let i = 0; i < count; i++) {
-    promises.push(fetch('https://api-proxy.wangmengqi525.workers.dev/hitokoto').then(r => r.json()).catch(() => null));
+// 用文字内容生成稳定的缓存key（同一句话永远用同一张图）
+function textCacheKey(text) {
+  let hash = 0;
+  for (let i = 0; i < text.length; i++) {
+    hash = ((hash << 5) - hash) + text.charCodeAt(i);
+    hash |= 0;
   }
-  return Promise.all(promises);
+  return 't' + Math.abs(hash);
 }
 
-// 从缓存或API获取图片URL（每张卡片固定一张风景图）
-async function fetchImageUrl(index) {
+// 从一言API获取句子（去重）
+async function fetchHitokoto(count) {
+  const seen = new Set();
+  const results = [];
+  // 最多请求2倍数量，凑够不重复的count条
+  for (let i = 0; i < count * 3 && results.length < count; i++) {
+    try {
+      await sleep(100); // 加小延迟降低重复率
+      const r = await fetch('https://api-proxy.wangmengqi525.workers.dev/hitokoto').then(res => res.json());
+      if (r && r.hitokoto && !seen.has(r.hitokoto)) {
+        seen.add(r.hitokoto);
+        results.push(r);
+      }
+    } catch(e) {}
+  }
+  return results;
+}
+
+// 获取图片URL（用文字内容做缓存key，图片和文字绑定）
+async function fetchImageUrl(text) {
+  const key = textCacheKey(text);
   const cache = getImageCache();
-  const cached = cache[index];
+  const cached = cache[key];
+  const CACHE_HOUR_MS = 6 * 60 * 60 * 1000;
   if (cached && Date.now() - cached.ts < CACHE_HOUR_MS) {
     return cached.url;
   }
@@ -289,27 +307,22 @@ async function fetchImageUrl(index) {
     );
     if (!res.ok) throw new Error('Unsplash error ' + res.status);
     const photo = await res.json();
-    const url = photo.urls ? photo.urls.regular : photo.urls?.regular;
-    // 追踪下载（Unsplash API要求）
+    const url = photo.urls ? photo.urls.regular : '';
     if (photo.id) {
       fetch(`https://api-proxy.wangmengqi525.workers.dev/unsplash-download?id=${photo.id}`, { keepalive: true }).catch(() => {});
     }
-    // 写入缓存
-    cache[index] = { url, ts: Date.now() };
+    cache[key] = { url, ts: Date.now() };
     saveImageCache(cache);
     return url;
   } catch(e) {
-    // 失败时用缓存（哪怕过期）
     if (cached) return cached.url;
-    // 再失败用占位图
-    return `https://picsum.photos/seed/${index + 100}/800/533`;
+    return `https://picsum.photos/seed/${Math.abs(textCacheKey(text)) % 1000}/800/533`;
   }
 }
 
-// 加载发现页内容
+// 加载发现页
 async function loadDiscover() {
   const grid = document.getElementById('discoverGrid');
-  // 显示骨架加载状态
   grid.innerHTML = Array.from({ length: CARD_COUNT }, (_, i) => `
     <div class="discover-card" id="discover-card-${i}">
       <div class="discover-card-bg discover-card-loading" id="discover-img-${i}"></div>
@@ -319,30 +332,25 @@ async function loadDiscover() {
       </div>
     </div>`).join('');
 
-  // 1. 拉文字
   let texts = [];
   try {
     const results = await fetchHitokoto(CARD_COUNT);
-    texts = results.filter(Boolean).map(r => ({
+    texts = results.map(r => ({
       text: r.hitokoto,
       author: r.from ? r.from : (r.from_who || '')
     }));
   } catch(e) {}
 
-  // 如果一言失败，用兜底数据
   if (texts.length < CARD_COUNT) {
     texts = getFallbackTexts().slice(0, CARD_COUNT);
   }
 
   discoverItems = texts;
-
-  // 2. 先渲染文字（图片继续后台加载）
   renderDiscover();
 
-  // 3. 逐张加载图片（避免并发过高）
-  for (let i = 0; i < Math.min(CARD_COUNT, discoverItems.length); i++) {
+  // 并发加载图片（Unsplash允许多并发）
+  for (let i = 0; i < discoverItems.length; i++) {
     loadImage(i);
-    await sleep(400); // 每400ms请求一张，避免触发限流
   }
 }
 
@@ -350,8 +358,8 @@ async function loadDiscover() {
 async function loadImage(index) {
   const el = document.getElementById('discover-img-' + index);
   if (!el || !discoverItems[index]) return;
-  const url = await fetchImageUrl(index);
-  if (!url) return;
+  const url = await fetchImageUrl(discoverItems[index].text);
+  if (!url) { el.classList.remove('discover-card-loading'); return; }
   const img = new Image();
   img.onload = () => {
     el.style.backgroundImage = `url('${url}')`;
@@ -359,7 +367,7 @@ async function loadImage(index) {
   };
   img.onerror = () => {
     el.classList.remove('discover-card-loading');
-    el.style.backgroundImage = `url('https://picsum.photos/seed/${index + 100}/800/533')`;
+    el.style.backgroundImage = `url('https://picsum.photos/seed/${Math.abs(textCacheKey(discoverItems[index].text)) % 1000}/800/533')`;
   };
   img.src = url;
 }
