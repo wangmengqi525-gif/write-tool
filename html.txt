@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>卡片盒写作法</title>
+  <link rel="icon" href="https://minimax-algeng-chat-tts.oss-cn-wulanchabu.aliyuncs.com/ccv2%2F2026-04-22%2FMiniMax-M2.7%2F2044322364073710454%2Fc5d98bf99a80cbc41ce58537b1a09c53c60d764235db48944a37f7c699232e0d..png?Expires=1776930911&OSSAccessKeyId=LTAI5tGLnRTkBjLuYPjNcKQ8&Signature=gqU%2BzmpNJVp3Oa%2B9gxu6Bx6mujI%3D" type="image/png">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #F8F9FA; --bg-card: #FFFFFF; --text: #1a1a1a;
+      --text-secondary: #666666; --text-muted: #999999;
+      --border: #E5E7EB; --primary: #6366F1; --primary-hover: #4F46E5;
+      --primary-light: #818CF8; --accent: #06B6D4; --danger: #EF4444;
+      --success: #10B981; --warning: #F59E0B;
+      --shadow: 0 1px 3px rgba(0,0,0,0.08); --shadow-hover: 0 4px 12px rgba(0,0,0,0.1);
+      --radius: 12px; --radius-sm: 8px;
+    }
+    [data-theme="dark"] {
+      --bg: #111827; --bg-card: #1F2937; --text: #F9FAFB;
+      --text-secondary: #9CA3AF; --text-muted: #6B7280; --border: #374151;
+    }
+    body { font-family: 'Microsoft YaHei', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; transition: background 0.3s, color 0.3s; }
+    .header { padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; background: var(--bg-card); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 10px; }
+    .header-logo { width: 28px; height: 28px; object-fit: contain; }
+    .logo-text { font-size: 18px; font-weight: 700; color: var(--text); }
+    .header-nav { display: flex; gap: 4px; margin-left: 24px; }
+    .nav-btn { padding: 8px 14px; border-radius: var(--radius-sm); font-size: 13px; color: var(--text-secondary); cursor: pointer; border: none; background: transparent; transition: all 0.2s; }
+    .nav-btn:hover { background: var(--bg); color: var(--text); }
+    .nav-btn.active { background: var(--primary); color: white; }
+    .header-right { display: flex; align-items: center; gap: 8px; }
+    .icon-btn { width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-secondary); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 15px; transition: all 0.2s; }
+    .icon-btn:hover { background: var(--primary); border-color: var(--primary); color: white; }
+    .container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+    .page { display: none; animation: fadeIn 0.25s ease; }
+    .page.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    .create-section { background: var(--bg-card); border-radius: var(--radius); padding: 24px; border: 1px solid var(--border); box-shadow: var(--shadow); margin: 24px 0; }
+    .create-title { font-size: 18px; font-weight: 600; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+    .create-desc { color: var(--text-secondary); font-size: 13px; margin-bottom: 14px; }
+    .create-area { display: flex; gap: 12px; }
+    .create-input { flex: 1; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 14px; font-size: 14px; color: var(--text); resize: none; height: 84px; outline: none; transition: border-color 0.2s; }
+    .create-input:focus { border-color: var(--primary); }
+    .create-input::placeholder { color: var(--text-muted); }
+    .btn { padding: 10px 18px; border-radius: var(--radius-sm); font-size: 13px; font-weight: 500; cursor: pointer; border: none; transition: all 0.2s; }
+.btn-primary { background: var(--primary); color: white; }
+.btn-primary:hover { background: var(--primary-hover); }
+.btn-secondary { background: var(--bg); color: var(--text); border: 1px solid var(--border); }
+.btn-secondary:hover { background: var(--border); }
+.btn-danger { background: var(--bg); color: var(--danger); border: 1px solid var(--danger); }
+.btn-danger:hover { background: var(--danger); color: white; }
+.btn-success { background: var(--success); color: white; }
+.discover-section { padding: 24px 0; }
+.section-header { margin-bottom: 20px; }
+.section-title { font-size: 18px; font-weight: 600; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
+.section-desc { font-size: 13px; color: var(--text-secondary); }
+.category-tabs { display: flex; gap: 8px; margin-bottom: 18px; flex-wrap: wrap; }
+.category-tab { padding: 6px 14px; border-radius: 20px; font-size: 13px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-secondary); cursor: pointer; transition: all 0.2s; }
+.category-tab:hover { border-color: var(--primary); color: var(--primary); }
+.category-tab.active { background: var(--primary); color: white; border-color: var(--primary); }
+.discover-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; }
+.discover-card { position: relative; height: 280px; border-radius: var(--radius); overflow: hidden; cursor: pointer; transition: all 0.3s; }
+.discover-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+.discover-card-bg { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-size: cover; background-position: center; transition: transform 0.4s; }
+.discover-card:hover .discover-card-bg { transform: scale(1.08); }
+.discover-card-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.7) 100%); }
+.discover-card-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 18px; color: white; }
+.discover-card-text { font-size: 14px; line-height: 1.8; margin-bottom: 10px; font-style: italic; }
+.discover-card-author { font-size: 11px; opacity: 0.8; margin-bottom: 10px; }
+.discover-card-meta { display: flex; align-items: center; justify-content: space-between; }
+.discover-card-tag { background: rgba(255,255,255,0.2); backdrop-filter: blur(8px); padding: 3px 10px; border-radius: 12px; font-size: 11px; }
+.discover-card-actions { display: flex; gap: 6px; }
+.discover-action-btn { width: 28px; height: 28px; border-radius: 50%; border: none; background: rgba(255,255,255,0.2); color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 13px; transition: all 0.2s; backdrop-filter: blur(8px); }
+.discover-action-btn:hover { background: var(--primary); }
+.discover-action-btn.collected { background: var(--warning); }
+.page-header { padding: 20px 0; display: flex; align-items: center; justify-content: space-between; }
+.page-title { font-size: 18px; font-weight: 600; }
+.action-bar { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 16px; }
+.action-bar .count { margin-left: auto; color: var(--text-secondary); font-size: 13px; }
+.card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.note-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; position: relative; transition: all 0.2s; }
+.note-card:hover { box-shadow: var(--shadow-hover); border-color: var(--primary-light); }
+.note-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.note-card-checkbox { width: 18px; height: 18px; accent-color: var(--primary); cursor: pointer; }
+.note-card-actions { display: flex; gap: 6px; opacity: 0; transition: opacity 0.2s; }
+.note-card:hover .note-card-actions { opacity: 1; }
+.note-card-btn { width: 26px; height: 26px; border-radius: 6px; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 13px; transition: all 0.2s; }
+.note-card-btn.edit { background: rgba(99, 102, 241, 0.1); color: var(--primary); }
+.note-card-btn.edit:hover { background: var(--primary); color: white; }
+.note-card-btn.link { background: rgba(6, 182, 212, 0.1); color: var(--accent); }
+.note-card-btn.link:hover { background: var(--accent); color: white; }
+.note-card-btn.delete { background: rgba(239, 68, 68, 0.1); color: var(--danger); }
+.note-card-btn.delete:hover { background: var(--danger); color: white; }
+.note-card-content { font-size: 14px; line-height: 1.7; white-space: pre-line; margin-bottom: 12px; color: var(--text); }
+.note-card-footer { display: flex; align-items: center; justify-content: space-between; }
+.note-card-time { font-size: 12px; color: var(--text-muted); }
+.note-card-link-badge { font-size: 11px; background: rgba(6, 182, 212, 0.1); color: var(--accent); padding: 3px 8px; border-radius: 10px; }
+.collected-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-bottom: 14px; position: relative; transition: all 0.2s; }
+.collected-card:hover { box-shadow: var(--shadow-hover); }
+.collected-card-text { font-size: 14px; line-height: 1.8; margin-bottom: 10px; font-style: italic; color: var(--text); }
+.collected-card-author { font-size: 12px; color: var(--text-muted); margin-bottom: 10px; }
+.collected-card-footer { display: flex; align-items: center; justify-content: space-between; }
+.collected-card-tag { font-size: 11px; background: rgba(99, 102, 241, 0.1); color: var(--primary); padding: 3px 10px; border-radius: 10px; }
+.collected-card-actions { display: flex; gap: 8px; }
+.collected-card-btn { padding: 5px 12px; border-radius: var(--radius-sm); border: none; font-size: 12px; cursor: pointer; display: flex; align-items: center; gap: 4px; transition: all 0.2s; }
+.collected-card-btn.use { background: rgba(99, 102, 241, 0.1); color: var(--primary); }
+.collected-card-btn.use:hover { background: var(--primary); color: white; }
+.collected-card-btn.remove { background: rgba(239, 68, 68, 0.1); color: var(--danger); }
+.collected-card-btn.remove:hover { background: var(--danger); color: white; }
+.link-view-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-bottom: 14px; }
+.link-view-content { font-size: 14px; line-height: 1.7; white-space: pre-line; margin-bottom: 10px; }
+.link-view-meta { font-size: 12px; color: var(--text-muted); margin-bottom: 10px; }
+.link-view-links { display: flex; flex-wrap: wrap; gap: 8px; }
+.link-tag { background: rgba(99, 102, 241, 0.1); color: var(--primary); padding: 5px 10px; border-radius: 14px; font-size: 12px; display: flex; align-items: center; gap: 4px; }
+.link-tag button { background: none; border: none; color: inherit; cursor: pointer; font-size: 13px; opacity: 0.7; }
+.link-tag button:hover { opacity: 1; }
+.modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center; }
+.modal.show { display: flex; }
+.modal-content { background: var(--bg-card); border-radius: var(--radius); padding: 24px; max-width: 480px; width: 90%; max-height: 80vh; overflow-y: auto; }
+.modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.modal-title { font-size: 16px; font-weight: 600; }
+.modal-close { width: 28px; height: 28px; border-radius: 50%; border: none; background: var(--bg); color: var(--text); cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; }
+.modal-close:hover { background: var(--border); }
+.modal-textarea { width: 100%; height: 140px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px; font-size: 14px; color: var(--text); resize: none; outline: none; }
+.modal-textarea:focus { border-color: var(--primary); }
+.modal-footer { display: flex; justify-content: flex-end; gap: 10px; margin-top: 16px; }
+.link-option { display: flex; align-items: flex-start; padding: 12px 0; border-bottom: 1px solid var(--border); cursor: pointer; }
+.link-option:last-child { border-bottom: none; }
+.link-option input { margin-right: 10px; margin-top: 3px; accent-color: var(--primary); }
+.link-option-content { flex: 1; }
+.link-option-text { font-size: 14px; line-height: 1.5; }
+.link-option-time { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+.article-output { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px; min-height: 180px; white-space: pre-wrap; font-size: 14px; line-height: 1.8; }
+.empty-state { text-align: center; padding: 48px 20px; color: var(--text-muted); }
+.empty-state-icon { font-size: 40px; margin-bottom: 12px; opacity: 0.5; }
+.empty-state-text { font-size: 14px; }
+.toast { position: fixed; top: 70px; left: 50%; transform: translateX(-50%) translateY(-120%); background: var(--primary); color: white; padding: 10px 20px; border-radius: var(--radius-sm); font-size: 13px; z-index: 2000; transition: transform 0.3s ease, opacity 0.3s ease; opacity: 0; pointer-events: none; }
+.toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+@media (max-width: 768px) {
+.container { padding: 0 16px; }
+.header { padding: 12px 16px; }
+.header-nav { display: none; }
+.card-grid { grid-template-columns: 1fr; }
+.discover-grid { grid-template-columns: 1fr; }
+.action-bar { flex-direction: column; align-items: stretch; }
+.action-bar .count { margin-left: 0; text-align: center; }
+}
+</style>
+</head>
+<body>
+<header class="header">
+<div class="header-left">
+<img class="header-logo" src="https://minimax-algeng-chat-tts.oss-cn-wulanchabu.aliyuncs.com/ccv2%2F2026-04-22%2FMiniMax-M2.7%2F2044322364073710454%2Fc5d98bf99a80cbc41ce58537b1a09c53c60d764235db48944a37f7c699232e0d..png?Expires=1776930911&OSSAccessKeyId=LTAI5tGLnRTkBjLuYPjNcKQ8&Signature=gqU%2BzmpNJVp3Oa%2B9gxu6Bx6mujI%3D" alt="logo">
+<span class="logo-text">卡片盒写作法</span>
+<div class="header-nav">
+<button class="nav-btn active" onclick="switchPage('home')" id="navHome">首页</button>
+<button class="nav-btn" onclick="switchPage('cards')" id="navCards">卡片盒</button>
+<button class="nav-btn" onclick="switchPage('links')" id="navLinks">链接</button>
+<button class="nav-btn" onclick="switchPage('favorites')" id="navFavorites">收藏</button>
+</div>
+</div>
+<div class="header-right">
+<button class="icon-btn" onclick="toggleTheme()" title="切换主题" id="themeBtn">🌙</button>
+</div>
+</header>
+<div class="container">
+<div class="page active" id="pageHome">
+<section class="create-section">
+<h1 class="create-title">🧠 记录闪念</h1>
+<p class="create-desc">原子化原则：一句话、一个想法、不解释、不展开</p>
+<div class="create-area">
+<textarea class="create-input" id="newContent" placeholder="写下你的想法……"></textarea>
+<button class="btn btn-primary" onclick="saveNote()">保存</button>
+</div>
+</section>
+<section class="discover-section">
+<div class="section-header">
+<h2 class="section-title">💡 发现灵感</h2>
+<p class="section-desc">哲理短句 · 治愈美文 · 人生感悟 · 风景意境</p>
+</div>
+<div class="category-tabs">
+<button class="category-tab active" onclick="filterDiscover('all')">全部</button>
+<button class="category-tab" onclick="filterDiscover('philosophy')">哲理短句</button>
+<button class="category-tab" onclick="filterDiscover('healing')">治愈美文</button>
+<button class="category-tab" onclick="filterDiscover('life')">人生感悟</button>
+<button class="category-tab" onclick="filterDiscover('scenery')">风景意境</button>
+</div>
+<div class="discover-grid" id="discoverGrid"></div>
+</section>
+</div>
+<div class="page" id="pageCards">
+<div class="page-header"><h1 class="page-title">📚 我的卡片盒</h1></div>
+<div class="action-bar">
+<button class="btn btn-success" onclick="generateArticle()">📝 生成文章</button>
+<button class="btn btn-secondary" onclick="selectAll()">全选</button>
+<button class="btn btn-secondary" onclick="deselectAll()">取消</button>
+<button class="btn btn-danger" onclick="clearAll()">清空</button>
+<span class="count" id="selectedCount">已选 0</span>
+</div>
+<div class="card-grid" id="noteBox"></div>
+<div class="empty-state" id="emptyTip" style="display: none;">
+<div class="empty-state-icon">📭</div>
+<div class="empty-state-text">暂无卡片，快去首页新建吧～</div>
+</div>
+</div>
+<div class="page" id="pageLinks">
+<div class="page-header"><h1 class="page-title">🔗 卡片链接</h1></div>
+<div class="card-grid" id="linkBox"></div>
+<div class="empty-state" id="linkEmptyTip" style="display: none;">
+<div class="empty-state-icon">🔗</div>
+<div class="empty-state-text">暂无链接的卡片，去给卡片添加关联吧～</div>
+</div>
+</div>
+<div class="page" id="pageFavorites">
+<div class="page-header"><h1 class="page-title">⭐ 我的收藏</h1></div>
+<div id="favoritesBox"></div>
+<div class="empty-state" id="favEmptyTip" style="display: none;">
+<div class="empty-state-icon">❤️</div>
+<div class="empty-state-text">暂无收藏，去发现页收藏喜欢的内容吧～</div>
+</div>
+</div>
+</div>
+<div class="modal" id="linkModal">
+<div class="modal-content">
+<div class="modal-header">
+<h3 class="modal-title">关联已有卡片</h3>
+<button class="modal-close" onclick="closeLinkModal()">×</button>
+</div>
+<div id="linkOptions"></div>
+<div class="modal-footer">
+<button class="btn btn-secondary" onclick="closeLinkModal()">取消</button>
+<button class="btn btn-primary" onclick="confirmLink()">确认关联</button>
+</div>
+</div>
+</div>
+<div class="modal" id="articleModal">
+<div class="modal-content">
+<div class="modal-header">
+<h3 class="modal-title">📝 生成文章</h3>
+<button class="modal-close" onclick="closeArticleModal()">×</button>
+</div>
+<div style="margin-bottom: 12px;">
+<label style="font-size: 13px; color: var(--text-secondary);">选择文章类型：</label>
+<select id="articleType" style="width: 100%; margin-top: 6px; padding: 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg); color: var(--text); font-size: 14px;">
+<option value="reflection">感悟文（事 + 感 + 理）</option>
+<option value="argument">议论文（观点 + 论据）</option>
+<option value="narrative">叙述文（时间线结构）</option>
+<option value="list">清单体（并列几点）</option>
+</select>
+</div>
+<div id="articleOutput" class="article-output">请先在卡片盒页面选择卡片，点击「生成文章」按钮...</div>
+<div class="modal-footer">
+<button class="btn btn-secondary" onclick="closeArticleModal()">关闭</button>
+<button class="btn btn-primary" onclick="copyArticle()">复制内容</button>
+</div>
+</div>
+</div>
+<div class="toast" id="toast">提示</div>
+<script>
+// ============================================================
+// 卡片盒写作法 v2 - JavaScript
+// ============================================================
+
+// ----- 数据 & 常量 -----
+const PRESET_TAGS = ['#感悟', '#摘抄', '#灵感', '#待写', '#金句', '#人物', '#事件', '#思考', '#名言', '#风景'];
+const TEMPLATES = [
+  { id: 'reflection', title: '感悟文', desc: '事 + 感 + 理', tip: '结构：描述一件事 → 表达感受 → 提炼道理。适合写生活感悟和内心成长。' },
+  { id: 'argument',   title: '议论文', desc: '观点 + 论据', tip: '结构：提出观点 → 引用卡片中的论据/例子 → 总结升华。适合表达立场和说服。' },
+  { id: 'narrative',  title: '叙述文', desc: '时间线结构', tip: '结构：按时间顺序串联卡片，形成叙事流。适合记录经历和故事。' },
+  { id: 'list',       title: '清单体', desc: '并列几点', tip: '结构：将卡片整理为并列的要点。适合分享经验、建议和方法论。' },
+];
+const ONBOARDING_SLIDES = [
+  { icon: '📚', title: '欢迎使用卡片盒写作法', desc: '卡片盒（Zettelkasten）是德国社会学家 Luhmann 用了一辈子的笔记法。核心理念：每个想法写在一张独立的卡片上，通过卡片之间的链接，让思想自由生长为文章。' },
+  { icon: '✍️',  title: 'Step 1：原子化记录', desc: '不需要长篇大论。一句话、一个想法足矣。不要解释，不要展开，就写最原始的那个念头。这是写作的原材料。' },
+  { icon: '🔗',  title: 'Step 2：建立卡片链接', desc: '当一张卡片让你想起另一张时，把它们关联起来。链接是 Zettelkasten 的精髓——它帮你发现思想之间的隐藏联系。' },
+  { icon: '📝',  title: 'Step 3：生成文章', desc: '选中相关卡片，选择文章类型（感悟/议论/叙述/清单），卡片会自动拼接成结构完整的文章。试试看吧！' },
+];
+
+let notes = JSON.parse(localStorage.getItem('notes') || '[]');
+let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+let selectedNotes = new Set();
+let currentFilter = 'all';
+let activeTagFilter = null;
+let pendingLinkNoteId = null;
+let pendingTagNoteId = null;
+let pendingTags = [];
+let onboardingStep = 0;
+let discoverCache = [];
+let selectedTemplate = 'reflection';
+
+var FALLBACK_TEXTS = [
+  { text: '你害怕的每一个鬼，都是别人朝思暮想却无法见到的人。', author: '网络热评' },
+  { text: '我们终此一生，就是要摆脱他人的期待，找到真正的自己。', author: '《无声告白》' },
+  { text: '所有的黑暗都是未知的黎明铺垫，每一帧痛苦都是重生的伏笔。', author: '网络' },
+  { text: '温柔的一半是知识，另一半是阅历与格局。', author: '网络' },
+  { text: '阳光的酒调得很淡，却很醇，浅浅地斟在每一个杯形的小野花里。', author: '张晓风' },
+  { text: '活在这珍贵的人间，太阳强烈，水波温柔。', author: '海子' },
+  { text: '你问我爱你值不值得，其实你应该知道，爱就是不问值得不值得。', author: '张爱玲' },
+  { text: '人生就像一杯茶，不会苦一辈子，但总会苦一阵子。', author: '网络' },
+  { text: '没有人是一座孤岛，在大海里独踞。', author: '约翰·多恩' },
+  { text: '生活不是等待风暴过去，而是学会在雨中翩翩起舞。', author: '网络' },
+  { text: '成长就是将哭声调成静音的过程。', author: '网络' },
+  { text: '我有一碗粥，可以慰风尘。', author: '网络' },
+];
+
+// ----- 工具函数 -----
+function esc(s) {
+  if (!s) return '';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function showToast(msg, type) {
+  var t = document.getElementById('toast');
+  if (!t) return;
+  t.textContent = msg;
+  t.className = 'toast' + (type ? ' toast-' + type : '');
+  t.classList.add('show');
+  setTimeout(function() { t.classList.remove('show'); }, 2200);
+}
+
+function getToday() {
+  return new Date().toDateString();
+}
+
+// ----- 页面切换 -----
+function switchPage(page) {
+  document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
+  var pageId = 'page' + page.charAt(0).toUpperCase() + page.slice(1);
+  var el = document.getElementById(pageId);
+  if (el) el.classList.add('active');
+  document.querySelectorAll('.nav-btn').forEach(function(b) { b.classList.remove('active'); });
+  var navId = 'nav' + page.charAt(0).toUpperCase() + page.slice(1);
+  var nav = document.getElementById(navId);
+  if (nav) nav.classList.add('active');
+  if (page === 'cards') { renderNotes(); updateStats(); }
+  if (page === 'links') renderLinks();
+  if (page === 'favorites') renderFavorites();
+}
+
+// ----- 主题切换 -----
+function toggleTheme() {
+  var body = document.body;
+  body.toggleAttribute('data-theme');
+  var btn = document.getElementById('themeBtn');
+  if (btn) btn.textContent = body.hasAttribute('data-theme') ? '☀️' : '🌙';
+}
+
+// ----- 发现页 API -----
+function fetchDiscoverFromAPI(category) {
+  var grid = document.getElementById('discoverGrid');
+  if (!grid) return;
+  var loading = document.getElementById('discoverLoading');
+  if (loading) loading.style.display = 'inline';
+
+  var queries = {
+all: ['nature', 'minimal', 'peaceful'],
+philosophy: ['sky', 'mountain', 'ocean'],
+healing: ['flower', 'garden', 'sunset'],
+life: ['road', 'path', 'forest'],
+scenery: ['lake', 'fog', 'stars']
+};
+
+var collected = [];
+var done = 0;
+var target = 12;
+
+function mapCategory(t) {
+if (!t) return 'life';
+if (t === 's' || t === 'a') return 'philosophy';
+if (t === 'i') return 'healing';
+if (t === 'k') return 'scenery';
+return 'life';
+}
+
+function fetchHitokoto(cb) {
+var xhr = new XMLHttpRequest();
+xhr.timeout = 5000;
+xhr.onreadystatechange = function() {
+if (xhr.readyState === 4 && xhr.status === 200) {
+try {
+var d = JSON.parse(xhr.responseText);
+cb({ text: d.hitokoto || '', author: d.from || '佚名', category: mapCategory(d.type), image: 'https://picsum.photos/seed/' + Math.floor(Math.random()*1000) + '/600/400' });
+} catch(e) { cb(null); }
+}
+};
+xhr.ontimeout = function() { cb(null); };
+xhr.onerror = function() { cb(null); };
+xhr.open('GET', 'https://v1.hitokoto.cn?encode=json&c=s&c=i&c=k');
+xhr.send();
+}
+
+function tryRender() {
+done++;
+if (done < target) return;
+if (loading) loading.style.display = 'none';
+while (collected.length < 12) {
+var idx = collected.length;
+collected.push({ id: -idx - 1, text: FALLBACK_TEXTS[idx % FALLBACK_TEXTS.length].text, author: FALLBACK_TEXTS[idx % FALLBACK_TEXTS.length].author, category: category === 'all' ? 'life' : category, image: 'https://picsum.photos/seed/' + (100 + idx) + '/600/400' });
+}
+discoverCache = collected;
+renderDiscoverGrid(collected);
+}
+
+for (var i = 0; i < target; i++) {
+(function(i) {
+fetchHitokoto(function(item) {
+if (item) collected.push(item);
+tryRender();
+});
+})(i);
+}
+
+setTimeout(function() {
+if (loading) loading.style.display = 'none';
+if (collected.length === 0) {
+for (var j = 0; j < 12; j++) {
+collected.push({ id: -j - 1, text: FALLBACK_TEXTS[j % FALLBACK_TEXTS.length].text, author: FALLBACK_TEXTS[j % FALLBACK_TEXTS.length].author, category: category === 'all' ? 'life' : category, image: 'https://picsum.photos/seed/' + (200 + j) + '/600/400' });
+}
+renderDiscoverGrid(collected);
+}
+}, 4000);
+}
+
+function renderDiscoverGrid(items) {
+var grid = document.getElementById('discoverGrid');
+if (!grid) return;
+var filtered = currentFilter === 'all' ? items : items.filter(function(d) { return d.category === currentFilter; });
+grid.innerHTML = filtered.map(function(item) {
+var isFav = favorites.some(function(f) { return f.id === item.id; });
+return '<div class="discover-card" onclick="event.stopPropagation()">' +
+'<div class="discover-card-bg" style="background-image:url(\'' + item.image + '\')"></div>' +
+'<div class="discover-card-overlay"></div>' +
+'<div class="discover-card-content">' +
+'<div class="discover-card-text">' + esc(item.text) + '</div>' +
+'<div class="discover-card-author">—— ' + esc(item.author) + '</div>' +
+'<div class="discover-card-meta">' +
+'<span class="discover-card-tag">' + esc(item.category || 'life') + '</span>' +
+'<button class="discover-action-btn' + (isFav ? ' collected' : '') + '" onclick="toggleFavApi(' + item.id + ')">' + (isFav ? '★' : '☆') + '</button>' +
+'</div></div></div>';
+}).join('');
+}
+
+function filterDiscover(cat) {
+currentFilter = cat;
+document.querySelectorAll('.category-tab').forEach(function(t) { t.classList.remove('active'); });
+if (event && event.target) event.target.classList.add('active');
+if (discoverCache.length > 0) {
+renderDiscoverGrid(discoverCache);
+} else {
+fetchDiscoverFromAPI(cat);
+}
+}
+
+function renderDiscover() {
+fetchDiscoverFromAPI(currentFilter);
+}
+
+function toggleFavApi(id) {
+var item = discoverCache.find(function(d) { return d.id === id; });
+if (!item) { item = favorites.find(function(f) { return f.id === id; }); }
+if (!item) return;
+var idx = favorites.findIndex(function(f) { return f.id === id; });
+if (idx >= 0) { favorites.splice(idx, 1); showToast('已取消收藏'); }
+else { favorites.push(item); showToast('已收藏！'); }
+localStorage.setItem('favorites', JSON.stringify(favorites));
+renderDiscoverGrid(discoverCache);
+}
+```javascript
+// ----- 笔记管理 -----
+function saveNote() {
+  var content = document.getElementById('newContent');
+  if (!content) return;
+  var val = content.value.trim();
+  if (!val) return;
+  notes.push({ id: Date.now(), content: val, time: new Date().toLocaleString('zh-CN'), links: [], tags: [] });
+  localStorage.setItem('notes', JSON.stringify(notes));
+  content.value = '';
+  showToast('保存成功！', 'success');
+  updateStats();
+}
+function renderNotes() {
+  var box = document.getElementById('noteBox');
+  var tip = document.getElementById('emptyTip');
+  if (!box) return;
+  var searchVal = (document.getElementById('searchInput') || {}).value || '';
+  var searchLower = searchVal.toLowerCase();
+  var filtered = notes.filter(function(n) {
+    if (searchLower && !n.content.toLowerCase().includes(searchLower)) return false;
+    if (activeTagFilter && (!n.tags || !n.tags.includes(activeTagFilter))) return false;
+    return true;
+  });
+  if (filtered.length === 0) { box.innerHTML = ''; if (tip) tip.style.display = 'block'; return; }
+  if (tip) tip.style.display = 'none';
+  box.innerHTML = filtered.map(function(n) {
+    var tagsHtml = (n.tags || []).map(function(t) { return '<span class="note-tag">' + esc(t) + '</span>'; }).join('');
+    var hasLinks = n.links && n.links.length > 0;
+    return '<div class="note-card" id="note-' + n.id + '">' +
+      '<div class="note-card-header">' +
+      '<input type="checkbox" class="note-card-checkbox" id="cb' + n.id + '" onchange="toggleSelect(' + n.id + ')">' +
+      '<div class="note-card-actions">' +
+      '<button class="note-card-btn edit" onclick="editNote(' + n.id + ')" title="编辑">✏️</button>' +
+      '<button class="note-card-btn tag-btn" onclick="openTagModal(' + n.id + ')" title="标签">🏷️</button>' +
+      '<button class="note-card-btn link" onclick="openLinkModal(' + n.id + ')" title="关联">🔗</button>' +
+      '<button class="note-card-btn delete" onclick="deleteNote(' + n.id + ')" title="删除">🗑️</button>' +
+      '</div></div>' +
+      '<div class="note-card-content">' + esc(n.content) + '</div>' +
+      (tagsHtml ? '<div class="note-card-tags">' + tagsHtml + '</div>' : '') +
+      '<div class="note-card-footer">' +
+      '<span class="note-card-time">' + esc(n.time) + '</span>' +
+      (hasLinks ? '<span class="note-card-link-badge">🔗 ' + n.links.length + '</span>' : '') +
+      '</div></div>';
+  }).join('');
+  updateSelectedCount();
+}
+function toggleSelect(id) {
+  if (selectedNotes.has(id)) selectedNotes.delete(id); else selectedNotes.add(id);
+  updateSelectedCount();
+}
+function updateSelectedCount() {
+  var el = document.getElementById('selectedCount');
+  if (el) el.textContent = '已选 ' + selectedNotes.size;
+}
+function selectAll() {
+  var searchVal = (document.getElementById('searchInput') || {}).value || '';
+  var searchLower = searchVal.toLowerCase();
+  notes.forEach(function(n) {
+    var match = !searchLower || n.content.toLowerCase().includes(searchLower);
+    var tagMatch = !activeTagFilter || (n.tags && n.tags.includes(activeTagFilter));
+    if (match && tagMatch) selectedNotes.add(n.id);
+  });
+  renderNotes();
+}
+function deselectAll() { selectedNotes.clear(); renderNotes(); updateSelectedCount(); }
+function clearAll() {
+  if (selectedNotes.size === 0) { showToast('请先选择卡片'); return; }
+  if (!confirm('确定要删除选中的 ' + selectedNotes.size + ' 张卡片吗？')) return;
+  notes = notes.filter(function(n) { return !selectedNotes.has(n.id); });
+  selectedNotes.clear();
+  localStorage.setItem('notes', JSON.stringify(notes));
+renderNotes(); updateStats();
+showToast('已删除', 'success');
+}
+
+function editNote(id) {
+var note = notes.find(function(n) { return n.id === id; });
+if (!note) return;
+var newContent = prompt('编辑卡片内容：', note.content);
+if (newContent === null) return;
+var trimmed = newContent.trim();
+if (!trimmed) { showToast('内容不能为空'); return; }
+note.content = trimmed;
+localStorage.setItem('notes', JSON.stringify(notes));
+renderNotes();
+showToast('已更新！', 'success');
+}
+
+function deleteNote(id) {
+if (!confirm('确定要删除这张卡片吗？')) return;
+notes = notes.filter(function(n) { return n.id !== id; });
+selectedNotes.delete(id);
+localStorage.setItem('notes', JSON.stringify(notes));
+renderNotes(); updateStats();
+showToast('已删除');
+}
+
+// ----- 标签系统 -----
+function openTagModal(id) {
+pendingTagNoteId = id;
+var note = notes.find(function(n) { return n.id === id; });
+if (!note) return;
+pendingTags = note.tags ? note.tags.slice() : [];
+renderTagOptions();
+document.getElementById('tagModal').classList.add('show');
+document.getElementById('newTagInput').value = '';
+}
+
+function closeTagModal() {
+document.getElementById('tagModal').classList.remove('show');
+pendingTagNoteId = null;
+pendingTags = [];
+}
+
+function renderTagOptions() {
+var container = document.getElementById('tagOptions');
+if (!container) return;
+container.innerHTML = PRESET_TAGS.map(function(tag) {
+var sel = pendingTags.includes(tag);
+return '<span class="tag-chip' + (sel ? ' selected' : '') + '" onclick="togglePendingTag(\'' + esc(tag) + '\')">' + esc(tag) + '</span>';
+}).join('');
+}
+
+function togglePendingTag(tag) {
+var idx = pendingTags.indexOf(tag);
+if (idx >= 0) pendingTags.splice(idx, 1); else pendingTags.push(tag);
+renderTagOptions();
+}
+
+function addCustomTag() {
+var input = document.getElementById('newTagInput');
+if (!input) return;
+var val = input.value.trim();
+if (!val) return;
+var tag = val.startsWith('#') ? val : '#' + val;
+if (!pendingTags.includes(tag)) pendingTags.push(tag);
+input.value = '';
+renderTagOptions();
+}
+
+function confirmTags() {
+if (pendingTagNoteId === null) return;
+var note = notes.find(function(n) { return n.id === pendingTagNoteId; });
+if (!note) return;
+note.tags = pendingTags.slice();
+localStorage.setItem('notes', JSON.stringify(notes));
+closeTagModal();
+renderNotes();
+renderTagFilters();
+showToast('标签已更新！', 'success');
+}
+
+function filterByTag(tag, el) {
+activeTagFilter = tag;
+document.querySelectorAll('.tag-filter').forEach(function(t) { t.classList.remove('active'); });
+if (el) el.classList.add('active');
+renderNotes();
+}
+
+function renderTagFilters() {
+var bar = document.getElementById('tagFilterBar');
+if (!bar) return;
+var usedTags = {};
+notes.forEach(function(n) { (n.tags || []).forEach(function(t) { usedTags[t] = true; }); });
+var allTags = Object.keys(usedTags);
+var html = '<span class="filter-label">标签：</span>';
+html += '<button class="tag-filter' + (activeTagFilter === null ? ' active' : '') + '" onclick="filterByTag(null, this)" data-tag="">全部</button>';
+allTags.forEach(function(t) {
+html += '<button class="tag-filter' + (activeTagFilter === t ? ' active' : '') + '" onclick="filterByTag(\'' + esc(t) + '\', this)" data-tag="' + esc(t) + '">' + esc(t) + '</button>';
+});
+bar.innerHTML = html;
+}
+```javascript
+// ----- 链接系统 -----
+function openLinkModal(id) {
+  pendingLinkNoteId = id;
+  var note = notes.find(function(n) { return n.id === id; });
+  if (!note) return;
+  var others = notes.filter(function(n) { return n.id !== id; });
+  var opts = document.getElementById('linkOptions');
+  if (!opts) return;
+  if (others.length === 0) {
+    opts.innerHTML = '<p style="color:var(--text-muted);font-size:13px;">还没有其他卡片，先去创建几张吧～</p>';
+  } else {
+opts.innerHTML = others.map(function(n) {
+var checked = note.links && note.links.includes(n.id) ? 'checked' : '';
+return '<div class="link-option"><input type="checkbox" id="linkopt' + n.id + '" value="' + n.id + '" ' + checked + '><div class="link-option-content"><div class="link-option-text">' + esc(n.content) + '</div><div class="link-option-time">' + esc(n.time) + '</div></div></div>';
+}).join('');
+}
+document.getElementById('linkModal').classList.add('show');
+}
+
+function closeLinkModal() {
+document.getElementById('linkModal').classList.remove('show');
+pendingLinkNoteId = null;
+}
+
+function confirmLink() {
+if (pendingLinkNoteId === null) return;
+var note = notes.find(function(n) { return n.id === pendingLinkNoteId; });
+if (!note) return;
+var checked = Array.from(document.querySelectorAll('#linkOptions input:checked')).map(function(i) { return parseInt(i.value); });
+note.links = checked;
+localStorage.setItem('notes', JSON.stringify(notes));
+closeLinkModal();
+renderNotes();
+showToast('关联已更新！', 'success');
+}
+
+function renderLinks() {
+var box = document.getElementById('linkBox');
+var tip = document.getElementById('linkEmptyTip');
+if (!box) return;
+var linked = notes.filter(function(n) { return n.links && n.links.length > 0; });
+if (linked.length === 0) { box.innerHTML = ''; if (tip) tip.style.display = 'block'; return; }
+if (tip) tip.style.display = 'none';
+box.innerHTML = linked.map(function(n) {
+var linkedCards = notes.filter(function(n2) { return n.links.includes(n2.id); });
+var linksHtml = linkedCards.map(function(lc) { return '<span class="link-tag">' + esc(lc.content.substring(0, 12)) + '…</span>'; }).join('');
+return '<div class="link-view-card"><div class="link-view-content">' + esc(n.content) + '</div><div class="link-view-meta">' + esc(n.time) + '</div><div class="link-view-links">' + linksHtml + '</div></div>';
+}).join('');
+}
+
+// ----- 收藏 -----
+function renderFavorites() {
+var box = document.getElementById('favoritesBox');
+var tip = document.getElementById('favEmptyTip');
+if (!box) return;
+if (favorites.length === 0) { box.innerHTML = ''; if (tip) tip.style.display = 'block'; return; }
+if (tip) tip.style.display = 'none';
+box.innerHTML = favorites.map(function(item) {
+return '<div class="collected-card"><div class="collected-text">' + esc(item.text) + '</div><div class="collected-author">—— ' + esc(item.author || '') + '</div><div class="collected-footer"><span class="collected-tag">' + esc(item.tag || item.category || 'life') + '</span><div class="collected-actions"><button class="collected-btn remove" onclick="toggleFavByText(\'' + esc(item.text).substring(0,20) + '\')">取消收藏</button></div></div></div>';
+}).join('');
+}
+
+function toggleFavByText(text) {
+var idx = favorites.findIndex(function(f) { return f.text.substring(0,20) === text; });
+if (idx >= 0) { favorites.splice(idx, 1); localStorage.setItem('favorites', JSON.stringify(favorites)); renderFavorites(); showToast('已取消收藏'); }
+}
+
+// ----- 文章生成 -----
+function openArticleModal() {
+if (selectedNotes.size === 0) { showToast('请先在卡片盒选择卡片'); return; }
+selectedTemplate = 'reflection';
+renderTemplateGrid();
+doGenerateArticle();
+document.getElementById('articleModal').classList.add('show');
+}
+
+function closeArticleModal() {
+document.getElementById('articleModal').classList.remove('show');
+}
+
+function renderTemplateGrid() {
+var grid = document.getElementById('templateGrid');
+if (!grid) return;
+grid.innerHTML = TEMPLATES.map(function(t) {
+var sel = t.id === selectedTemplate ? ' selected' : '';
+return '<div class="template-option' + sel + '" onclick="selectTemplate(\'' + t.id + '\')"><div class="template-option-title">' + esc(t.title) + '</div><div class="template-option-desc">' + esc(t.desc) + '</div></div>';
+}).join('');
+var tip = document.getElementById('articleTip');
+if (tip) tip.textContent = TEMPLATES.find(function(t) { return t.id === selectedTemplate; }).tip;
+}
+
+function selectTemplate(id) {
+selectedTemplate = id;
+renderTemplateGrid();
+doGenerateArticle();
+}
+
+function doGenerateArticle() {
+var output = document.getElementById('articleOutput');
+if (!output) return;
+var selected = notes.filter(function(n) { return selectedNotes.has(n.id); });
+if (selected.length === 0) { output.textContent = '请先选择卡片'; return; }
+var texts = selected.map(function(n) { return n.content; });
+var type = selectedTemplate;
+var result = '';
+if (type === 'reflection') {
+result = '【感悟文】\n\n';
+if (texts[0]) result += '事情是这样的：' + texts[0] + '\n\n';
+if (texts[1]) result += '我的感受是：' + texts[1] + '\n\n';
+if (texts[2]) result += '我明白了一个道理：' + texts[2];
+result += '\n\n—— ' + texts.slice(3).join('\n——\n');
+} else if (type === 'argument') {
+result = '【议论文】\n\n观点：' + (texts[0] || '（核心观点）') + '\n\n论据：\n';
+texts.slice(1).forEach(function(t, i) { result += (i+1) + '. ' + t + '\n'; });
+} else if (type === 'narrative') {
+result = '【叙述文】\n\n';
+texts.forEach(function(t, i) { result += (i+1) + '. ' + t + '\n\n'; });
+} else {
+result = '【清单体】\n\n';
+texts.forEach(function(t) { result += '• ' + t + '\n'; });
+}
+output.textContent = result;
+}
+
+function copyArticle() {
+var text = (document.getElementById('articleOutput') || {}).textContent || '';
+if (!text || text.includes('请先选择')) { showToast('还没有生成内容'); return; }
+navigator.clipboard.writeText(text).then(function() { showToast('已复制到剪贴板！', 'success'); }).catch(function() { showToast('复制失败，请手动选择文字'); });
+}
+
+function downloadMarkdown() {
+var text = (document.getElementById('articleOutput') || {}).textContent || '';
+if (!text || text.includes('请先选择')) { showToast('还没有生成内容'); return; }
+var blob = new Blob(['# 卡片盒写作\n\n' + text + '\n\n—— 由卡片盒写作法生成\n'], { type: 'text/markdown;charset=utf-8' });
+var url = URL.createObjectURL(blob);
+var a = document.createElement('a');
+a.href = url;
+a.download = '卡片盒文章_' + new Date().toLocaleDateString('zh-CN').replace(/\//g,'-') + '.md';
+a.click();
+URL.revokeObjectURL(url);
+showToast('Markdown 文件已下载！', 'success');
+}
+
+// ----- 引导教程 -----
+function checkOnboarding() {
+var seen = localStorage.getItem('onboarding_seen');
+if (!seen) { setTimeout(function() { showOnboarding(); }, 800); }
+}
+
+function showOnboarding() {
+onboardingStep = 0;
+renderOnboardingSlide();
+document.getElementById('onboardingOverlay').classList.add('show');
+}
+
+function skipOnboarding() {
+document.getElementById('onboardingOverlay').classList.remove('show');
+localStorage.setItem('onboarding_seen', '1');
+}
+
+function nextOnboarding() {
+onboardingStep++;
+if (onboardingStep >= ONBOARDING_SLIDES.length) { skipOnboarding(); return; }
+renderOnboardingSlide();
+}
+
+function renderOnboardingSlide() {
+var slide = ONBOARDING_SLIDES[onboardingStep];
+if (!slide) return;
+var icon = document.getElementById('onboardingIcon');
+var title = document.getElementById('onboardingTitle');
+var desc = document.getElementById('onboardingDesc');
+var dots = document.getElementById('onboardingDots');
+var nextBtn = document.getElementById('onboardingNext');
+if (icon) icon.textContent = slide.icon;
+if (title) title.textContent = slide.title;
+if (desc) desc.textContent = slide.desc;
+if (nextBtn) nextBtn.textContent = onboardingStep >= ONBOARDING_SLIDES.length - 1 ? '开始使用！' : '下一步';
+if (dots) { dots.innerHTML = ONBOARDING_SLIDES.map(function(_, i) { return '<span class="onboarding-dot' + (i === onboardingStep ? ' active' : '') + '"></span>'; }).join(''); }
+}
+
+// ----- 统计 -----
+function updateStats() {
+var total = notes.length;
+var today = getToday();
+var todayCnt = notes.filter(function(n) { return new Date(n.time).toDateString() === today; }).length;
+var linkedCnt = notes.filter(function(n) { return n.links && n.links.length > 0; }).length;
+var elTotal = document.getElementById('statTotal');
+var elToday = document.getElementById('statToday');
+var elLinked = document.getElementById('statLinked');
+if (elTotal) elTotal.textContent = total;
+if (elToday) elToday.textContent = todayCnt;
+if (elLinked) elLinked.textContent = linkedCnt;
+}
+
+// ============================================================
+// Init
+// ============================================================
+try { renderDiscover(); } catch(e) { console.error(e); }
+try { renderTagFilters(); } catch(e) { console.error(e); }
+try { updateStats(); } catch(e) { console.error(e); }
+try { checkOnboarding(); } catch(e) { console.error(e); }
+</script>
+</body>
+</html>
