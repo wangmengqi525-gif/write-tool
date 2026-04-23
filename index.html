@@ -56,18 +56,13 @@
 .section-title { font-size: 18px; font-weight: 600; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
 .section-desc { font-size: 13px; color: var(--text-secondary); }
 .discover-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; }
+.loading-tip { grid-column: 1 / -1; text-align: center; padding: 24px; color: #bbb; font-size: 14px; letter-spacing: 1px; }
 .discover-card { position: relative; height: 280px; border-radius: var(--radius); overflow: hidden; cursor: pointer; transition: all 0.3s; }
 .discover-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
 .discover-card-bg { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-size: cover; background-position: center; transition: transform 0.4s; }
 .discover-card:hover .discover-card-bg { transform: scale(1.08); }
 .discover-card-loading {
-  background: linear-gradient(135deg, #e8e4df 0%, #d4cfc8 50%, #e8e4df 100%);
-  background-size: 200% 200%;
-  animation: shimmer 1.8s ease infinite;
-}
-@keyframes shimmer {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
+  background-color: #e5e7eb;
 }
 .discover-card-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.7) 100%); }
 .discover-card-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 18px; color: white; }
@@ -261,8 +256,8 @@ let pendingLinkNoteId = null;
 // 发现页数据：文字从一言API拉，图片从Unsplash拉
 let discoverItems = [];
 const INIT_COUNT = 33;   // 首次加载数量
-const MAX_COUNT = 100;    // 最大数量
-const BATCH = 12;         // 每次滚动加载数量
+const MAX_COUNT = 200;    // 最大数量
+const BATCH = 33;         // 每次滚动加载数量
 let loadedCount = 0;      // 当前已加载数量
 let isLoadingMore = false;
 let allItems = [];       // 全部已获取的数据（不重复）
@@ -321,14 +316,13 @@ async function fetchImageUrl(text) {
 // 加载发现页（首次）
 async function loadDiscover() {
   const grid = document.getElementById('discoverGrid');
+  // 先显示灰色骨架 + 加载中提示
   grid.innerHTML = Array.from({ length: INIT_COUNT }, (_, i) => `
     <div class="discover-card" id="discover-card-${i}">
       <div class="discover-card-bg discover-card-loading" id="discover-img-${i}"></div>
       <div class="discover-card-overlay"></div>
-      <div class="discover-card-content">
-        <div class="discover-loading-text"></div>
-      </div>
-    </div>`).join('');
+      <div class="discover-card-content"></div>
+    </div>`).join('') + '<div id="loading-tip" class="loading-tip">加载中...</div>';
 
   let texts = [];
   try {
@@ -346,6 +340,9 @@ async function loadDiscover() {
   allItems = texts;
   loadedCount = texts.length;
   discoverItems = texts;
+
+  // 数据就绪后才渲染卡片
+  document.getElementById('loading-tip')?.remove();
   renderDiscover();
 
   for (let i = 0; i < texts.length; i++) {
@@ -367,18 +364,18 @@ async function loadMore() {
   isLoadingMore = true;
   const toLoad = Math.min(BATCH, MAX_COUNT - loadedCount);
 
-  // 先显示骨架
   const grid = document.getElementById('discoverGrid');
   const startIdx = loadedCount;
-  const placeholder = Array.from({ length: toLoad }, (_, i) => `
-    <div class="discover-card" id="discover-card-${startIdx + i}">
-      <div class="discover-card-bg discover-card-loading" id="discover-img-${startIdx + i}"></div>
-      <div class="discover-card-overlay"></div>
-      <div class="discover-card-content">
-        <div class="discover-loading-text"></div>
-      </div>
-    </div>`).join('');
-  grid.insertAdjacentHTML('beforeend', placeholder);
+
+  // 显示灰色骨架 + 加载中提示
+  grid.insertAdjacentHTML('beforeend',
+    Array.from({ length: toLoad }, (_, i) => `
+      <div class="discover-card" id="discover-card-${startIdx + i}">
+        <div class="discover-card-bg discover-card-loading" id="discover-img-${startIdx + i}"></div>
+        <div class="discover-card-overlay"></div>
+        <div class="discover-card-content"></div>
+      </div>`).join('') + '<div id="loading-tip" class="loading-tip">加载中...</div>'
+  );
 
   let texts = [];
   try {
@@ -390,7 +387,6 @@ async function loadMore() {
   } catch(e) {}
 
   const actual = texts.length;
-  // 补充不够的用兜底
   if (actual < toLoad) {
     const fallback = getFallbackTexts().filter(t => !allItems.some(a => a.text === t.text)).slice(0, toLoad - actual);
     texts = texts.concat(fallback);
@@ -400,6 +396,7 @@ async function loadMore() {
   discoverItems = allItems;
   loadedCount += texts.length;
 
+  document.getElementById('loading-tip')?.remove();
   renderDiscoverMore(startIdx, texts);
 
   for (let i = 0; i < texts.length; i++) {
