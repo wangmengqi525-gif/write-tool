@@ -260,29 +260,27 @@ let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
 let pendingLinkNoteId = null;
 // 发现页数据：文字从一言API拉，图片从Unsplash拉
 let discoverItems = [];
-const CARD_COUNT = 12;
-const CACHE_KEY = 'unsplash_cache';
+const INIT_COUNT = 33;   // 首次加载数量
+const MAX_COUNT = 100;    // 最大数量
+const BATCH = 12;         // 每次滚动加载数量
+let loadedCount = 0;      // 当前已加载数量
+let isLoadingMore = false;
+let allItems = [];       // 全部已获取的数据（不重复）
 
 // 用文字内容生成稳定的缓存key（同一句话永远用同一张图）
 function textCacheKey(text) {
-  let hash = 0;
-  for (let i = 0; i < text.length; i++) {
-    hash = ((hash << 5) - hash) + text.charCodeAt(i);
-    hash |= 0;
-  }
-  return 't' + Math.abs(hash);
+  return 'img_' + text.slice(0, 50);
 }
 
-// 从一言API获取句子（去重）
+// 从一言API获取句子（去重，支持跨批次全局去重）
 async function fetchHitokoto(count) {
-  const seen = new Set();
+  const seen = new Set(allItems.map(i => i.text));
   const results = [];
-  // 最多请求2倍数量，凑够不重复的count条
-  for (let i = 0; i < count * 3 && results.length < count; i++) {
+  for (let i = 0; i < count * 4 && results.length < count; i++) {
     try {
-      await sleep(100); // 加小延迟降低重复率
+      await sleep(80);
       const r = await fetch('https://api-proxy.wangmengqi525.workers.dev/hitokoto').then(res => res.json());
-      if (r && r.hitokoto && !seen.has(r.hitokoto)) {
+      if (r && r.hitokoto && !seen.has(r.hitokoto) && !results.find(q => q.hitokoto === r.hitokoto)) {
         seen.add(r.hitokoto);
         results.push(r);
       }
@@ -316,14 +314,14 @@ async function fetchImageUrl(text) {
     return url;
   } catch(e) {
     if (cached) return cached.url;
-    return `https://picsum.photos/seed/${Math.abs(textCacheKey(text)) % 1000}/800/533`;
+    return `https://picsum.photos/seed/${(text.charCodeAt(0) || 50) % 1000}/800/533`;
   }
 }
 
-// 加载发现页
+// 加载发现页（首次）
 async function loadDiscover() {
   const grid = document.getElementById('discoverGrid');
-  grid.innerHTML = Array.from({ length: CARD_COUNT }, (_, i) => `
+  grid.innerHTML = Array.from({ length: INIT_COUNT }, (_, i) => `
     <div class="discover-card" id="discover-card-${i}">
       <div class="discover-card-bg discover-card-loading" id="discover-img-${i}"></div>
       <div class="discover-card-overlay"></div>
@@ -334,24 +332,114 @@ async function loadDiscover() {
 
   let texts = [];
   try {
-    const results = await fetchHitokoto(CARD_COUNT);
+    const results = await fetchHitokoto(INIT_COUNT);
     texts = results.map(r => ({
       text: r.hitokoto,
       author: r.from ? r.from : (r.from_who || '')
     }));
   } catch(e) {}
 
-  if (texts.length < CARD_COUNT) {
-    texts = getFallbackTexts().slice(0, CARD_COUNT);
+  if (texts.length < INIT_COUNT) {
+    texts = getFallbackTexts().slice(0, INIT_COUNT);
   }
 
+  allItems = texts;
+  loadedCount = texts.length;
   discoverItems = texts;
   renderDiscover();
 
-  // 并发加载图片（Unsplash允许多并发）
-  for (let i = 0; i < discoverItems.length; i++) {
+  for (let i = 0; i < texts.length; i++) {
     loadImage(i);
   }
+
+  // 绑定滚动监听
+  window.discoverScrollHandler = onScrollLoadMore;
+  window.addEventListener('scroll', window.discoverScrollHandler, { passive: true });
+}
+
+// 加载更多（滚动触发）
+async function loadMore() {
+  if (isLoadingMore) return;
+  if (loadedCount >= MAX_COUNT) {
+    window.removeEventListener('scroll', window.discoverScrollHandler);
+    return;
+  }
+  isLoadingMore = true;
+  const toLoad = Math.min(BATCH, MAX_COUNT - loadedCount);
+
+  // 先显示骨架
+  const grid = document.getElementById('discoverGrid');
+  const startIdx = loadedCount;
+  const placeholder = Array.from({ length: toLoad }, (_, i) => `
+    <div class="discover-card" id="discover-card-${startIdx + i}">
+      <div class="discover-card-bg discover-card-loading" id="discover-img-${startIdx + i}"></div>
+      <div class="discover-card-overlay"></div>
+      <div class="discover-card-content">
+        <div class="discover-loading-text"></div>
+      </div>
+    </div>`).join('');
+  grid.insertAdjacentHTML('beforeend', placeholder);
+
+  let texts = [];
+  try {
+    const results = await fetchHitokoto(toLoad);
+    texts = results.map(r => ({
+      text: r.hitokoto,
+      author: r.from ? r.from : (r.from_who || '')
+    }));
+  } catch(e) {}
+
+  const actual = texts.length;
+  // 补充不够的用兜底
+  if (actual < toLoad) {
+    const fallback = getFallbackTexts().filter(t => !allItems.some(a => a.text === t.text)).slice(0, toLoad - actual);
+    texts = texts.concat(fallback);
+  }
+
+  allItems = allItems.concat(texts);
+  discoverItems = allItems;
+  loadedCount += texts.length;
+
+  renderDiscoverMore(startIdx, texts);
+
+  for (let i = 0; i < texts.length; i++) {
+    loadImage(startIdx + i);
+  }
+
+  isLoadingMore = false;
+
+  if (loadedCount >= MAX_COUNT) {
+    window.removeEventListener('scroll', window.discoverScrollHandler);
+  }
+}
+
+// 滚动加载判定
+function onScrollLoadMore() {
+  const scrollBottom = document.documentElement.scrollHeight - window.innerHeight - window.scrollY;
+  if (scrollBottom < 300) loadMore();
+}
+
+// 渲染新加载的卡片（增量渲染，不重新渲染全部）
+function renderDiscoverMore(startIdx, newItems) {
+  const grid = document.getElementById('discoverGrid');
+  newItems.forEach((item, i) => {
+    const idx = startIdx + i;
+    const card = document.getElementById('discover-card-' + idx);
+    if (!card) return;
+    card.innerHTML = `
+      <div class="discover-card-bg discover-card-loading" id="discover-img-${idx}" data-index="${idx}"></div>
+      <div class="discover-card-overlay"></div>
+      <div class="discover-card-content">
+        <div class="discover-card-text">${item.text}</div>
+        ${item.author ? `<div class="discover-card-author">—— ${item.author}</div>` : ''}
+        <div class="discover-card-meta">
+          <span class="discover-card-tag">发现</span>
+          <div class="discover-card-actions">
+            <button class="discover-action-btn ${favorites.some(f => f.text === item.text) ? 'collected' : ''}" onclick="event.stopPropagation();toggleFav(${idx})">${favorites.some(f => f.text === item.text) ? '★' : '☆'}</button>
+          </div>
+        </div>
+      </div>`;
+  });
 }
 
 // 加载单张图片
@@ -367,7 +455,7 @@ async function loadImage(index) {
   };
   img.onerror = () => {
     el.classList.remove('discover-card-loading');
-    el.style.backgroundImage = `url('https://picsum.photos/seed/${Math.abs(textCacheKey(discoverItems[index].text)) % 1000}/800/533')`;
+    el.style.backgroundImage = `url('https://picsum.photos/seed/${(discoverItems[index].text.charCodeAt(0) || 50) % 1000}/800/533')`;
   };
   img.src = url;
 }
