@@ -270,7 +270,7 @@ const CACHE_HOUR_MS = 6 * 60 * 60 * 1000; // 缓存6小时
 async function fetchHitokoto(count) {
   const promises = [];
   for (let i = 0; i < count; i++) {
-    promises.push(fetch('https://v1.hitokoto.cn/?c=i&encode=json').then(r => r.json()).catch(() => null));
+    promises.push(fetch('https://api-proxy.wangmengqi525.workers.dev/hitokoto').then(r => r.json()).catch(() => null));
   }
   return Promise.all(promises);
 }
@@ -284,16 +284,16 @@ async function fetchImageUrl(index) {
   }
   try {
     const res = await fetch(
-      `https://api.unsplash.com/photos/random?query=nature,landscape,mountain,forest,sea,sky&orientation=landscape&client_id=${UNSPLASH_KEY}`,
+      `https://api-proxy.wangmengqi525.workers.dev/unsplash?query=nature,landscape,mountain,forest,sea,sky&orientation=landscape`,
       { headers: { 'Accept-Version': 'v1' } }
     );
     if (!res.ok) throw new Error('Unsplash error ' + res.status);
     const photo = await res.json();
-    const url = photo.urls.regular;
+    const url = photo.urls ? photo.urls.regular : photo.urls?.regular;
     // 追踪下载（Unsplash API要求）
-    fetch(`https://api.unsplash.com/photos/${photo.id}/download?ixid=M3w5MzI4NjZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzY5MjA4MjR8`, {
-      headers: { 'Accept-Version': 'v1', 'Authorization': 'Client-ID ' + UNSPLASH_KEY }
-    }).catch(() => {});
+    if (photo.id) {
+      fetch(`https://api-proxy.wangmengqi525.workers.dev/unsplash-download?id=${photo.id}`, { keepalive: true }).catch(() => {});
+    }
     // 写入缓存
     cache[index] = { url, ts: Date.now() };
     saveImageCache(cache);
