@@ -55,7 +55,7 @@
 .section-header { margin-bottom: 20px; }
 .section-title { font-size: 18px; font-weight: 600; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
 .section-desc { font-size: 13px; color: var(--text-secondary); }
-.discover-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; }
+.discover-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
 .loading-tip { grid-column: 1 / -1; text-align: center; padding: 24px; color: #bbb; font-size: 14px; letter-spacing: 1px; }
 .discover-card {
   background: #fff;
@@ -141,9 +141,44 @@
 @media (max-width: 768px) {
 .container { padding: 0 16px; }
 .header { padding: 12px 16px; }
-.header-nav { display: none; }
+.header-nav { 
+  display: none;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+  background: var(--bg-card);
+  flex-direction: column;
+  padding: 12px 16px;
+  gap: 8px;
+  border-bottom: 1px solid var(--border);
+  z-index: 99;
+}
+.header-nav.open { display: flex; }
+.header-nav .nav-btn { 
+  width: 100%;
+  text-align: center;
+  padding: 12px;
+}
+.header-right { display: flex; align-items: center; }
+.menu-btn { 
+  display: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text);
+  font-size: 18px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 768px) {
+  .menu-btn { display: flex; }
+}
 .card-grid { grid-template-columns: 1fr; }
-.discover-grid { grid-template-columns: 1fr; }
+.discover-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
 .action-bar { flex-direction: column; align-items: stretch; }
 .action-bar .count { margin-left: 0; text-align: center; }
 }
@@ -162,6 +197,7 @@
 </div>
 </div>
 <div class="header-right">
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
 </div>
 </header>
 <div class="container">
@@ -251,233 +287,189 @@
 </div>
 <div class="toast" id="toast">提示</div>
 <script>
-let notes = JSON.parse(localStorage.getItem('notes') || '[]');
-let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+let notes = [];
+let favorites = [];
+let userLinks = [];
 let pendingLinkNoteId = null;
-// 发现页数据：文字从一言API拉，图片从Unsplash拉
-let discoverItems = [];
-const INIT_COUNT = 33;   // 首次加载数量
-const MAX_COUNT = 200;    // 最大数量
-const BATCH = 33;         // 每次滚动加载数量
-let loadedCount = 0;      // 当前已加载数量
-let isLoadingMore = false;
-let allItems = [];       // 全部已获取的数据（不重复）
 
-// 用文字内容生成稳定的缓存key（同一句话永远用同一张图）
-function textCacheKey(text) {
-  return 'img_' + text.slice(0, 50);
-}
-
-// 从一言API获取句子（去重，支持跨批次全局去重）
-async function fetchHitokoto(count) {
-  const seen = new Set(allItems.map(i => i.text));
-  const results = [];
-  for (let i = 0; i < count * 4 && results.length < count; i++) {
-    try {
-      await sleep(80);
-      const r = await fetch('https://api-proxy.wangmengqi525.workers.dev/hitokoto').then(res => res.json());
-      if (r && r.hitokoto && !seen.has(r.hitokoto) && !results.find(q => q.hitokoto === r.hitokoto)) {
-        seen.add(r.hitokoto);
-        results.push(r);
-      }
-    } catch(e) {}
-  }
-  return results;
-}
-
-// 获取图片URL（用文字内容做缓存key，图片和文字绑定）
-async function fetchImageUrl(text) {
-  const key = textCacheKey(text);
-  const cache = getImageCache();
-  const cached = cache[key];
-  const CACHE_HOUR_MS = 6 * 60 * 60 * 1000;
-  if (cached && Date.now() - cached.ts < CACHE_HOUR_MS) {
-    return cached.url;
-  }
+// 从服务器加载所有用户数据
+async function loadUserData() {
+  const token = localStorage.getItem('token');
+  if (!token) return;
+  
   try {
-    const res = await fetch(
-      `https://api-proxy.wangmengqi525.workers.dev/unsplash?query=nature,landscape,mountain,forest,sea,sky&orientation=landscape`,
-      { headers: { 'Accept-Version': 'v1' } }
-    );
-    if (!res.ok) throw new Error('Unsplash error ' + res.status);
-    const photo = await res.json();
-    const url = photo.urls ? photo.urls.regular : '';
-    if (photo.id) {
-      fetch(`https://api-proxy.wangmengqi525.workers.dev/unsplash-download?id=${photo.id}`, { keepalive: true }).catch(() => {});
+    // 并行加载卡片、收藏、链接
+    const [notesRes, favRes, linksRes] = await Promise.all([
+      fetch('/api/notes?token=' + token),
+      fetch('/api/favorites?token=' + token),
+      fetch('/api/links?token=' + token)
+    ]);
+    
+    const notesData = await notesRes.json();
+    const favData = await favRes.json();
+    const linksData = await linksRes.json();
+    
+    if (notesData.success && notesData.notes) {
+      notes = notesData.notes.map(n => ({
+        id: n.id,
+        content: n.content,
+        time: n.created_at ? new Date(n.created_at).toLocaleString('zh-CN') : '',
+        links: [],
+        is_linked: n.is_linked,
+        link_url: n.link_url || ''
+      }));
     }
-    cache[key] = { url, ts: Date.now() };
-    saveImageCache(cache);
-    return url;
+    
+    if (favData.success && favData.favorites) {
+      favorites = favData.favorites.map(f => ({
+        id: f.id,
+        text: f.text,
+        author: f.author || ''
+      }));
+    }
+    
+    if (linksData.success && linksData.links) {
+      userLinks = linksData.links;
+      // 同步到 notes
+      userLinks.forEach(link => {
+        const note = notes.find(n => n.id === link.note_id);
+        if (note) {
+          if (!note.links) note.links = [];
+          note.links.push(link.linked_note_id);
+        }
+      });
+    }
   } catch(e) {
-    if (cached) return cached.url;
-    return `https://picsum.photos/seed/${(text.charCodeAt(0) || 50) % 1000}/800/533`;
+    console.error('加载用户数据失败', e);
   }
 }
 
-// 加载发现页（首次）
+// 从服务器加载卡片
+async function loadNotesFromServer() {
+  const token = localStorage.getItem('token');
+  if (!token) return;
+  try {
+    const res = await fetch('/api/notes?token=' + token);
+    const data = await res.json();
+    if (data.success && data.notes) {
+      notes = data.notes.map(n => ({
+        id: n.id,
+        content: n.content,
+        time: n.created_at ? new Date(n.created_at).toLocaleString('zh-CN') : '',
+        links: n.is_linked && n.link_url ? [{url: n.link_url}] : [],
+        is_linked: n.is_linked,
+        link_url: n.link_url || ''
+      }));
+    }
+  } catch(e) {
+    console.error('加载卡片失败', e);
+  }
+}
+// 发现页数据：直接从本地加载，速度快
+let discoverItems = [];
+const TOTAL_COUNT = 100;  // 总数量
+
+// 从本地API获取内容
+async function fetchLocalContent() {
+  try {
+    const res = await fetch('/api/content');
+    const data = await res.json();
+    if (data.success && data.data) {
+      return data.data;
+    }
+  } catch(e) {}
+  return [];
+}
+
+// 加载发现页（直接读本地，速度快）
 async function loadDiscover() {
   const grid = document.getElementById('discoverGrid');
-  // 先显示灰色骨架 + 加载中提示
-  grid.innerHTML = Array.from({ length: INIT_COUNT }, (_, i) => `
-    <div class="discover-card" id="discover-card-${i}">
-      <div class="discover-card-content"></div>
-    </div>`).join('') + '<div id="loading-tip" class="loading-tip">加载中...</div>';
+  grid.innerHTML = '<div class="loading-tip">加载中...</div>';
 
-  let texts = [];
-  try {
-    const results = await fetchHitokoto(INIT_COUNT);
-    texts = results.map(r => ({
-      text: r.hitokoto,
-      author: r.from ? r.from : (r.from_who || '')
-    }));
-  } catch(e) {}
-
-  if (texts.length < INIT_COUNT) {
-    texts = getFallbackTexts().slice(0, INIT_COUNT);
+  // 直接从本地加载，无需等待外部API
+  const localData = await fetchLocalContent();
+  
+  if (localData.length > 0) {
+    // 打乱顺序，每次刷新都不同
+    const shuffled = [...localData].sort(() => Math.random() - 0.5);
+    // 循环使用凑够 TOTAL_COUNT 条
+    const repeated = [];
+    while (repeated.length < TOTAL_COUNT) {
+      for (const item of shuffled) {
+        if (repeated.length >= TOTAL_COUNT) break;
+        repeated.push({
+          text: item.text,
+          author: '',
+          image: '/images/' + item.image
+        });
+      }
+    }
+    discoverItems = repeated;
+  } else {
+    discoverItems = getFallbackTexts().slice(0, TOTAL_COUNT);
   }
 
-  allItems = texts;
-  loadedCount = texts.length;
-  discoverItems = texts;
-
-  // 数据就绪后才渲染卡片
   document.getElementById('loading-tip')?.remove();
   renderDiscover();
-
-  for (let i = 0; i < texts.length; i++) {
-    loadImage(i);
-  }
-
-  // 绑定滚动监听
-  window.discoverScrollHandler = onScrollLoadMore;
-  window.addEventListener('scroll', window.discoverScrollHandler, { passive: true });
 }
 
-// 加载更多（滚动触发）
-async function loadMore() {
-  if (isLoadingMore) return;
-  if (loadedCount >= MAX_COUNT) {
-    window.removeEventListener('scroll', window.discoverScrollHandler);
-    return;
-  }
-  isLoadingMore = true;
-  const toLoad = Math.min(BATCH, MAX_COUNT - loadedCount);
-
-  const grid = document.getElementById('discoverGrid');
-  const startIdx = loadedCount;
-
-  // 显示灰色骨架 + 加载中提示
-  grid.insertAdjacentHTML('beforeend',
-    Array.from({ length: toLoad }, (_, i) => `
-      <div class="discover-card" id="discover-card-${startIdx + i}">
-        <div class="discover-card-content"></div>
-      </div>`).join('') + '<div id="loading-tip" class="loading-tip">加载中...</div>'
-  );
-
-  let texts = [];
-  try {
-    const results = await fetchHitokoto(toLoad);
-    texts = results.map(r => ({
-      text: r.hitokoto,
-      author: r.from ? r.from : (r.from_who || '')
-    }));
-  } catch(e) {}
-
-  const actual = texts.length;
-  if (actual < toLoad) {
-    const fallback = getFallbackTexts().filter(t => !allItems.some(a => a.text === t.text)).slice(0, toLoad - actual);
-    texts = texts.concat(fallback);
-  }
-
-  allItems = allItems.concat(texts);
-  discoverItems = allItems;
-  loadedCount += texts.length;
-
-  document.getElementById('loading-tip')?.remove();
-  renderDiscoverMore(startIdx, texts);
-
-  for (let i = 0; i < texts.length; i++) {
-    loadImage(startIdx + i);
-  }
-
-  isLoadingMore = false;
-
-  if (loadedCount >= MAX_COUNT) {
-    window.removeEventListener('scroll', window.discoverScrollHandler);
-  }
-}
-
-// 滚动加载判定
-function onScrollLoadMore() {
-  const scrollBottom = document.documentElement.scrollHeight - window.innerHeight - window.scrollY;
-  if (scrollBottom < 300) loadMore();
-}
-
-// 渲染新加载的卡片（增量渲染，不重新渲染全部）
-function renderDiscoverMore(startIdx, newItems) {
-  const grid = document.getElementById('discoverGrid');
-  newItems.forEach((item, i) => {
-    const idx = startIdx + i;
-    const card = document.getElementById('discover-card-' + idx);
-    if (!card) return;
-    card.innerHTML = `
-      <div class="discover-card-text">${item.text}</div>
-      ${item.author ? `<div class="discover-card-author">—— ${item.author}</div>` : ''}
-      <div class="discover-card-meta">
-        <span class="discover-card-tag">发现</span>
-        <div class="discover-card-actions">
-          <button class="discover-action-btn ${favorites.some(f => f.text === item.text) ? 'collected' : ''}" onclick="event.stopPropagation();toggleFav(${idx})">${favorites.some(f => f.text === item.text) ? '★' : '☆'}</button>
-        </div>
-      </div>`;
-  });
-}
-
-// 加载单张图片
-async function loadImage(index) {
-  const el = document.getElementById('discover-img-' + index);
-  if (!el || !discoverItems[index]) return;
-  const url = await fetchImageUrl(discoverItems[index].text);
-  if (!url) { el.classList.remove('discover-card-loading'); return; }
-  const img = new Image();
-  img.onload = () => {
-    el.style.backgroundImage = `url('${url}')`;
-    el.classList.remove('discover-card-loading');
-  };
-  img.onerror = () => {
-    el.classList.remove('discover-card-loading');
-    el.style.backgroundImage = `url('https://picsum.photos/seed/${(discoverItems[index].text.charCodeAt(0) || 50) % 1000}/800/533')`;
-  };
-  img.src = url;
-}
-
-// 渲染发现页（文字部分）
+// 渲染发现页
 function renderDiscover() {
   const grid = document.getElementById('discoverGrid');
   if (discoverItems.length === 0) {
-    grid.innerHTML = '<div class="empty-state"><div class="empty-state-icon">◇</div><div class="empty-state-text">内容加载失败，下拉刷新重试</div></div>';
+    grid.innerHTML = '<div class="empty-state"><div class="empty-state-icon">◇</div><div class="empty-state-text">内容加载失败，刷新重试</div></div>';
     return;
   }
-  grid.innerHTML = discoverItems.map((item, index) => `
-    <div class="discover-card" id="discover-card-${index}">
-      <div class="discover-card-text">${item.text}</div>
+  grid.innerHTML = discoverItems.map((item, index) => {
+    const text = item.text.length > 300 ? item.text.slice(0, 300) + '…' : item.text;
+    const isFav = favorites.some(f => f.text === item.text);
+    return `<div class="discover-card" id="discover-card-${index}">
+      <div class="discover-card-text">${text}</div>
       ${item.author ? `<div class="discover-card-author">—— ${item.author}</div>` : ''}
       <div class="discover-card-meta">
         <span class="discover-card-tag">发现</span>
         <div class="discover-card-actions">
-          <button class="discover-action-btn ${favorites.some(f => f.text === item.text) ? 'collected' : ''}" onclick="event.stopPropagation();toggleFav(${index})">${favorites.some(f => f.text === item.text) ? '★' : '☆'}</button>
+          <button class="discover-action-btn ${isFav ? 'collected' : ''}" onclick="toggleFav(${index})">${isFav ? '★' : '☆'}</button>
         </div>
       </div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
 }
 
 // 切换收藏
-function toggleFav(index) {
+async function toggleFav(index) {
   const item = discoverItems[index];
   if (!item) return;
+  const token = localStorage.getItem('token');
   const idx = favorites.findIndex(f => f.text === item.text);
-  if (idx > -1) { favorites.splice(idx, 1); showToast('已取消收藏'); }
-  else { favorites.push({ text: item.text, author: item.author }); showToast('已收藏！'); }
-  localStorage.setItem('favorites', JSON.stringify(favorites));
+  
+  if (idx > -1) {
+    // 取消收藏
+    favorites.splice(idx, 1);
+    if (token) {
+      try {
+        await fetch('/api/favorites?token=' + token, {
+          method: 'DELETE',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({text: item.text})
+        });
+      } catch(e) {}
+    }
+    showToast('已取消收藏');
+  } else {
+    // 添加收藏
+    favorites.push({ text: item.text, author: item.author || '' });
+    if (token) {
+      try {
+        await fetch('/api/favorites?token=' + token, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({text: item.text, author: item.author || ''})
+        });
+      } catch(e) {}
+    }
+    showToast('已收藏！');
+  }
   renderDiscover();
 }
 
@@ -507,11 +499,16 @@ function getFallbackTexts() {
 
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
+function toggleMenu() {
+  document.querySelector('.header-nav').classList.toggle('open');
+}
+
 function switchPage(page) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page' + page.charAt(0).toUpperCase() + page.slice(1)).classList.add('active');
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('nav' + page.charAt(0).toUpperCase() + page.slice(1)).classList.add('active');
+  document.querySelector('.header-nav').classList.remove('open');
   if (page === 'cards') renderNotes();
   if (page === 'links') renderLinks();
   if (page === 'favorites') renderFavorites();
@@ -529,11 +526,30 @@ function showToast(msg) {
   setTimeout(() => t.classList.remove('show'), 2000);
 }
 
-function saveNote() {
+async function saveNote() {
   const content = document.getElementById('newContent').value.trim();
   if (!content) return;
-  notes.push({ id: Date.now(), content, time: new Date().toLocaleString('zh-CN'), links: [] });
-  localStorage.setItem('notes', JSON.stringify(notes));
+  const token = localStorage.getItem('token');
+  if (token) {
+    // 保存到服务器
+    try {
+      const res = await fetch('/api/notes?token=' + token, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({content})
+      });
+      const data = await res.json();
+      if (data.success) {
+        notes.push({ id: data.id, content, time: new Date().toLocaleString('zh-CN'), links: [] });
+      }
+    } catch(e) {
+      console.error('保存失败', e);
+      // 降级到本地
+      notes.push({ id: Date.now(), content, time: new Date().toLocaleString('zh-CN'), links: [] });
+    }
+  } else {
+    notes.push({ id: Date.now(), content, time: new Date().toLocaleString('zh-CN'), links: [] });
+  }
   document.getElementById('newContent').value = '';
   showToast('保存成功！');
   renderDiscover();
@@ -572,10 +588,15 @@ function editNote(id) {
   }
 }
 
-function deleteNote(id) {
+async function deleteNote(id) {
   if (!confirm('确定删除这张卡片？')) return;
+  const token = localStorage.getItem('token');
+  if (token) {
+    try {
+      await fetch('/api/notes/' + id + '?token=' + token, {method: 'DELETE'});
+    } catch(e) {}
+  }
   notes = notes.filter(n => n.id !== id);
-  localStorage.setItem('notes', JSON.stringify(notes));
   renderNotes();
   updateCount();
 }
@@ -609,16 +630,43 @@ function closeLinkModal() {
   pendingLinkNoteId = null;
 }
 
-function confirmLink() {
+async function confirmLink() {
   if (!pendingLinkNoteId) return;
   const note = notes.find(n => n.id === pendingLinkNoteId);
   if (!note) return;
+  const token = localStorage.getItem('token');
+  const oldLinks = note.links ? [...note.links] : [];
   note.links = [];
   document.querySelectorAll('#linkOptions input:checked').forEach(cb => {
     const linkedId = parseInt(cb.id.replace('link-', ''));
     if (!note.links.includes(linkedId)) note.links.push(linkedId);
   });
-  localStorage.setItem('notes', JSON.stringify(notes));
+  
+  if (token) {
+    try {
+      // 删除旧的链接
+      for (const lid of oldLinks) {
+        if (!note.links.includes(lid)) {
+          await fetch('/api/links?token=' + token, {
+            method: 'DELETE',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({note_id: pendingLinkNoteId, linked_note_id: lid})
+          });
+        }
+      }
+      // 添加新的链接
+      for (const lid of note.links) {
+        if (!oldLinks.includes(lid)) {
+          await fetch('/api/links?token=' + token, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({note_id: pendingLinkNoteId, linked_note_id: lid})
+          });
+        }
+      }
+    } catch(e) {}
+  }
+  
   closeLinkModal();
   renderNotes();
 }
@@ -638,10 +686,19 @@ function deselectAll() {
   updateCount();
 }
 
-function clearAll() {
+async function clearAll() {
   if (!confirm('确定清空所有卡片？此操作不可恢复。')) return;
+  const token = localStorage.getItem('token');
+  if (token) {
+    try {
+      await fetch('/api/notes/sync?token=' + token, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({notes: []})
+      });
+    } catch(e) {}
+  }
   notes = [];
-  localStorage.setItem('notes', JSON.stringify(notes));
   renderNotes();
   updateCount();
 }
@@ -716,15 +773,28 @@ function useFav(id) {
   showToast('已添加到卡片盒！');
 }
 
-function removeFav(id) {
+async function removeFav(id) {
+  const fav = favorites.find(f => f.id === id);
+  if (fav) {
+    const token = localStorage.getItem('token');
+    if (token) {
+      try {
+        await fetch('/api/favorites?token=' + token, {
+          method: 'DELETE',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({text: fav.text})
+        });
+      } catch(e) {}
+    }
+  }
   favorites = favorites.filter(f => f.id !== id);
-  localStorage.setItem('favorites', JSON.stringify(favorites));
   renderFavorites();
   showToast('已取消收藏');
 }
 
 // 初始化
 loadDiscover();
+loadUserData();
 </script>
 </body>
 </html>
