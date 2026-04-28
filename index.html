@@ -141,42 +141,7 @@
 @media (max-width: 768px) {
 .container { padding: 0 16px; }
 .header { padding: 12px 16px; }
-.header-nav { 
-  display: none;
-  position: fixed;
-  top: 60px;
-  left: 0;
-  right: 0;
-  background: var(--bg-card);
-  flex-direction: column;
-  padding: 12px 16px;
-  gap: 8px;
-  border-bottom: 1px solid var(--border);
-  z-index: 99;
-}
-.header-nav.open { display: flex; }
-.header-nav .nav-btn { 
-  width: 100%;
-  text-align: center;
-  padding: 12px;
-}
-.header-right { display: flex; align-items: center; }
-.menu-btn { 
-  display: none;
-  width: 36px;
-  height: 36px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  background: var(--bg-card);
-  color: var(--text);
-  font-size: 18px;
-  cursor: pointer;
-  align-items: center;
-  justify-content: center;
-}
-@media (max-width: 768px) {
-  .menu-btn { display: flex; }
-}
+.header-nav { display: none; }
 .card-grid { grid-template-columns: 1fr; }
 .discover-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
 .action-bar { flex-direction: column; align-items: stretch; }
@@ -187,6 +152,7 @@
 <body>
 <header class="header">
 <div class="header-left">
+<img class="header-logo" src="https://minimax-algeng-chat-tts.oss-cn-wulanchabu.aliyuncs.com/ccv2%2F2026-04-23%2FMiniMax-M2.7%2F2044322364073710454%2Fc5d98bf99a80cbc41ce58537b1a09c53c60d764235db48944a37f7c699232e0d..png?Expires=1777026244&OSSAccessKeyId=LTAI5tGLnRTkBjLuYPjNcKQ8&Signature=QshuD16BOip24zSiG1O1isXAV0s%3D" alt="logo">
 <span class="logo-text">卡片盒写作法</span>
 <div class="header-nav">
 <button class="nav-btn active" onclick="switchPage('home')" id="navHome">首页</button>
@@ -196,7 +162,6 @@
 </div>
 </div>
 <div class="header-right">
-  <button class="menu-btn" onclick="toggleMenu()">☰</button>
 </div>
 </header>
 <div class="container">
@@ -286,128 +251,64 @@
 </div>
 <div class="toast" id="toast">提示</div>
 <script>
-let notes = [];
-let favorites = [];
-let userLinks = [];
+let notes = JSON.parse(localStorage.getItem('notes') || '[]');
+let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
 let pendingLinkNoteId = null;
-
-// 从服务器加载所有用户数据
-async function loadUserData() {
-  const token = localStorage.getItem('token');
-  if (!token) return;
-  
-  try {
-    // 并行加载卡片、收藏、链接
-    const [notesRes, favRes, linksRes] = await Promise.all([
-      fetch('/api/notes?token=' + token),
-      fetch('/api/favorites?token=' + token),
-      fetch('/api/links?token=' + token)
-    ]);
-    
-    const notesData = await notesRes.json();
-    const favData = await favRes.json();
-    const linksData = await linksRes.json();
-    
-    if (notesData.success && notesData.notes) {
-      notes = notesData.notes.map(n => ({
-        id: n.id,
-        content: n.content,
-        time: n.created_at ? new Date(n.created_at).toLocaleString('zh-CN') : '',
-        links: [],
-        is_linked: n.is_linked,
-        link_url: n.link_url || ''
-      }));
-    }
-    
-    if (favData.success && favData.favorites) {
-      favorites = favData.favorites.map(f => ({
-        id: f.id,
-        text: f.text,
-        author: f.author || ''
-      }));
-    }
-    
-    if (linksData.success && linksData.links) {
-      userLinks = linksData.links;
-      // 同步到 notes
-      userLinks.forEach(link => {
-        const note = notes.find(n => n.id === link.note_id);
-        if (note) {
-          if (!note.links) note.links = [];
-          note.links.push(link.linked_note_id);
-        }
-      });
-    }
-  } catch(e) {
-    console.error('加载用户数据失败', e);
-  }
-}
-
-// 从服务器加载卡片
-async function loadNotesFromServer() {
-  const token = localStorage.getItem('token');
-  if (!token) return;
-  try {
-    const res = await fetch('/api/notes?token=' + token);
-    const data = await res.json();
-    if (data.success && data.notes) {
-      notes = data.notes.map(n => ({
-        id: n.id,
-        content: n.content,
-        time: n.created_at ? new Date(n.created_at).toLocaleString('zh-CN') : '',
-        links: n.is_linked && n.link_url ? [{url: n.link_url}] : [],
-        is_linked: n.is_linked,
-        link_url: n.link_url || ''
-      }));
-    }
-  } catch(e) {
-    console.error('加载卡片失败', e);
-  }
-}
-// 发现页数据：直接从本地加载，速度快
+// 发现页数据：文字从一言API拉，图片从Unsplash拉
 let discoverItems = [];
 const TOTAL_COUNT = 100;  // 总数量
 
-// 从本地API获取内容
-async function fetchLocalContent() {
-  try {
-    const res = await fetch('/api/content');
-    const data = await res.json();
-    if (data.success && data.data) {
-      return data.data;
+// 从一言API获取句子
+async function fetchHitokoto(count) {
+  // 并发请求，一次性拉足量，再去重
+  const raw = await Promise.all(
+    Array.from({ length: count * 2 }, () =>
+      fetch('https://api-proxy.wangmengqi525.workers.dev/hitokoto?_=' + Date.now() + Math.random())
+        .then(r => r.json()).catch(() => null)
+    )
+  );
+  const seen = new Set();
+  const unique = [];
+  for (const r of raw) {
+    if (r && r.hitokoto && !seen.has(r.hitokoto)) {
+      seen.add(r.hitokoto);
+      unique.push(r);
+      if (unique.length >= count) break;
     }
-  } catch(e) {}
-  return [];
+  }
+  // 如果_unique不够，继续补fetch（递归一次）
+  if (unique.length < count) {
+    const more = await fetchHitokoto(count - unique.length);
+    for (const r of more) {
+      if (!seen.has(r.hitokoto)) {
+        seen.add(r.hitokoto);
+        unique.push(r);
+      }
+      if (unique.length >= count) break;
+    }
+  }
+  return unique;
 }
 
-// 加载发现页（直接读本地，速度快）
+// 加载发现页
 async function loadDiscover() {
   const grid = document.getElementById('discoverGrid');
   grid.innerHTML = '<div class="loading-tip">加载中...</div>';
 
-  // 直接从本地加载，无需等待外部API
-  const localData = await fetchLocalContent();
-  
-  if (localData.length > 0) {
-    // 打乱顺序，每次刷新都不同
-    const shuffled = [...localData].sort(() => Math.random() - 0.5);
-    // 循环使用凑够 TOTAL_COUNT 条
-    const repeated = [];
-    while (repeated.length < TOTAL_COUNT) {
-      for (const item of shuffled) {
-        if (repeated.length >= TOTAL_COUNT) break;
-        repeated.push({
-          text: item.text,
-          author: '',
-          image: '/images/' + item.image
-        });
-      }
-    }
-    discoverItems = repeated;
-  } else {
-    discoverItems = getFallbackTexts().slice(0, TOTAL_COUNT);
+  let texts = [];
+  try {
+    const results = await fetchHitokoto(TOTAL_COUNT);
+    texts = results.map(r => ({
+      text: r.hitokoto,
+      author: r.from ? r.from : (r.from_who || '')
+    }));
+  } catch(e) {}
+
+  if (texts.length < TOTAL_COUNT) {
+    texts = getFallbackTexts().slice(0, TOTAL_COUNT);
   }
 
+  discoverItems = texts;
   document.getElementById('loading-tip')?.remove();
   renderDiscover();
 }
@@ -436,39 +337,13 @@ function renderDiscover() {
 }
 
 // 切换收藏
-async function toggleFav(index) {
+function toggleFav(index) {
   const item = discoverItems[index];
   if (!item) return;
-  const token = localStorage.getItem('token');
   const idx = favorites.findIndex(f => f.text === item.text);
-  
-  if (idx > -1) {
-    // 取消收藏
-    favorites.splice(idx, 1);
-    if (token) {
-      try {
-        await fetch('/api/favorites?token=' + token, {
-          method: 'DELETE',
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({text: item.text})
-        });
-      } catch(e) {}
-    }
-    showToast('已取消收藏');
-  } else {
-    // 添加收藏
-    favorites.push({ text: item.text, author: item.author || '' });
-    if (token) {
-      try {
-        await fetch('/api/favorites?token=' + token, {
-          method: 'POST',
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({text: item.text, author: item.author || ''})
-        });
-      } catch(e) {}
-    }
-    showToast('已收藏！');
-  }
+  if (idx > -1) { favorites.splice(idx, 1); showToast('已取消收藏'); }
+  else { favorites.push({ text: item.text, author: item.author }); showToast('已收藏！'); }
+  localStorage.setItem('favorites', JSON.stringify(favorites));
   renderDiscover();
 }
 
@@ -498,17 +373,11 @@ function getFallbackTexts() {
 
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
-function toggleMenu() {
-  document.querySelector('.header-nav').classList.toggle('open');
-}
-
 function switchPage(page) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page' + page.charAt(0).toUpperCase() + page.slice(1)).classList.add('active');
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('nav' + page.charAt(0).toUpperCase() + page.slice(1)).classList.add('active');
-  document.querySelector('.header-nav').classList.remove('open');
-  if (page === 'home') loadDiscover();
   if (page === 'cards') renderNotes();
   if (page === 'links') renderLinks();
   if (page === 'favorites') renderFavorites();
@@ -526,30 +395,11 @@ function showToast(msg) {
   setTimeout(() => t.classList.remove('show'), 2000);
 }
 
-async function saveNote() {
+function saveNote() {
   const content = document.getElementById('newContent').value.trim();
   if (!content) return;
-  const token = localStorage.getItem('token');
-  if (token) {
-    // 保存到服务器
-    try {
-      const res = await fetch('/api/notes?token=' + token, {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({content})
-      });
-      const data = await res.json();
-      if (data.success) {
-        notes.push({ id: data.id, content, time: new Date().toLocaleString('zh-CN'), links: [] });
-      }
-    } catch(e) {
-      console.error('保存失败', e);
-      // 降级到本地
-      notes.push({ id: Date.now(), content, time: new Date().toLocaleString('zh-CN'), links: [] });
-    }
-  } else {
-    notes.push({ id: Date.now(), content, time: new Date().toLocaleString('zh-CN'), links: [] });
-  }
+  notes.push({ id: Date.now(), content, time: new Date().toLocaleString('zh-CN'), links: [] });
+  localStorage.setItem('notes', JSON.stringify(notes));
   document.getElementById('newContent').value = '';
   showToast('保存成功！');
   renderDiscover();
@@ -588,15 +438,10 @@ function editNote(id) {
   }
 }
 
-async function deleteNote(id) {
+function deleteNote(id) {
   if (!confirm('确定删除这张卡片？')) return;
-  const token = localStorage.getItem('token');
-  if (token) {
-    try {
-      await fetch('/api/notes/' + id + '?token=' + token, {method: 'DELETE'});
-    } catch(e) {}
-  }
   notes = notes.filter(n => n.id !== id);
+  localStorage.setItem('notes', JSON.stringify(notes));
   renderNotes();
   updateCount();
 }
@@ -630,43 +475,16 @@ function closeLinkModal() {
   pendingLinkNoteId = null;
 }
 
-async function confirmLink() {
+function confirmLink() {
   if (!pendingLinkNoteId) return;
   const note = notes.find(n => n.id === pendingLinkNoteId);
   if (!note) return;
-  const token = localStorage.getItem('token');
-  const oldLinks = note.links ? [...note.links] : [];
   note.links = [];
   document.querySelectorAll('#linkOptions input:checked').forEach(cb => {
     const linkedId = parseInt(cb.id.replace('link-', ''));
     if (!note.links.includes(linkedId)) note.links.push(linkedId);
   });
-  
-  if (token) {
-    try {
-      // 删除旧的链接
-      for (const lid of oldLinks) {
-        if (!note.links.includes(lid)) {
-          await fetch('/api/links?token=' + token, {
-            method: 'DELETE',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({note_id: pendingLinkNoteId, linked_note_id: lid})
-          });
-        }
-      }
-      // 添加新的链接
-      for (const lid of note.links) {
-        if (!oldLinks.includes(lid)) {
-          await fetch('/api/links?token=' + token, {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({note_id: pendingLinkNoteId, linked_note_id: lid})
-          });
-        }
-      }
-    } catch(e) {}
-  }
-  
+  localStorage.setItem('notes', JSON.stringify(notes));
   closeLinkModal();
   renderNotes();
 }
@@ -686,19 +504,10 @@ function deselectAll() {
   updateCount();
 }
 
-async function clearAll() {
+function clearAll() {
   if (!confirm('确定清空所有卡片？此操作不可恢复。')) return;
-  const token = localStorage.getItem('token');
-  if (token) {
-    try {
-      await fetch('/api/notes/sync?token=' + token, {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({notes: []})
-      });
-    } catch(e) {}
-  }
   notes = [];
+  localStorage.setItem('notes', JSON.stringify(notes));
   renderNotes();
   updateCount();
 }
@@ -773,28 +582,15 @@ function useFav(id) {
   showToast('已添加到卡片盒！');
 }
 
-async function removeFav(id) {
-  const fav = favorites.find(f => f.id === id);
-  if (fav) {
-    const token = localStorage.getItem('token');
-    if (token) {
-      try {
-        await fetch('/api/favorites?token=' + token, {
-          method: 'DELETE',
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({text: fav.text})
-        });
-      } catch(e) {}
-    }
-  }
+function removeFav(id) {
   favorites = favorites.filter(f => f.id !== id);
+  localStorage.setItem('favorites', JSON.stringify(favorites));
   renderFavorites();
   showToast('已取消收藏');
 }
 
 // 初始化
 loadDiscover();
-loadUserData();
 </script>
 </body>
 </html>
