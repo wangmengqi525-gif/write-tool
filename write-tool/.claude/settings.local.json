@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "Bash(curl -sL \"https://raw.githubusercontent.com/wangmengqi525-gif/write-tool/main/index.html\" --max-time 10)"
+    ]
+  }
+}
