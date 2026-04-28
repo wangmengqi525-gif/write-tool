@@ -152,7 +152,6 @@
 <body>
 <header class="header">
 <div class="header-left">
-<img class="header-logo" src="https://minimax-algeng-chat-tts.oss-cn-wulanchabu.aliyuncs.com/ccv2%2F2026-04-23%2FMiniMax-M2.7%2F2044322364073710454%2Fc5d98bf99a80cbc41ce58537b1a09c53c60d764235db48944a37f7c699232e0d..png?Expires=1777026244&OSSAccessKeyId=LTAI5tGLnRTkBjLuYPjNcKQ8&Signature=QshuD16BOip24zSiG1O1isXAV0s%3D" alt="logo">
 <span class="logo-text">卡片盒写作法</span>
 <div class="header-nav">
 <button class="nav-btn active" onclick="switchPage('home')" id="navHome">首页</button>
@@ -297,10 +296,17 @@ async function loadDiscover() {
 
   let texts = [];
   try {
-    const results = await fetchHitokoto(TOTAL_COUNT);
-    texts = results.map(r => ({
-      text: r.hitokoto,
-      author: r.from ? r.from : (r.from_who || '')
+    const res = await fetch('./daily_content.json?_=' + Date.now());
+    const data = await res.json();
+    const items = data.items || [];
+    // 随机打乱
+    for (let i = items.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [items[i], items[j]] = [items[j], items[i]];
+    }
+    texts = items.slice(0, TOTAL_COUNT).map(item => ({
+      text: item.text,
+      author: item.author || ''
     }));
   } catch(e) {}
 
