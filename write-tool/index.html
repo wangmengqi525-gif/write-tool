@@ -296,10 +296,17 @@ async function loadDiscover() {
 
   let texts = [];
   try {
-    const results = await fetchHitokoto(TOTAL_COUNT);
-    texts = results.map(r => ({
-      text: r.hitokoto,
-      author: r.from ? r.from : (r.from_who || '')
+    const res = await fetch('./daily_content.json?_=' + Date.now());
+    const data = await res.json();
+    const items = data.items || [];
+    // 随机打乱
+    for (let i = items.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [items[i], items[j]] = [items[j], items[i]];
+    }
+    texts = items.slice(0, TOTAL_COUNT).map(item => ({
+      text: item.text,
+      author: item.author || ''
     }));
   } catch(e) {}
 
