@@ -262,7 +262,7 @@ async function fetchHitokoto(count) {
   // 并发请求，一次性拉足量，再去重
   const raw = await Promise.all(
     Array.from({ length: count * 2 }, () =>
-      fetch('https://v1.hitokoto.cn/?c=i&encode=json', { cache: 'no-store' })
+      fetch('https://v1.hitokoto.cn/?c=i&encode=json')
         .then(r => r.json()).catch(() => null)
     )
   );
