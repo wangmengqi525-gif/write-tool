@@ -262,7 +262,7 @@ async function fetchHitokoto(count) {
   // 并发请求，一次性拉足量，再去重
   const raw = await Promise.all(
     Array.from({ length: count * 2 }, () =>
-      fetch('https://api-proxy.wangmengqi525.workers.dev/hitokoto/' + Date.now(), { headers: { 'Cache-Control': 'no-cache' } })
+      fetch('https://api-proxy.wangmengqi525.workers.dev/hitokoto/new', { headers: { 'Cache-Control': 'no-cache' } })
         .then(r => r.json()).catch(() => null)
     )
   );
