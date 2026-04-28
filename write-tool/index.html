@@ -377,6 +377,7 @@ function switchPage(page) {
   document.getElementById('page' + page.charAt(0).toUpperCase() + page.slice(1)).classList.add('active');
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('nav' + page.charAt(0).toUpperCase() + page.slice(1)).classList.add('active');
+  if (page === 'home') loadDiscover();
   if (page === 'cards') renderNotes();
   if (page === 'links') renderLinks();
   if (page === 'favorites') renderFavorites();
