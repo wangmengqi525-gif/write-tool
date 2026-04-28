@@ -1,6 +1,6 @@
 {
   "update": "2026-04-28",
-  "count": 50,
+  "count": 246,
   "items": [
     {
       "id": 1,
@@ -221,136 +221,1508 @@
     },
     {
       "id": 32,
-      "text": "当你老了，回顾一生，就会发觉：什么时候出国读书、什么时候决定做第一份职业、何时选定了对象而恋爱、什么时候结婚，其实都是命运的巨变。只是当时站在三岔路口，眼见风云千樯，你作出选择的那一日，在日记上，相当沉闷和平凡，当时还以为是生命中普通的一天。",
+      "text": "当你老了，回顾一生，就会发觉：什么时候出国读书、什么时候决定做第一份职业、何时选定了对象而恋爱、什么时候结婚，其实都是命运的巨变。",
       "author": "陶杰",
       "source": "句子控",
       "image": "images/02.jpg"
     },
     {
       "id": 33,
-      "text": "在人的一生中，有些细微之事，本身毫无意义可言，却具有极大的重要性。时过境迁之后，回顾其因果关系，却发现影响之大，殊可惊人。",
-      "author": "林语堂",
+      "text": "你站在桥上看风景，看风景的人在楼上看你。明月装饰了你的窗子，你装饰了别人的梦。",
+      "author": "卞之琳",
       "source": "句子控",
       "image": "images/03.jpg"
     },
     {
       "id": 34,
-      "text": "你站在桥上看风景，看风景的人在楼上看你。明月装饰了你的窗子，你装饰了别人的梦。",
-      "author": "卞之琳",
+      "text": "所有的结局都已写好，所有的泪水都已启程，却忽然忘了是怎么样的一个开始。",
+      "author": "席慕蓉",
       "source": "句子控",
       "image": "images/04.jpg"
     },
     {
       "id": 35,
-      "text": "所有的结局都已写好，所有的泪水都已启程，却忽然忘了是怎么样的一个开始。",
-      "author": "席慕蓉",
+      "text": "温柔的一半是知识。",
+      "author": "网易云音乐评论",
       "source": "句子控",
       "image": "images/05.jpg"
     },
     {
       "id": 36,
-      "text": "命运如同手中的掌纹，无论多曲折，终掌握在自己手中。",
-      "author": "张爱玲",
+      "text": "凡是过往，皆为序章。",
+      "author": "莎士比亚",
       "source": "句子控",
       "image": "images/06.jpg"
     },
     {
       "id": 37,
-      "text": "有些人会一直刻在记忆里的，即使忘记了他的声音，忘记了他的笑容，忘记了他的脸，但是每当想起他时的那种感受，是永远都不会改变的。",
-      "author": "郭敬明",
+      "text": "人生就像一杯茶，不会苦一辈子，但总会苦一阵子。",
+      "author": "慧律法师",
       "source": "句子控",
       "image": "images/07.jpg"
     },
     {
       "id": 38,
-      "text": "我们最终都要远行，最终都要与稚嫩的自己告别，告别是通向成长的苦行之路。",
-      "author": "海子",
+      "text": "纵有疾风起，人生不言弃。",
+      "author": "保罗・瓦雷里",
       "source": "句子控",
       "image": "images/08.jpg"
     },
     {
       "id": 39,
-      "text": "生命中真正重要的不是你遭遇了什么，而是你记住了哪些事，又是如何铭记的。",
-      "author": "马尔克斯",
+      "text": "最暗的夜，才会看见最美的星光。",
+      "author": "《桥梁》",
       "source": "句子控",
       "image": "images/09.jpg"
     },
     {
       "id": 40,
-      "text": "有些事不是看到了希望才去坚持，而是因为坚持才会看到希望。",
-      "author": "《蜘蛛侠》",
+      "text": "生活明朗，万物可爱。人间值得，未来可期。",
+      "author": "网络",
       "source": "句子控",
       "image": "images/10.jpg"
     },
     {
       "id": 41,
-      "text": "温柔的一半是知识。",
-      "author": "网易云音乐评论",
+      "text": "将生活嚼得有滋有味，把日子过得活色生香，往往靠的不只是嘴，还要有一颗浸透人间烟火的心。",
+      "author": "网络",
       "source": "句子控",
       "image": "images/01.jpg"
     },
     {
       "id": 42,
-      "text": "凡是过往，皆为序章。",
-      "author": "莎士比亚",
+      "text": "我行过许多地方的桥，看过许多次数的云，喝过许多种类的酒，却只爱过一个正当最好年龄的人。",
+      "author": "沈从文",
       "source": "句子控",
       "image": "images/02.jpg"
     },
     {
       "id": 43,
-      "text": "人生就像一杯茶，不会苦一辈子，但总会苦一阵子。",
-      "author": "慧律法师",
+      "text": "答案很长，我准备用一生的时间来回答，你准备要听了吗？",
+      "author": "林徽因",
       "source": "句子控",
       "image": "images/03.jpg"
     },
     {
       "id": 44,
-      "text": "如果命运是世界上最烂的编剧，你就要争取做你自己人生最好的演员。",
-      "author": "人民日报",
+      "text": "两情若是久长时，又岂在朝朝暮暮。",
+      "author": "秦观",
       "source": "句子控",
       "image": "images/04.jpg"
     },
     {
       "id": 45,
-      "text": "纵有疾风起，人生不言弃。",
-      "author": "保罗・瓦雷里",
+      "text": "山有木兮木有枝，心悦君兮君不知。",
+      "author": "刘向",
       "source": "句子控",
       "image": "images/05.jpg"
     },
     {
       "id": 46,
-      "text": "没有人富有到可以赎回自己的过去。",
-      "author": "伍佰",
+      "text": "问世间，情为何物，直教生死相许。",
+      "author": "元好问",
       "source": "句子控",
       "image": "images/06.jpg"
     },
     {
       "id": 47,
-      "text": "最暗的夜，才会看见最美的星光。",
-      "author": "《桥梁》",
+      "text": "曾经沧海难为水，除却巫山不是云。",
+      "author": "元稹",
       "source": "句子控",
       "image": "images/07.jpg"
     },
     {
       "id": 48,
-      "text": "别在最好的年纪，辜负了最好的自己。",
-      "author": "网络",
+      "text": "此情可待成追忆，只是当时已惘然。",
+      "author": "李商隐",
       "source": "句子控",
       "image": "images/08.jpg"
     },
     {
       "id": 49,
-      "text": "生活明朗，万物可爱。人间值得，未来可期。",
-      "author": "网络",
+      "text": "春江潮水连海平，海上明月共潮生。",
+      "author": "张若虚",
       "source": "句子控",
       "image": "images/09.jpg"
     },
     {
       "id": 50,
-      "text": "将生活嚼得有滋有味，把日子过得活色生香，往往靠的不只是嘴，还要有一颗浸透人间烟火的心。",
+      "text": "明月松间照，清泉石上流。",
+      "author": "王维",
+      "source": "句子控",
+      "image": "images/10.jpg"
+    },
+    {
+      "id": 51,
+      "text": "大漠孤烟直，长河落日圆。",
+      "author": "王维",
+      "source": "句子控",
+      "image": "images/01.jpg"
+    },
+    {
+      "id": 52,
+      "text": "采菊东篱下，悠然见南山。",
+      "author": "陶渊明",
+      "source": "句子控",
+      "image": "images/02.jpg"
+    },
+    {
+      "id": 53,
+      "text": "落霞与孤鹜齐飞，秋水共长天一色。",
+      "author": "王勃",
+      "source": "句子控",
+      "image": "images/03.jpg"
+    },
+    {
+      "id": 54,
+      "text": "海内存知己，天涯若比邻。",
+      "author": "王勃",
+      "source": "句子控",
+      "image": "images/04.jpg"
+    },
+    {
+      "id": 55,
+      "text": "人生得意须尽欢，莫使金樽空对月。",
+      "author": "李白",
+      "source": "句子控",
+      "image": "images/05.jpg"
+    },
+    {
+      "id": 56,
+      "text": "天生我材必有用，千金散尽还复来。",
+      "author": "李白",
+      "source": "句子控",
+      "image": "images/06.jpg"
+    },
+    {
+      "id": 57,
+      "text": "长风破浪会有时，直挂云帆济沧海。",
+      "author": "李白",
+      "source": "句子控",
+      "image": "images/07.jpg"
+    },
+    {
+      "id": 58,
+      "text": "无边落木萧萧下，不尽长江滚滚来。",
+      "author": "杜甫",
+      "source": "句子控",
+      "image": "images/08.jpg"
+    },
+    {
+      "id": 59,
+      "text": "会当凌绝顶，一览众山小。",
+      "author": "杜甫",
+      "source": "句子控",
+      "image": "images/09.jpg"
+    },
+    {
+      "id": 60,
+      "text": "春风得意马蹄疾，一日看尽长安花。",
+      "author": "孟郊",
+      "source": "句子控",
+      "image": "images/10.jpg"
+    },
+    {
+      "id": 61,
+      "text": "但愿人长久，千里共婵娟。",
+      "author": "苏轼",
+      "source": "句子控",
+      "image": "images/01.jpg"
+    },
+    {
+      "id": 62,
+      "text": "大江东去，浪淘尽，千古风流人物。",
+      "author": "苏轼",
+      "source": "句子控",
+      "image": "images/02.jpg"
+    },
+    {
+      "id": 63,
+      "text": "竹杖芒鞋轻胜马，谁怕？一蓑烟雨任平生。",
+      "author": "苏轼",
+      "source": "句子控",
+      "image": "images/03.jpg"
+    },
+    {
+      "id": 64,
+      "text": "回首向来萧瑟处，归去，也无风雨也无晴。",
+      "author": "苏轼",
+      "source": "句子控",
+      "image": "images/04.jpg"
+    },
+    {
+      "id": 65,
+      "text": "人生如逆旅，我亦是行人。",
+      "author": "苏轼",
+      "source": "句子控",
+      "image": "images/05.jpg"
+    },
+    {
+      "id": 66,
+      "text": "莫听穿林打叶声，何妨吟啸且徐行。",
+      "author": "苏轼",
+      "source": "句子控",
+      "image": "images/06.jpg"
+    },
+    {
+      "id": 67,
+      "text": "十年生死两茫茫，不思量，自难忘。",
+      "author": "苏轼",
+      "source": "句子控",
+      "image": "images/07.jpg"
+    },
+    {
+      "id": 68,
+      "text": "不识庐山真面目，只缘身在此山中。",
+      "author": "苏轼",
+      "source": "句子控",
+      "image": "images/08.jpg"
+    },
+    {
+      "id": 69,
+      "text": "休对故人思故国，且将新火试新茶。诗酒趁年华。",
+      "author": "苏轼",
+      "source": "句子控",
+      "image": "images/09.jpg"
+    },
+    {
+      "id": 70,
+      "text": "人间有味是清欢。",
+      "author": "苏轼",
+      "source": "句子控",
+      "image": "images/10.jpg"
+    },
+    {
+      "id": 71,
+      "text": "牢骚太盛防肠断，风物长宜放眼量。",
+      "author": "毛泽东",
+      "source": "句子控",
+      "image": "images/01.jpg"
+    },
+    {
+      "id": 72,
+      "text": "俱往矣，数风流人物，还看今朝。",
+      "author": "毛泽东",
+      "source": "句子控",
+      "image": "images/02.jpg"
+    },
+    {
+      "id": 73,
+      "text": "星星之火，可以燎原。",
+      "author": "毛泽东",
+      "source": "句子控",
+      "image": "images/03.jpg"
+    },
+    {
+      "id": 74,
+      "text": "今天很残酷，明天更残酷，后天会很美好，但绝大多数人都死在明天晚上。",
+      "author": "马云",
+      "source": "句子控",
+      "image": "images/04.jpg"
+    },
+    {
+      "id": 75,
+      "text": "你穷，是因为你没有野心。",
+      "author": "马云",
+      "source": "句子控",
+      "image": "images/05.jpg"
+    },
+    {
+      "id": 76,
+      "text": "寒冷到了极致时，太阳就要回来了。",
+      "author": "雪莱",
+      "source": "句子控",
+      "image": "images/06.jpg"
+    },
+    {
+      "id": 77,
+      "text": "世界上只有一种真正的英雄主义，那就是在认清生活的真相后依然热爱生活。",
+      "author": "罗曼・罗兰",
+      "source": "句子控",
+      "image": "images/07.jpg"
+    },
+    {
+      "id": 78,
+      "text": "我从来不相信什么懒洋洋的自由，我向往的自由是通过勤奋和努力实现的更广阔的人生。",
+      "author": "山本耀司",
+      "source": "句子控",
+      "image": "images/08.jpg"
+    },
+    {
+      "id": 79,
+      "text": "所得，所不得，皆不如心安理得。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/09.jpg"
+    },
+    {
+      "id": 80,
+      "text": "把平凡的事做好，就是不平凡；把简单的事做好，就是不简单。",
       "author": "网络",
       "source": "句子控",
       "image": "images/10.jpg"
+    },
+    {
+      "id": 81,
+      "text": "你可以迷茫，但不要虚度。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/01.jpg"
+    },
+    {
+      "id": 82,
+      "text": "心有猛虎，细嗅蔷薇。",
+      "author": "萨松",
+      "source": "句子控",
+      "image": "images/02.jpg"
+    },
+    {
+      "id": 83,
+      "text": "生如夏花之绚烂，死如秋叶之静美。",
+      "author": "泰戈尔",
+      "source": "句子控",
+      "image": "images/03.jpg"
+    },
+    {
+      "id": 84,
+      "text": "天空没有留下翅膀的痕迹，但我已经飞过。",
+      "author": "泰戈尔",
+      "source": "句子控",
+      "image": "images/04.jpg"
+    },
+    {
+      "id": 85,
+      "text": "当你为错过太阳而哭泣的时候，你也要再错过群星了。",
+      "author": "泰戈尔",
+      "source": "句子控",
+      "image": "images/05.jpg"
+    },
+    {
+      "id": 86,
+      "text": "我们看错了世界，却说世界欺骗了我们。",
+      "author": "泰戈尔",
+      "source": "句子控",
+      "image": "images/06.jpg"
+    },
+    {
+      "id": 87,
+      "text": "你的负担将变成礼物，你受的苦将照亮你的路。",
+      "author": "泰戈尔",
+      "source": "句子控",
+      "image": "images/07.jpg"
+    },
+    {
+      "id": 88,
+      "text": "恐惧源于未知。",
+      "author": "伏尔泰",
+      "source": "句子控",
+      "image": "images/08.jpg"
+    },
+    {
+      "id": 89,
+      "text": "人生就像一盒巧克力，你永远不知道会得到什么。",
+      "author": "《阿甘正传》",
+      "source": "句子控",
+      "image": "images/09.jpg"
+    },
+    {
+      "id": 90,
+      "text": "我们都生活在阴沟里，但仍有人仰望星空。",
+      "author": "王尔德",
+      "source": "句子控",
+      "image": "images/10.jpg"
+    },
+    {
+      "id": 91,
+      "text": "老年人相信一切，中年人怀疑一切，青年人什么都懂。",
+      "author": "王尔德",
+      "source": "句子控",
+      "image": "images/01.jpg"
+    },
+    {
+      "id": 92,
+      "text": "只有两种人最具有吸引力，一种是无所不知的人，一种是一无所知的人。",
+      "author": "王尔德",
+      "source": "句子控",
+      "image": "images/02.jpg"
+    },
+    {
+      "id": 93,
+      "text": "每个圣徒都有过去，每个罪人都有未来。",
+      "author": "王尔德",
+      "source": "句子控",
+      "image": "images/03.jpg"
+    },
+    {
+      "id": 94,
+      "text": "人真正的名字叫作：欲望。",
+      "author": "史铁生",
+      "source": "句子控",
+      "image": "images/04.jpg"
+    },
+    {
+      "id": 95,
+      "text": "检验一个人的标准，就是看他把时间放在了哪儿。",
+      "author": "史铁生",
+      "source": "句子控",
+      "image": "images/05.jpg"
+    },
+    {
+      "id": 96,
+      "text": "我什么都没忘，只是有些事适合收藏。",
+      "author": "史铁生",
+      "source": "句子控",
+      "image": "images/06.jpg"
+    },
+    {
+      "id": 97,
+      "text": "活着就是为了吃饭。",
+      "author": "余华",
+      "source": "句子控",
+      "image": "images/07.jpg"
+    },
+    {
+      "id": 98,
+      "text": "人是为活着本身而活着，而不是为了活着之外的任何事物所活着。",
+      "author": "余华",
+      "source": "句子控",
+      "image": "images/08.jpg"
+    },
+    {
+      "id": 99,
+      "text": "没有什么比时间更具有说服力了，因为时间无需通知我们就可以改变一切。",
+      "author": "余华",
+      "source": "句子控",
+      "image": "images/09.jpg"
+    },
+    {
+      "id": 100,
+      "text": "用心甘情愿的态度，过随遇而安的生活。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/10.jpg"
+    },
+    {
+      "id": 101,
+      "text": "时光静好，与君语；细水流年，与君同；繁华落尽，与君老。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/01.jpg"
+    },
+    {
+      "id": 102,
+      "text": "山高水长，怕什么来不及，慌什么到不了，天顺其然，地顺其性，人顺其变，一切都是刚刚好。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/02.jpg"
+    },
+    {
+      "id": 103,
+      "text": "保持热爱，奔赴山海。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/03.jpg"
+    },
+    {
+      "id": 104,
+      "text": "世界很大，开心第一。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/04.jpg"
+    },
+    {
+      "id": 105,
+      "text": "心里有光，慢食三餐。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/05.jpg"
+    },
+    {
+      "id": 106,
+      "text": "偶尔对自己好些，偷个小懒，抽点小疯，不算浪费。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/06.jpg"
+    },
+    {
+      "id": 107,
+      "text": "温柔半两，从容一生。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/07.jpg"
+    },
+    {
+      "id": 108,
+      "text": "种自己的花，爱自己的宇宙。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/08.jpg"
+    },
+    {
+      "id": 109,
+      "text": "永远相信美好的事情即将发生。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/09.jpg"
+    },
+    {
+      "id": 110,
+      "text": "所有的道别里，我最喜欢明天见。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/10.jpg"
+    },
+    {
+      "id": 111,
+      "text": "愿你历遍山河，觉得人间值得。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/01.jpg"
+    },
+    {
+      "id": 112,
+      "text": "有趣有盼，不负心中热爱。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/02.jpg"
+    },
+    {
+      "id": 113,
+      "text": "把期望降到最低，所有的遇见都是礼物。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/03.jpg"
+    },
+    {
+      "id": 114,
+      "text": "无法讨好全世界，那就先讨好自己。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/04.jpg"
+    },
+    {
+      "id": 115,
+      "text": "别让平凡的生活耗尽你对生活的向往。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/05.jpg"
+    },
+    {
+      "id": 116,
+      "text": "简单点，糊涂点，开心点。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/06.jpg"
+    },
+    {
+      "id": 117,
+      "text": "愿你的生活如你所愿。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/07.jpg"
+    },
+    {
+      "id": 118,
+      "text": "遇见了就珍惜，遇不见就努力。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/08.jpg"
+    },
+    {
+      "id": 119,
+      "text": "所有的相遇，都是命中注定。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/09.jpg"
+    },
+    {
+      "id": 120,
+      "text": "慢慢来，谁不是翻山越岭去爱。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/10.jpg"
+    },
+    {
+      "id": 121,
+      "text": "总有一天，你会笑着说出那些曾经让你流泪的往事。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/01.jpg"
+    },
+    {
+      "id": 122,
+      "text": "活在这珍贵的人间，太阳强烈，水波温柔。",
+      "author": "海子",
+      "source": "句子控",
+      "image": "images/02.jpg"
+    },
+    {
+      "id": 123,
+      "text": "面朝大海，春暖花开。",
+      "author": "海子",
+      "source": "句子控",
+      "image": "images/03.jpg"
+    },
+    {
+      "id": 124,
+      "text": "我们最终都要远行，最终都要与稚嫩的自己告别，告别是通向成长的苦行之路。",
+      "author": "海子",
+      "source": "句子控",
+      "image": "images/04.jpg"
+    },
+    {
+      "id": 125,
+      "text": "你来人间一趟，你要看看太阳，和你的心上人，一起走在街上。",
+      "author": "海子",
+      "source": "句子控",
+      "image": "images/05.jpg"
+    },
+    {
+      "id": 126,
+      "text": "我年华虚度，空有一身疲倦。",
+      "author": "海子",
+      "source": "句子控",
+      "image": "images/06.jpg"
+    },
+    {
+      "id": 127,
+      "text": "远方除了遥远，一无所有。",
+      "author": "海子",
+      "source": "句子控",
+      "image": "images/07.jpg"
+    },
+    {
+      "id": 128,
+      "text": "要有最朴素的生活和最遥远的梦想，即使明天天寒地冻，山高水远，路远马亡。",
+      "author": "海子",
+      "source": "句子控",
+      "image": "images/08.jpg"
+    },
+    {
+      "id": 129,
+      "text": "万人都要将火熄灭，我一人独将此火高高举起。",
+      "author": "海子",
+      "source": "句子控",
+      "image": "images/09.jpg"
+    },
+    {
+      "id": 130,
+      "text": "我无限地热爱着新的一日。",
+      "author": "海子",
+      "source": "句子控",
+      "image": "images/10.jpg"
+    },
+    {
+      "id": 131,
+      "text": "我已走到了人类的尽头。",
+      "author": "海子",
+      "source": "句子控",
+      "image": "images/01.jpg"
+    },
+    {
+      "id": 132,
+      "text": "珍惜清晨，吃清淡食物，节制吸烟，储蓄不多。",
+      "author": "海子",
+      "source": "句子控",
+      "image": "images/02.jpg"
+    },
+    {
+      "id": 133,
+      "text": "没有任何夜晚能使我沉睡，没有任何黎明能使我醒来。",
+      "author": "海子",
+      "source": "句子控",
+      "image": "images/03.jpg"
+    },
+    {
+      "id": 134,
+      "text": "一块孤独的石头，坐满整个天空。",
+      "author": "海子",
+      "source": "句子控",
+      "image": "images/04.jpg"
+    },
+    {
+      "id": 135,
+      "text": "我选择了人迹更少的一条，从此决定了我一生的道路。",
+      "author": "罗伯特・弗罗斯特",
+      "source": "句子控",
+      "image": "images/05.jpg"
+    },
+    {
+      "id": 136,
+      "text": "旅行的意义不在于看多少风景，而在于知道自己是谁。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/06.jpg"
+    },
+    {
+      "id": 137,
+      "text": "你要做一个可爱的人，也要有做一个不动声色的大人。",
+      "author": "村上春树",
+      "source": "句子控",
+      "image": "images/07.jpg"
+    },
+    {
+      "id": 138,
+      "text": "我一直以为人是慢慢变老的，其实不是，人是一瞬间变老的。",
+      "author": "村上春树",
+      "source": "句子控",
+      "image": "images/08.jpg"
+    },
+    {
+      "id": 139,
+      "text": "哪里有人喜欢孤独，不过是不喜欢失望罢了。",
+      "author": "村上春树",
+      "source": "句子控",
+      "image": "images/09.jpg"
+    },
+    {
+      "id": 140,
+      "text": "世界上最好的默契，是有人懂你的言外之意，也懂你的欲言又止。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/10.jpg"
+    },
+    {
+      "id": 141,
+      "text": "最好的友谊，是各自忙碌又彼此惦念。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/01.jpg"
+    },
+    {
+      "id": 142,
+      "text": "愿你眼里全是温柔，嘴角全是笑意。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/02.jpg"
+    },
+    {
+      "id": 143,
+      "text": "无法阻止自己落俗，但浪漫不死。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/03.jpg"
+    },
+    {
+      "id": 144,
+      "text": "在平凡的生活里，保持谦虚和努力。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/04.jpg"
+    },
+    {
+      "id": 145,
+      "text": "你那么年轻，为什么怕挫折。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/05.jpg"
+    },
+    {
+      "id": 146,
+      "text": "生活不需要比别人好，但一定要比以前好。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/06.jpg"
+    },
+    {
+      "id": 147,
+      "text": "慢慢变好，才是给自己最好的礼物。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/07.jpg"
+    },
+    {
+      "id": 148,
+      "text": "把细碎的烦恼暂停关掉，把太阳挂起来。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/08.jpg"
+    },
+    {
+      "id": 149,
+      "text": "所有的小日子都值得被庆祝。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/09.jpg"
+    },
+    {
+      "id": 150,
+      "text": "日子很滚烫，又热又明亮。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/10.jpg"
+    },
+    {
+      "id": 151,
+      "text": "这吹不出褶皱的平静日子，也在闪光。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/01.jpg"
+    },
+    {
+      "id": 152,
+      "text": "永远真诚，永远保持浪漫。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/02.jpg"
+    },
+    {
+      "id": 153,
+      "text": "保持炙热，坚持下去。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/03.jpg"
+    },
+    {
+      "id": 154,
+      "text": "愿所得皆所期，所失亦无碍。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/04.jpg"
+    },
+    {
+      "id": 155,
+      "text": "喜欢现在，期待未来。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/05.jpg"
+    },
+    {
+      "id": 156,
+      "text": "在阳光下像个小孩，在风雨中做个大人。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/06.jpg"
+    },
+    {
+      "id": 157,
+      "text": "愿一切美好都如约而至。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/07.jpg"
+    },
+    {
+      "id": 158,
+      "text": "温柔这一味，真的可以治疗生活的苦。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/08.jpg"
+    },
+    {
+      "id": 159,
+      "text": "把生活调成自己喜欢的颜色。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/09.jpg"
+    },
+    {
+      "id": 160,
+      "text": "做一个温柔的人，永远对生活充满期待。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/10.jpg"
+    },
+    {
+      "id": 161,
+      "text": "温柔分给每一个人。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/01.jpg"
+    },
+    {
+      "id": 162,
+      "text": "所有的温柔，都源于独立。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/02.jpg"
+    },
+    {
+      "id": 163,
+      "text": "这路遥马急的人间，你我平安喜乐就好。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/03.jpg"
+    },
+    {
+      "id": 164,
+      "text": "治愈自己最好的方法就是忙碌和早睡。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/04.jpg"
+    },
+    {
+      "id": 165,
+      "text": "我们都要在好好生活的基础上，为自己而活。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/05.jpg"
+    },
+    {
+      "id": 166,
+      "text": "慢热喜静，往哪走，都是往前走。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/06.jpg"
+    },
+    {
+      "id": 167,
+      "text": "以欢喜心过生活，以温柔心除挂碍。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/07.jpg"
+    },
+    {
+      "id": 168,
+      "text": "日子是崭新的，你在记录它。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/08.jpg"
+    },
+    {
+      "id": 169,
+      "text": "不要站在雾里，不要执着没有意义的事。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/09.jpg"
+    },
+    {
+      "id": 170,
+      "text": "时间会融化掉所有的尖锐。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/10.jpg"
+    },
+    {
+      "id": 171,
+      "text": "日子渺小重复，却都是幸福。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/01.jpg"
+    },
+    {
+      "id": 172,
+      "text": "别让任何人消耗你内心的晴朗。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/02.jpg"
+    },
+    {
+      "id": 173,
+      "text": "没有人规定一朵花必须长成玫瑰。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/03.jpg"
+    },
+    {
+      "id": 174,
+      "text": "你很好，你值得被爱。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/04.jpg"
+    },
+    {
+      "id": 175,
+      "text": "在热爱里，很慢，很踏实。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/05.jpg"
+    },
+    {
+      "id": 176,
+      "text": "让日子过的有趣，需要一点仪式感。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/06.jpg"
+    },
+    {
+      "id": 177,
+      "text": "日复一日的生活，也会有新的快乐。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/07.jpg"
+    },
+    {
+      "id": 178,
+      "text": "按一下暂停键，重新开始。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/08.jpg"
+    },
+    {
+      "id": 179,
+      "text": "生活原本沉闷，但跑起来就有风了。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/09.jpg"
+    },
+    {
+      "id": 180,
+      "text": "日子难熬的时候，记得对自己好一点。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/10.jpg"
+    },
+    {
+      "id": 181,
+      "text": "今天的阳光很烈，风很轻，像你笑的样子。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/01.jpg"
+    },
+    {
+      "id": 182,
+      "text": "记得在这杂乱的生活里，每天用铁盆洗手。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/02.jpg"
+    },
+    {
+      "id": 183,
+      "text": "把烦心事丢掉，腾出地方放鲜花。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/03.jpg"
+    },
+    {
+      "id": 184,
+      "text": "风停在嘴边，祝你永远平安。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/04.jpg"
+    },
+    {
+      "id": 185,
+      "text": "记得向前看，别烂在过去和梦里。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/05.jpg"
+    },
+    {
+      "id": 186,
+      "text": "喜躁无常，懒且随意。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/06.jpg"
+    },
+    {
+      "id": 187,
+      "text": "取悦自己才是最大的快乐。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/07.jpg"
+    },
+    {
+      "id": 188,
+      "text": "做颗星星，有棱有角，还会发光。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/08.jpg"
+    },
+    {
+      "id": 189,
+      "text": "要努力生活，为了现在，也为了将来。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/09.jpg"
+    },
+    {
+      "id": 190,
+      "text": "别因黄昏迟暮止步，星空取代了晚霞。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/10.jpg"
+    },
+    {
+      "id": 191,
+      "text": "花会沿途盛开，你以后的路也是。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/01.jpg"
+    },
+    {
+      "id": 192,
+      "text": "热爱漫无边际，生活自有分寸。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/02.jpg"
+    },
+    {
+      "id": 193,
+      "text": "野地上弥漫着苍苍的狗尾巴草，像日子一样平凡。",
+      "author": "网络",
+      "source": "句子控",
+      "image": "images/03.jpg"
+    },
+    {
+      "id": 194,
+      "text": "你若爱，生活哪里都可爱。",
+      "author": "丰子恺",
+      "source": "句子控",
+      "image": "images/04.jpg"
+    },
+    {
+      "id": 195,
+      "text": "既然无处可逃，不如喜悦。",
+      "author": "丰子恺",
+      "source": "句子控",
+      "image": "images/05.jpg"
+    },
+    {
+      "id": 196,
+      "text": "不是世界选择了你，是你选择了这个世界。",
+      "author": "丰子恺",
+      "source": "句子控",
+      "image": "images/06.jpg"
+    },
+    {
+      "id": 197,
+      "text": "心小了，所有的小事就大了；心大了，所有的大事都小了。",
+      "author": "丰子恺",
+      "source": "句子控",
+      "image": "images/07.jpg"
+    },
+    {
+      "id": 198,
+      "text": "你走，我不送你；你来，无论多大的风雨，我都要去接你。",
+      "author": "梁实秋",
+      "source": "句子控",
+      "image": "images/08.jpg"
+    },
+    {
+      "id": 199,
+      "text": "人的一生注定会遇到两个人，一个惊艳了时光，一个温柔了岁月。",
+      "author": "张爱玲",
+      "source": "句子控",
+      "image": "images/09.jpg"
+    },
+    {
+      "id": 200,
+      "text": "因为爱过，所以慈悲；因为懂得，所以宽容。",
+      "author": "张爱玲",
+      "source": "句子控",
+      "image": "images/10.jpg"
+    },
+    {
+      "id": 201,
+      "text": "如果你认识从前的我，你就会原谅现在的我。",
+      "author": "张爱玲",
+      "source": "句子控",
+      "image": "images/01.jpg"
+    },
+    {
+      "id": 202,
+      "text": "生命是一袭华美的袍，爬满了蚤子。",
+      "author": "张爱玲",
+      "source": "句子控",
+      "image": "images/02.jpg"
+    },
+    {
+      "id": 203,
+      "text": "于千万人之中遇见你所要遇见的人，于千万年之中，时间的无涯的荒野里，没有早一步，也没有晚一步，刚巧赶上了。",
+      "author": "张爱玲",
+      "source": "句子控",
+      "image": "images/03.jpg"
+    },
+    {
+      "id": 204,
+      "text": "长的是磨难，短的是人生。",
+      "author": "张爱玲",
+      "source": "句子控",
+      "image": "images/04.jpg"
+    },
+    {
+      "id": 205,
+      "text": "一个人一生中总会遇到些人，明白一些事，错过一些人。",
+      "author": "张爱玲",
+      "source": "句子控",
+      "image": "images/05.jpg"
+    },
+    {
+      "id": 206,
+      "text": "在这个世界上，没有人真正可以对另一个人的伤痛感同身受。",
+      "author": "莫言",
+      "source": "句子控",
+      "image": "images/06.jpg"
+    },
+    {
+      "id": 207,
+      "text": "文学和科学相比，的确没什么用处，但文学最大的用处，也许就是它的无用。",
+      "author": "莫言",
+      "source": "句子控",
+      "image": "images/07.jpg"
+    },
+    {
+      "id": 208,
+      "text": "世界上的事情，最忌讳的就是个十全十美。",
+      "author": "莫言",
+      "source": "句子控",
+      "image": "images/08.jpg"
+    },
+    {
+      "id": 209,
+      "text": "一个人要知道自己的位置，就像一个人知道自己的脸面一样，这是最为清醒的自觉。",
+      "author": "莫言",
+      "source": "句子控",
+      "image": "images/09.jpg"
+    },
+    {
+      "id": 210,
+      "text": "当众人生死相依时，你就能分辨出谁是真正的朋友。",
+      "author": "莫言",
+      "source": "句子控",
+      "image": "images/10.jpg"
+    },
+    {
+      "id": 211,
+      "text": "人生四然：来是偶然，去是必然，尽其当然，顺其自然。",
+      "author": "莫言",
+      "source": "句子控",
+      "image": "images/01.jpg"
+    },
+    {
+      "id": 212,
+      "text": "这封信寄给你，你会慢慢变好。",
+      "author": "莫言",
+      "source": "句子控",
+      "image": "images/02.jpg"
+    },
+    {
+      "id": 213,
+      "text": "一个人精神失常的前兆，就是觉得自己很重要。",
+      "author": "马克・吐温",
+      "source": "句子控",
+      "image": "images/03.jpg"
+    },
+    {
+      "id": 214,
+      "text": "不要放弃你的幻想。当幻想消失的时候，你也许可以维持你的生活，但是你的生活将不会再有什么好日子。",
+      "author": "马克・吐温",
+      "source": "句子控",
+      "image": "images/04.jpg"
+    },
+    {
+      "id": 215,
+      "text": "保持身体健康的唯一办法，就是吃点你不想吃的，喝点你不想喝的，以及做点你不想做的。",
+      "author": "马克・吐温",
+      "source": "句子控",
+      "image": "images/05.jpg"
+    },
+    {
+      "id": 216,
+      "text": "我不要只是生存，我还要活得有意义。",
+      "author": "《疯狂动物城》",
+      "source": "句子控",
+      "image": "images/06.jpg"
+    },
+    {
+      "id": 217,
+      "text": "生活总会有点不顺意，我们都会犯错。天性如何并不重要，重要的是你开始改变。",
+      "author": "《疯狂动物城》",
+      "source": "句子控",
+      "image": "images/07.jpg"
+    },
+    {
+      "id": 218,
+      "text": "不要让别人告诉你，你不能做什么。那些做不到的人总要告诉你，你也不行。",
+      "author": "《当幸福来敲门》",
+      "source": "句子控",
+      "image": "images/08.jpg"
+    },
+    {
+      "id": 219,
+      "text": "If you want something, go get it. Period.",
+      "author": "《当幸福来敲门》",
+      "source": "句子控",
+      "image": "images/09.jpg"
+    },
+    {
+      "id": 220,
+      "text": "如果生活还没有变得更好，那是因为时机未到。",
+      "author": "《教父》",
+      "source": "句子控",
+      "image": "images/10.jpg"
+    },
+    {
+      "id": 221,
+      "text": "伟大的人不是生来就伟大，而是在成长的过程中显示其伟大的。",
+      "author": "《教父》",
+      "source": "句子控",
+      "image": "images/01.jpg"
+    },
+    {
+      "id": 222,
+      "text": "我不懂我们是否有着各自的命运，还是只是到处随风飘荡。",
+      "author": "《阿甘正传》",
+      "source": "句子控",
+      "image": "images/02.jpg"
+    },
+    {
+      "id": 223,
+      "text": "Miracles happen every day.",
+      "author": "《阿甘正传》",
+      "source": "句子控",
+      "image": "images/03.jpg"
+    },
+    {
+      "id": 224,
+      "text": "Death is just a part of life, something we are all destined to do.",
+      "author": "《阿甘正传》",
+      "source": "句子控",
+      "image": "images/04.jpg"
+    },
+    {
+      "id": 225,
+      "text": "你要凭上帝给予的开始做到最好。",
+      "author": "《阿甘正传》",
+      "source": "句子控",
+      "image": "images/05.jpg"
+    },
+    {
+      "id": 226,
+      "text": "Life is like a box of chocolates, you never know what you are going to get.",
+      "author": "《阿甘正传》",
+      "source": "句子控",
+      "image": "images/06.jpg"
+    },
+    {
+      "id": 227,
+      "text": "世间文字八万个，唯有情字最杀人。",
+      "author": "白落梅",
+      "source": "句子控",
+      "image": "images/07.jpg"
+    },
+    {
+      "id": 228,
+      "text": "以清净心看世界，以欢喜心过生活，以平常心生情味，以柔软心除挂碍。",
+      "author": "林清玄",
+      "source": "句子控",
+      "image": "images/08.jpg"
+    },
+    {
+      "id": 229,
+      "text": "浪漫的精髓就在于它充满种种可能。",
+      "author": "奥斯卡・王尔德",
+      "source": "句子控",
+      "image": "images/09.jpg"
+    },
+    {
+      "id": 230,
+      "text": "一个人可以被毁灭，但不能被打败。",
+      "author": "海明威",
+      "source": "句子控",
+      "image": "images/10.jpg"
+    },
+    {
+      "id": 231,
+      "text": "优于别人，并不高贵，真正的高贵应该是优于过去的自己。",
+      "author": "海明威",
+      "source": "句子控",
+      "image": "images/01.jpg"
+    },
+    {
+      "id": 232,
+      "text": "此刻很痛苦，等过完这一关，就会发现一切并没有那么糟糕。",
+      "author": "海明威",
+      "source": "句子控",
+      "image": "images/02.jpg"
+    },
+    {
+      "id": 233,
+      "text": "我们花了两年来学会说话，却要花上六十年来学会闭嘴。",
+      "author": "海明威",
+      "source": "句子控",
+      "image": "images/03.jpg"
+    },
+    {
+      "id": 234,
+      "text": "勇气是在压力下展现的优雅。",
+      "author": "海明威",
+      "source": "句子控",
+      "image": "images/04.jpg"
+    },
+    {
+      "id": 235,
+      "text": "There is nothing to either good or bad but thinking makes it so.",
+      "author": "Shakespeare",
+      "source": "句子控",
+      "image": "images/05.jpg"
+    },
+    {
+      "id": 236,
+      "text": "To be, or not to be, that is the question.",
+      "author": "Shakespeare",
+      "source": "句子控",
+      "image": "images/06.jpg"
+    },
+    {
+      "id": 237,
+      "text": "All that glitters is not gold.",
+      "author": "Shakespeare",
+      "source": "句子控",
+      "image": "images/07.jpg"
+    },
+    {
+      "id": 238,
+      "text": "The only way to do great work is to love what you do.",
+      "author": "Steve Jobs",
+      "source": "句子控",
+      "image": "images/08.jpg"
+    },
+    {
+      "id": 239,
+      "text": "Stay hungry, stay foolish.",
+      "author": "Steve Jobs",
+      "source": "句子控",
+      "image": "images/09.jpg"
+    },
+    {
+      "id": 240,
+      "text": "Your time is limited, so do not waste it living someone else's life.",
+      "author": "Steve Jobs",
+      "source": "句子控",
+      "image": "images/10.jpg"
+    },
+    {
+      "id": 241,
+      "text": "Innovation distinguishes between a leader and a follower.",
+      "author": "Steve Jobs",
+      "source": "句子控",
+      "image": "images/01.jpg"
+    },
+    {
+      "id": 242,
+      "text": "The people who are crazy enough to think they can change the world are the ones who do.",
+      "author": "Apple Think Different",
+      "source": "句子控",
+      "image": "images/02.jpg"
+    },
+    {
+      "id": 243,
+      "text": "Simple is better than complex, complex is better than complicated.",
+      "author": "Zen of Python",
+      "source": "句子控",
+      "image": "images/03.jpg"
+    },
+    {
+      "id": 244,
+      "text": "Readability counts.",
+      "author": "Zen of Python",
+      "source": "句子控",
+      "image": "images/04.jpg"
+    },
+    {
+      "id": 245,
+      "text": "Errors should never pass silently.",
+      "author": "Zen of Python",
+      "source": "句子控",
+      "image": "images/05.jpg"
+    },
+    {
+      "id": 246,
+      "text": "There should be one-- and preferably only one --obvious way to do it.",
+      "author": "Zen of Python",
+      "source": "句子控",
+      "image": "images/06.jpg"
     }
   ]
 }
