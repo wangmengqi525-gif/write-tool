@@ -1,1490 +1,1504 @@
 {
-  "update": "2026-06-14",
-  "count": 212,
+  "update": "2026-06-15",
+  "count": 214,
   "items": [
     {
       "id": 1,
-      "text": "江碧鸟逾白，山青花欲燃。",
-      "author": "绝句二首",
+      "text": "花无人戴，酒无人劝，醉也无人管。",
+      "author": "青玉案·年年社日停针线",
       "source": "一言",
       "image": "images/01.jpg"
     },
     {
       "id": 2,
-      "text": "落叶他乡树，寒灯独夜人。",
-      "author": "灞上秋居",
+      "text": "两处相思同淋雪，此生也算共白头。",
+      "author": "己亥杂诗",
       "source": "一言",
       "image": "images/02.jpg"
     },
     {
       "id": 3,
-      "text": "愿为西南风，长逝入君怀。",
-      "author": "明月上高楼",
+      "text": "锦官红妆否？不见故人裙。",
+      "author": "无题",
       "source": "一言",
       "image": "images/03.jpg"
     },
     {
       "id": 4,
-      "text": "寒夜客来茶当酒，竹炉汤沸火初红。",
-      "author": "寒夜",
+      "text": "葡萄美酒夜光杯，欲饮琵琶马上催。",
+      "author": "凉州词二首·其一",
       "source": "一言",
       "image": "images/04.jpg"
     },
     {
       "id": 5,
-      "text": "顺为凡，逆为仙，只在中间颠倒颠。",
-      "author": "无根树",
+      "text": "诚知此恨人人有，贫贱夫妻百事哀。",
+      "author": "遣悲怀三首·其二",
       "source": "一言",
       "image": "images/05.jpg"
     },
     {
       "id": 6,
-      "text": "人生天地间，忽如远行客。",
-      "author": "古诗十九首",
+      "text": "天不老，情难绝。心似双丝网，中有千千结。",
+      "author": "千秋岁·数声鶗鴂",
       "source": "一言",
       "image": "images/06.jpg"
     },
     {
       "id": 7,
-      "text": "想当年，金戈铁马，气吞万里如虎。",
-      "author": "永遇乐·京口北固亭怀古",
+      "text": "从前种种，譬如昨日死；从后种种，譬如今日生",
+      "author": "了凡四训·立命之学",
       "source": "一言",
       "image": "images/07.jpg"
     },
     {
       "id": 8,
-      "text": "时人不识凌云木，直待凌云始道高。",
-      "author": "小松",
+      "text": "荷叶罗裙一色裁，芙蓉向脸两边开。",
+      "author": "采莲曲",
       "source": "一言",
       "image": "images/08.jpg"
     },
     {
       "id": 9,
-      "text": "爆竹声中一岁除，春风送暖入屠苏。",
-      "author": "元日",
+      "text": "世情薄，人情恶，雨送黄昏花易落。",
+      "author": "钗头凤·世情薄",
       "source": "一言",
       "image": "images/09.jpg"
     },
     {
       "id": 10,
-      "text": "井底点灯深烛伊，共郎长行莫围棋。",
-      "author": "南歌子词二首",
+      "text": "隐约雷鸣，阴霾天空，但盼风雨来，能留你在此。",
+      "author": "万叶集",
       "source": "一言",
       "image": "images/10.jpg"
     },
     {
       "id": 11,
-      "text": "八阵图名成卧龙，六韬书功在飞熊。",
-      "author": "蟾宫曲·怀古",
+      "text": "苟利国家生死以，岂因祸福避趋之！",
+      "author": "赴戍登程口占示家人·其二",
       "source": "一言",
       "image": "images/01.jpg"
     },
     {
       "id": 12,
-      "text": "流光容易把人抛，红了樱桃，绿了芭蕉。",
-      "author": "一剪梅·舟过吴江",
+      "text": "和云流出空山，甚年年净洗，花香不了？",
+      "author": "南浦·春水",
       "source": "一言",
       "image": "images/02.jpg"
     },
     {
       "id": 13,
-      "text": "千山鸟飞绝，万径人踪灭。",
-      "author": "江雪",
+      "text": "庭前落尽梧桐，水边开彻芙蓉。",
+      "author": "天净沙·秋",
       "source": "一言",
       "image": "images/03.jpg"
     },
     {
       "id": 14,
-      "text": "似此星辰非昨夜，为谁风露立中宵。",
-      "author": "绮怀",
+      "text": "相恨不如潮有信，相思始觉海非深。",
+      "author": "浪淘沙·借问江潮与海水",
       "source": "一言",
       "image": "images/04.jpg"
     },
     {
       "id": 15,
-      "text": "山有木兮木有枝，心悦君兮君不知。",
-      "author": "越人歌",
+      "text": "本自同根生，相煎何太急。",
+      "author": "七步诗",
       "source": "一言",
       "image": "images/05.jpg"
     },
     {
       "id": 16,
-      "text": "流年莫虚掷，华发不相容。",
-      "author": "送从兄郜",
+      "text": "长风破浪会有时，直挂云帆济沧海。",
+      "author": "行路难·其一",
       "source": "一言",
       "image": "images/06.jpg"
     },
     {
       "id": 17,
-      "text": "好雨知时节，当春乃发生。",
-      "author": "春夜喜雨",
+      "text": "万事到头都是梦，休休。明日黄花蝶也愁。",
+      "author": "南乡子·重九涵辉楼呈徐君猷",
       "source": "一言",
       "image": "images/07.jpg"
     },
     {
       "id": 18,
-      "text": "春宵一刻值千金，花有清香月有阴。",
-      "author": "春宵·春宵一刻值千金",
+      "text": "喜看稻菽千重浪，遍地英雄下夕烟。",
+      "author": "七律·到韶山",
       "source": "一言",
       "image": "images/08.jpg"
     },
     {
       "id": 19,
-      "text": "臣心一片磁针石，不指南方不肯休。",
-      "author": "扬子江",
+      "text": "众里寻他千百度，蓦然回首，那人却在，灯火阑珊处。",
+      "author": "青玉案·元夕",
       "source": "一言",
       "image": "images/09.jpg"
     },
     {
       "id": 20,
-      "text": "浮云一别后，流水十年间。",
-      "author": "淮上喜会梁川故人 / 淮上喜会梁州故人",
+      "text": "缺月挂疏桐，漏断人初静。",
+      "author": "卜算子·黄州定慧院寓居作",
       "source": "一言",
       "image": "images/10.jpg"
     },
     {
       "id": 21,
-      "text": "宣父犹能畏后生，丈夫未可轻年少。",
-      "author": "上李邕",
+      "text": "但使龙城飞将在，不教胡马度阴山。",
+      "author": "出塞二首",
       "source": "一言",
       "image": "images/01.jpg"
     },
     {
       "id": 22,
-      "text": "青山相待，白云相爱，梦不到紫罗袍共黄金带。",
-      "author": "山坡羊·道情",
+      "text": "相思了无益，悔当初相见。",
+      "author": "忆少年·飞花时节",
       "source": "一言",
       "image": "images/02.jpg"
     },
     {
       "id": 23,
-      "text": "昨夜雨疏风骤，浓睡不消残酒。",
-      "author": "如梦令",
+      "text": "梦醒南柯头已雪，晓风吹落西沉月。",
+      "author": "绿野仙踪·序",
       "source": "一言",
       "image": "images/03.jpg"
     },
     {
       "id": 24,
-      "text": "最是人间留不住，朱颜辞镜花辞树。",
-      "author": "蝶恋花·阅尽天涯离别苦",
+      "text": "连雨不知春去，一晴方觉夏深。",
+      "author": "喜晴",
       "source": "一言",
       "image": "images/04.jpg"
     },
     {
       "id": 25,
-      "text": "接天莲叶无穷碧，映日荷花别样红。",
-      "author": "晓出净慈寺送林子方",
+      "text": "惟将终夜常开眼，报答平生未展眉。",
+      "author": "遣悲怀三首·其三",
       "source": "一言",
       "image": "images/05.jpg"
     },
     {
       "id": 26,
+      "text": "日出而作。日入而息。凿井而饮。耕田而食。帝力于我何有哉。",
+      "author": "击壤歌",
+      "source": "一言",
+      "image": "images/06.jpg"
+    },
+    {
+      "id": 27,
+      "text": "千年后，锦城相吊，遇草堂翁。",
+      "author": "八声甘州·读诸葛武侯传",
+      "source": "一言",
+      "image": "images/07.jpg"
+    },
+    {
+      "id": 28,
+      "text": "一别如斯，落尽梨花月又西。",
+      "author": "采桑子·当时错",
+      "source": "一言",
+      "image": "images/08.jpg"
+    },
+    {
+      "id": 29,
+      "text": "愿得一心人，白头不相离。",
+      "author": "白头吟",
+      "source": "一言",
+      "image": "images/09.jpg"
+    },
+    {
+      "id": 30,
+      "text": "肠已断，泪难收。相思重上小红楼。",
+      "author": "鹧鸪天·晚日寒鸦一片愁",
+      "source": "一言",
+      "image": "images/10.jpg"
+    },
+    {
+      "id": 31,
+      "text": "想当年，金戈铁马，气吞万里如虎。",
+      "author": "永遇乐·京口北固亭怀古",
+      "source": "一言",
+      "image": "images/01.jpg"
+    },
+    {
+      "id": 32,
+      "text": "千山鸟飞绝，万径人踪灭。",
+      "author": "江雪",
+      "source": "一言",
+      "image": "images/02.jpg"
+    },
+    {
+      "id": 33,
+      "text": "烟笼寒水月笼沙，夜泊秦淮近酒家。",
+      "author": "泊秦淮",
+      "source": "一言",
+      "image": "images/03.jpg"
+    },
+    {
+      "id": 34,
+      "text": "人面不知何处去，桃花依旧笑春风。",
+      "author": "题都城南庄",
+      "source": "一言",
+      "image": "images/04.jpg"
+    },
+    {
+      "id": 35,
+      "text": "胜日寻芳泗水滨，无边光景一时新。",
+      "author": "春日",
+      "source": "一言",
+      "image": "images/05.jpg"
+    },
+    {
+      "id": 36,
+      "text": "三更灯火五更鸡，正是男儿读书时。",
+      "author": "劝学诗",
+      "source": "一言",
+      "image": "images/06.jpg"
+    },
+    {
+      "id": 37,
+      "text": "物是人非事事休，欲语泪先流。",
+      "author": "武陵春·春晚",
+      "source": "一言",
+      "image": "images/07.jpg"
+    },
+    {
+      "id": 38,
+      "text": "长月黄昏后，伫立露沾身；莫问我为谁，我自待伊人。",
+      "author": "万叶集",
+      "source": "一言",
+      "image": "images/08.jpg"
+    },
+    {
+      "id": 39,
+      "text": "浪撼江陲千垢尽，成就几多洲屿。",
+      "author": "念奴娇·飞云江",
+      "source": "一言",
+      "image": "images/09.jpg"
+    },
+    {
+      "id": 40,
+      "text": "独立寒秋，湘江北去，橘子洲头。",
+      "author": "沁园春·长沙",
+      "source": "一言",
+      "image": "images/10.jpg"
+    },
+    {
+      "id": 41,
+      "text": "举杯邀明月，对影成三人。",
+      "author": "月下独酌四首·其一",
+      "source": "一言",
+      "image": "images/01.jpg"
+    },
+    {
+      "id": 42,
+      "text": "此情可待成追忆，只是当时已惘然。",
+      "author": "锦瑟",
+      "source": "一言",
+      "image": "images/02.jpg"
+    },
+    {
+      "id": 43,
+      "text": "舞低杨柳楼心月，歌尽桃花扇底风。",
+      "author": "鹧鸪天·彩袖殷勤捧玉钟",
+      "source": "一言",
+      "image": "images/03.jpg"
+    },
+    {
+      "id": 44,
+      "text": "是非终日有，不听自然无。",
+      "author": "增广贤文·上集",
+      "source": "一言",
+      "image": "images/04.jpg"
+    },
+    {
+      "id": 45,
+      "text": "平生不下泪，于此泣无穷。",
+      "author": "江夏别宋之悌",
+      "source": "一言",
+      "image": "images/05.jpg"
+    },
+    {
+      "id": 46,
+      "text": "银帘不废千秋韵，石室廊中听管弦。",
+      "author": "鹧鸪天·游百丈二漈",
+      "source": "一言",
+      "image": "images/06.jpg"
+    },
+    {
+      "id": 47,
+      "text": "须晴日，看红装素裹，分外妖娆。",
+      "author": "沁园春·雪",
+      "source": "一言",
+      "image": "images/07.jpg"
+    },
+    {
+      "id": 48,
+      "text": "但愿人长久，千里共婵娟。",
+      "author": "水调歌头·丙辰中秋",
+      "source": "一言",
+      "image": "images/08.jpg"
+    },
+    {
+      "id": 49,
+      "text": "思慕，思慕，山外泪痕相顾。",
+      "author": "如梦令·思故",
+      "source": "一言",
+      "image": "images/09.jpg"
+    },
+    {
+      "id": 50,
+      "text": "回首池塘青欲遍，绝似梦中芳草。",
+      "author": "南浦·春水",
+      "source": "一言",
+      "image": "images/10.jpg"
+    },
+    {
+      "id": 51,
+      "text": "柳庭风静人眠昼，昼眠人静风庭柳。",
+      "author": "菩萨蛮·回文夏闺怨",
+      "source": "一言",
+      "image": "images/01.jpg"
+    },
+    {
+      "id": 52,
+      "text": "仰天大笑出门去，我辈岂是蓬蒿人。",
+      "author": "南陵别儿童入京",
+      "source": "一言",
+      "image": "images/02.jpg"
+    },
+    {
+      "id": 53,
+      "text": "青鸟不传云外信，丁香空结雨中愁。",
+      "author": "摊破浣溪沙·手卷真珠上玉钩",
+      "source": "一言",
+      "image": "images/03.jpg"
+    },
+    {
+      "id": 54,
+      "text": "劝君莫惜花前醉，今年花谢，明年花谢，白了人头。",
+      "author": "青杏儿·风雨替花愁",
+      "source": "一言",
+      "image": "images/04.jpg"
+    },
+    {
+      "id": 55,
+      "text": "春风又绿江南岸，明月何时照我还？",
+      "author": "泊船瓜洲",
+      "source": "一言",
+      "image": "images/05.jpg"
+    },
+    {
+      "id": 56,
+      "text": "今年花落颜色改，明年花开复谁在？",
+      "author": "代悲白头翁",
+      "source": "一言",
+      "image": "images/06.jpg"
+    },
+    {
+      "id": 57,
+      "text": "以人言善我，必以人言罪我。",
+      "author": "韩非子·说林上",
+      "source": "一言",
+      "image": "images/07.jpg"
+    },
+    {
+      "id": 58,
+      "text": "江南无所有，聊赠一枝春。",
+      "author": "赠范晔诗",
+      "source": "一言",
+      "image": "images/08.jpg"
+    },
+    {
+      "id": 59,
+      "text": "一生大笑能几回，斗酒相逢须醉倒。",
+      "author": "凉州馆中与诸判官夜集",
+      "source": "一言",
+      "image": "images/09.jpg"
+    },
+    {
+      "id": 60,
+      "text": "娶妻无媒毋须恨，书中有女颜如玉。",
+      "author": "劝学诗",
+      "source": "一言",
+      "image": "images/10.jpg"
+    },
+    {
+      "id": 61,
+      "text": "渐行渐远渐无书，水阔鱼沉何处问。",
+      "author": "玉楼春·别后不知君远近",
+      "source": "一言",
+      "image": "images/01.jpg"
+    },
+    {
+      "id": 62,
+      "text": "伯牙鼓琴，志在高山。",
+      "author": "伯牙绝弦",
+      "source": "一言",
+      "image": "images/02.jpg"
+    },
+    {
+      "id": 63,
+      "text": "桃李不言，下自成蹊。",
+      "author": "史记·李将军列传",
+      "source": "一言",
+      "image": "images/03.jpg"
+    },
+    {
+      "id": 64,
+      "text": "忽见陌头杨柳色，悔教夫婿觅封侯。",
+      "author": "闺怨",
+      "source": "一言",
+      "image": "images/04.jpg"
+    },
+    {
+      "id": 65,
+      "text": "流光容易把人抛，红了樱桃，绿了芭蕉。",
+      "author": "一剪梅·舟过吴江",
+      "source": "一言",
+      "image": "images/05.jpg"
+    },
+    {
+      "id": 66,
+      "text": "李白如今已仙去，月在青天几圆缺？",
+      "author": "把酒对月歌",
+      "source": "一言",
+      "image": "images/06.jpg"
+    },
+    {
+      "id": 67,
+      "text": "弱水三千，我只取一瓢饮。",
+      "author": "红楼梦·第九十一回",
+      "source": "一言",
+      "image": "images/07.jpg"
+    },
+    {
+      "id": 68,
+      "text": "水晶帘动微风起，满架蔷薇一院香。",
+      "author": "山亭夏日",
+      "source": "一言",
+      "image": "images/08.jpg"
+    },
+    {
+      "id": 69,
+      "text": "宠辱不惊，闲看庭前花开花落；去留无意，漫随天外云卷云舒。",
+      "author": "菜根谭·概论",
+      "source": "一言",
+      "image": "images/09.jpg"
+    },
+    {
+      "id": 70,
+      "text": "红豆生南国，春来发几枝。",
+      "author": "相思",
+      "source": "一言",
+      "image": "images/10.jpg"
+    },
+    {
+      "id": 71,
+      "text": "窈窕淑女，君子好逑。",
+      "author": "关雎",
+      "source": "一言",
+      "image": "images/01.jpg"
+    },
+    {
+      "id": 72,
+      "text": "稻花香里说丰年。听取蛙声一片。",
+      "author": "西江月·夜行黄沙道中",
+      "source": "一言",
+      "image": "images/02.jpg"
+    },
+    {
+      "id": 73,
+      "text": "当时明月在，曾照彩云归。",
+      "author": "临江仙·梦后楼台高锁",
+      "source": "一言",
+      "image": "images/03.jpg"
+    },
+    {
+      "id": 74,
+      "text": "咬定青山不放松，立根原在破岩中。",
+      "author": "竹石",
+      "source": "一言",
+      "image": "images/04.jpg"
+    },
+    {
+      "id": 75,
+      "text": "无边落木萧萧下，不尽长江滚滚来。",
+      "author": "登高",
+      "source": "一言",
+      "image": "images/05.jpg"
+    },
+    {
+      "id": 76,
+      "text": "男儿何不带吴钩，收取关山五十州。",
+      "author": "南园十三首·其五",
+      "source": "一言",
+      "image": "images/06.jpg"
+    },
+    {
+      "id": 77,
+      "text": "把酒祝东风。且共从容。",
+      "author": "浪淘沙·把酒祝东风",
+      "source": "一言",
+      "image": "images/07.jpg"
+    },
+    {
+      "id": 78,
+      "text": "谁共我，醉明月。",
+      "author": "贺新郎·别茂嘉十二弟",
+      "source": "一言",
+      "image": "images/08.jpg"
+    },
+    {
+      "id": 79,
+      "text": "若待上林花似锦，出门俱是看花人。",
+      "author": "城东早春",
+      "source": "一言",
+      "image": "images/09.jpg"
+    },
+    {
+      "id": 80,
+      "text": "汉下白登道，胡窥青海湾。由来征战地，不见有人还。",
+      "author": "关山月",
+      "source": "一言",
+      "image": "images/10.jpg"
+    },
+    {
+      "id": 81,
+      "text": "月落乌啼霜满天，江枫渔火对愁眠。",
+      "author": "枫桥夜泊 / 夜泊枫江",
+      "source": "一言",
+      "image": "images/01.jpg"
+    },
+    {
+      "id": 82,
+      "text": "相思一夜梅花发，忽到窗前疑是君。",
+      "author": "有所思",
+      "source": "一言",
+      "image": "images/02.jpg"
+    },
+    {
+      "id": 83,
+      "text": "俱往矣，数风流人物，还看今朝。",
+      "author": "沁园春·雪",
+      "source": "一言",
+      "image": "images/03.jpg"
+    },
+    {
+      "id": 84,
+      "text": "纸上得来终觉浅，绝知此事要躬行。",
+      "author": "冬夜读书示子聿",
+      "source": "一言",
+      "image": "images/04.jpg"
+    },
+    {
+      "id": 85,
+      "text": "世事漫随流水，算来一梦浮生。",
+      "author": "乌夜啼·昨夜风兼雨",
+      "source": "一言",
+      "image": "images/05.jpg"
+    },
+    {
+      "id": 86,
       "text": "风淅淅，雨纤纤。难怪春愁细细添。",
       "author": "赤枣子·风淅淅",
       "source": "一言",
       "image": "images/06.jpg"
     },
     {
-      "id": 27,
-      "text": "青青园中葵，朝露待日晞。",
-      "author": "长歌行",
-      "source": "一言",
-      "image": "images/07.jpg"
-    },
-    {
-      "id": 28,
-      "text": "质胜文则野，文胜质则史，文质彬彬，然后君子。",
-      "author": "论语·雍也篇",
-      "source": "一言",
-      "image": "images/08.jpg"
-    },
-    {
-      "id": 29,
-      "text": "长月黄昏后，伫立露沾身；莫问我为谁，我自待伊人。",
-      "author": "万叶集",
-      "source": "一言",
-      "image": "images/09.jpg"
-    },
-    {
-      "id": 30,
-      "text": "天阶夜色凉如水，卧看牵牛织女星。",
-      "author": "秋夕",
-      "source": "一言",
-      "image": "images/10.jpg"
-    },
-    {
-      "id": 31,
-      "text": "早知如此绊人心，何如当初莫相识。",
-      "author": "秋风词",
-      "source": "一言",
-      "image": "images/01.jpg"
-    },
-    {
-      "id": 32,
-      "text": "大漠沙如雪，燕山月似钩。",
-      "author": "马诗二十三首·其五",
-      "source": "一言",
-      "image": "images/02.jpg"
-    },
-    {
-      "id": 33,
-      "text": "采得百花成蜜后，为谁辛苦为谁甜。",
-      "author": "蜂",
-      "source": "一言",
-      "image": "images/03.jpg"
-    },
-    {
-      "id": 34,
-      "text": "月儿弯弯照九州，几家欢乐几家愁。",
-      "author": "月儿弯弯照九州",
-      "source": "一言",
-      "image": "images/04.jpg"
-    },
-    {
-      "id": 35,
-      "text": "前度刘郎归去后，溪上碧桃多少。",
-      "author": "南浦·春水",
-      "source": "一言",
-      "image": "images/05.jpg"
-    },
-    {
-      "id": 36,
-      "text": "记不分明疑是梦，梦来还隔一重帘。",
-      "author": "赤枣子·风淅淅",
-      "source": "一言",
-      "image": "images/06.jpg"
-    },
-    {
-      "id": 37,
-      "text": "新绿乍生时，孤村路，犹忆那回曾到。",
-      "author": "南浦·春水",
-      "source": "一言",
-      "image": "images/07.jpg"
-    },
-    {
-      "id": 38,
-      "text": "愿得此身长报国，何须生入玉门关。",
-      "author": "塞上曲二首·其二",
-      "source": "一言",
-      "image": "images/08.jpg"
-    },
-    {
-      "id": 39,
-      "text": "射人先射马，擒贼先擒王。",
-      "author": "前出塞九首·其六",
-      "source": "一言",
-      "image": "images/09.jpg"
-    },
-    {
-      "id": 40,
-      "text": "黄鹤一去不复返，白云千载空悠悠。",
-      "author": "黄鹤楼 / 登黄鹤楼",
-      "source": "一言",
-      "image": "images/10.jpg"
-    },
-    {
-      "id": 41,
-      "text": "银帘不废千秋韵，石室廊中听管弦。",
-      "author": "鹧鸪天·游百丈二漈",
-      "source": "一言",
-      "image": "images/01.jpg"
-    },
-    {
-      "id": 42,
-      "text": "劝君更尽一杯酒，西出阳关无故人。",
-      "author": "渭城曲 / 送元二使安西",
-      "source": "一言",
-      "image": "images/02.jpg"
-    },
-    {
-      "id": 43,
-      "text": "月有盈亏花有开谢，想人生最苦离别。",
-      "author": "普天乐·咏世",
-      "source": "一言",
-      "image": "images/03.jpg"
-    },
-    {
-      "id": 44,
-      "text": "今日欢呼孙大圣，只缘妖雾又重来。",
-      "author": "七律·和郭沫若同志",
-      "source": "一言",
-      "image": "images/04.jpg"
-    },
-    {
-      "id": 45,
-      "text": "只解沙场为国死，何须马革裹尸还。",
-      "author": "出塞",
-      "source": "一言",
-      "image": "images/05.jpg"
-    },
-    {
-      "id": 46,
-      "text": "思君如流水，何有穷已时。",
-      "author": "室思",
-      "source": "一言",
-      "image": "images/06.jpg"
-    },
-    {
-      "id": 47,
-      "text": "但愿人长久，千里共婵娟。",
-      "author": "水调歌头·丙辰中秋",
-      "source": "一言",
-      "image": "images/07.jpg"
-    },
-    {
-      "id": 48,
-      "text": "玲珑骰子安红豆，入骨相思知不知。",
-      "author": "南歌子词二首",
-      "source": "一言",
-      "image": "images/08.jpg"
-    },
-    {
-      "id": 49,
-      "text": "月上柳梢头，人约黄昏后。",
-      "author": "生查子·元夕",
-      "source": "一言",
-      "image": "images/09.jpg"
-    },
-    {
-      "id": 50,
-      "text": "世事一场大梦，人生几度秋凉？",
-      "author": "西江月·世事一场大梦",
-      "source": "一言",
-      "image": "images/10.jpg"
-    },
-    {
-      "id": 51,
-      "text": "易求无价宝，难得有心郎。",
-      "author": "赠邻女 / 寄李亿员外",
-      "source": "一言",
-      "image": "images/01.jpg"
-    },
-    {
-      "id": 52,
-      "text": "天不老，情难绝。心似双丝网，中有千千结。",
-      "author": "千秋岁·数声鶗鴂",
-      "source": "一言",
-      "image": "images/02.jpg"
-    },
-    {
-      "id": 53,
-      "text": "沉舟侧畔千帆过，病树前头万木春。",
-      "author": "酬乐天扬州初逢席上见赠",
-      "source": "一言",
-      "image": "images/03.jpg"
-    },
-    {
-      "id": 54,
-      "text": "清风明月无人管，并作南楼一味凉。",
-      "author": "鄂州南楼书事",
-      "source": "一言",
-      "image": "images/04.jpg"
-    },
-    {
-      "id": 55,
-      "text": "鸟宿池边树，僧敲月下门。",
-      "author": "题李凝幽居",
-      "source": "一言",
-      "image": "images/05.jpg"
-    },
-    {
-      "id": 56,
-      "text": "此时相望不相闻，愿逐月华流照君。",
-      "author": "春江花月夜",
-      "source": "一言",
-      "image": "images/06.jpg"
-    },
-    {
-      "id": 57,
-      "text": "少年听雨歌楼上。红烛昏罗帐。",
-      "author": "虞美人·听雨",
-      "source": "一言",
-      "image": "images/07.jpg"
-    },
-    {
-      "id": 58,
-      "text": "人生如逆旅，我亦是行人。",
-      "author": "临江仙·送钱穆父",
-      "source": "一言",
-      "image": "images/08.jpg"
-    },
-    {
-      "id": 59,
-      "text": "漠漠水田飞白鹭，阴阴夏木啭黄鹂。",
-      "author": "积雨辋川庄作 / 秋归辋川庄作",
-      "source": "一言",
-      "image": "images/09.jpg"
-    },
-    {
-      "id": 60,
-      "text": "悲时俗之迫阨兮，愿轻举而远游。",
-      "author": "远游",
-      "source": "一言",
-      "image": "images/10.jpg"
-    },
-    {
-      "id": 61,
-      "text": "秋风起兮白云飞，草木黄落兮雁南归。",
-      "author": "秋风辞",
-      "source": "一言",
-      "image": "images/01.jpg"
-    },
-    {
-      "id": 62,
-      "text": "萧萧梧叶送寒声，江上秋风动客情。",
-      "author": "夜书所见",
-      "source": "一言",
-      "image": "images/02.jpg"
-    },
-    {
-      "id": 63,
-      "text": "衰兰送客咸阳道，天若有情天亦老。",
-      "author": "金铜仙人辞汉歌",
-      "source": "一言",
-      "image": "images/03.jpg"
-    },
-    {
-      "id": 64,
-      "text": "问世间，情为何物，直教生死相许？",
-      "author": "摸鱼儿·雁丘词 / 迈陂塘",
-      "source": "一言",
-      "image": "images/04.jpg"
-    },
-    {
-      "id": 65,
-      "text": "执子之手，与子偕老。",
-      "author": "击鼓",
-      "source": "一言",
-      "image": "images/05.jpg"
-    },
-    {
-      "id": 66,
-      "text": "花间一壶酒，独酌无相亲。",
-      "author": "月下独酌四首·其一",
-      "source": "一言",
-      "image": "images/06.jpg"
-    },
-    {
-      "id": 67,
-      "text": "青青子衿，悠悠我心。",
-      "author": "诗经·郑风·子衿",
-      "source": "一言",
-      "image": "images/07.jpg"
-    },
-    {
-      "id": 68,
-      "text": "少年易老学难成，一寸光阴不可轻。",
-      "author": "劝学诗 / 偶成",
-      "source": "一言",
-      "image": "images/08.jpg"
-    },
-    {
-      "id": 69,
-      "text": "相思了无益，悔当初相见。",
-      "author": "忆少年·飞花时节",
-      "source": "一言",
-      "image": "images/09.jpg"
-    },
-    {
-      "id": 70,
-      "text": "葡萄美酒夜光杯，欲饮琵琶马上催。",
-      "author": "凉州词二首·其一",
-      "source": "一言",
-      "image": "images/10.jpg"
-    },
-    {
-      "id": 71,
-      "text": "自能成羽翼，何须仰云梯。",
-      "author": "观内怀仙",
-      "source": "一言",
-      "image": "images/01.jpg"
-    },
-    {
-      "id": 72,
-      "text": "楼船夜雪瓜洲渡，铁马秋风大散关。",
-      "author": "书愤五首·其一",
-      "source": "一言",
-      "image": "images/02.jpg"
-    },
-    {
-      "id": 73,
-      "text": "倚南窗以寄傲，审容膝之易安。园日涉以成趣，门虽设而常关。",
-      "author": "归去来兮辞",
-      "source": "一言",
-      "image": "images/03.jpg"
-    },
-    {
-      "id": 74,
-      "text": "乱山残雪夜，孤烛异乡人。",
-      "author": "除夜 / 巴山道中除夜书怀 / 除夜有怀",
-      "source": "一言",
-      "image": "images/04.jpg"
-    },
-    {
-      "id": 75,
-      "text": "春风得意马蹄疾，一日看尽长安花。",
-      "author": "登科后",
-      "source": "一言",
-      "image": "images/05.jpg"
-    },
-    {
-      "id": 76,
-      "text": "曾与美人桥上别，恨无消息到今朝。",
-      "author": "杨柳枝 / 柳枝词",
-      "source": "一言",
-      "image": "images/06.jpg"
-    },
-    {
-      "id": 77,
-      "text": "自在飞花轻似梦，无边丝雨细如愁。",
-      "author": "浣溪沙·漠漠轻寒上小楼",
-      "source": "一言",
-      "image": "images/07.jpg"
-    },
-    {
-      "id": 78,
-      "text": "待羊儿，酒罢又烹茶，扬州鹤。",
-      "author": "宋词",
-      "source": "一言",
-      "image": "images/08.jpg"
-    },
-    {
-      "id": 79,
-      "text": "是非终日有，不听自然无。",
-      "author": "增广贤文·上集",
-      "source": "一言",
-      "image": "images/09.jpg"
-    },
-    {
-      "id": 80,
-      "text": "情人怨遥夜，竟夕起相思。",
-      "author": "望月怀远",
-      "source": "一言",
-      "image": "images/10.jpg"
-    },
-    {
-      "id": 81,
-      "text": "超无为以至清兮，与泰初而为邻。",
-      "author": "远游",
-      "source": "一言",
-      "image": "images/01.jpg"
-    },
-    {
-      "id": 82,
-      "text": "常将有日思无日，莫把无时当有时。",
-      "author": "增广贤文",
-      "source": "一言",
-      "image": "images/02.jpg"
-    },
-    {
-      "id": 83,
-      "text": "明年此日青云去，却笑人间举子忙。",
-      "author": "鹧鸪天·送廓之秋试",
-      "source": "一言",
-      "image": "images/03.jpg"
-    },
-    {
-      "id": 84,
-      "text": "昭昭若日月之明，离离如星辰之行。",
-      "author": "文心雕龙·宗经",
-      "source": "一言",
-      "image": "images/04.jpg"
-    },
-    {
-      "id": 85,
-      "text": "我向星辰下令，我要停泊瞩望，我让自己登基，做风的君王。",
-      "author": "风的君王",
-      "source": "一言",
-      "image": "images/05.jpg"
-    },
-    {
-      "id": 86,
-      "text": "一叫一回肠一断，三春三月忆三巴。",
-      "author": "宣城见杜鹃花 / 子规",
-      "source": "一言",
-      "image": "images/06.jpg"
-    },
-    {
       "id": 87,
-      "text": "此情可待成追忆，只是当时已惘然。",
-      "author": "锦瑟",
+      "text": "昨夜雨疏风骤，浓睡不消残酒。",
+      "author": "如梦令",
       "source": "一言",
       "image": "images/07.jpg"
     },
     {
       "id": 88,
-      "text": "人生若只如初见，何事秋风悲画扇。",
-      "author": "木兰词·拟古决绝词柬友",
+      "text": "诗万首，酒千觞，几曾着眼看侯王？",
+      "author": "鹧鸪天·西都作",
       "source": "一言",
       "image": "images/08.jpg"
     },
     {
       "id": 89,
-      "text": "天平山上白云泉，云自无心水自闲。",
-      "author": "白云泉",
+      "text": "何处望神州？满眼风光北固楼。",
+      "author": "南乡子·登京口北固亭有怀",
       "source": "一言",
       "image": "images/09.jpg"
     },
     {
       "id": 90,
-      "text": "三更灯火五更鸡，正是男儿读书时。",
-      "author": "劝学诗",
+      "text": "多情只有春庭月，犹为离人照落花。",
+      "author": "寄人",
       "source": "一言",
       "image": "images/10.jpg"
     },
     {
       "id": 91,
-      "text": "唯有门前镜湖水，春风不改旧时波。",
-      "author": "回乡偶书二首",
+      "text": "但屈指西风几时来，又不道流年暗中偷换。",
+      "author": "洞仙歌·冰肌玉骨",
       "source": "一言",
       "image": "images/01.jpg"
     },
     {
       "id": 92,
-      "text": "世事短如春梦，人情薄似秋云。",
-      "author": "西江月·世事短如春梦",
-      "source": "一言",
-      "image": "images/02.jpg"
-    },
-    {
-      "id": 93,
-      "text": "人言落日是天涯，望极天涯不见家。",
-      "author": "乡思",
-      "source": "一言",
-      "image": "images/03.jpg"
-    },
-    {
-      "id": 94,
-      "text": "糁径杨花铺白毡，点溪荷叶叠青钱。",
-      "author": "绝句漫兴九首·其七",
-      "source": "一言",
-      "image": "images/04.jpg"
-    },
-    {
-      "id": 95,
-      "text": "读万卷书，行万里路。",
-      "author": "画禅室随笔——卷二",
-      "source": "一言",
-      "image": "images/05.jpg"
-    },
-    {
-      "id": 96,
-      "text": "长恨此身非我有，何时忘却营营。",
-      "author": "临江仙·夜饮东坡醒复醉",
-      "source": "一言",
-      "image": "images/06.jpg"
-    },
-    {
-      "id": 97,
-      "text": "汉下白登道，胡窥青海湾。由来征战地，不见有人还。",
-      "author": "关山月",
-      "source": "一言",
-      "image": "images/07.jpg"
-    },
-    {
-      "id": 98,
-      "text": "天长地久有时尽，此恨绵绵无绝期。",
-      "author": "长恨歌",
-      "source": "一言",
-      "image": "images/08.jpg"
-    },
-    {
-      "id": 99,
-      "text": "山有榛，隰有苓。云谁之思？西方美人。",
-      "author": "邶风·简兮",
-      "source": "一言",
-      "image": "images/09.jpg"
-    },
-    {
-      "id": 100,
-      "text": "春有百花秋有月，夏有凉风冬有雪。",
-      "author": "颂古五十五首其一",
-      "source": "一言",
-      "image": "images/10.jpg"
-    },
-    {
-      "id": 101,
-      "text": "一瀑中折落崖巅，刚柔只在瞬息间。",
-      "author": "鹧鸪天·游百丈二漈",
-      "source": "一言",
-      "image": "images/01.jpg"
-    },
-    {
-      "id": 102,
-      "text": "鸿雁长飞光不度，鱼龙潜跃水成文。",
-      "author": "春江花月夜",
-      "source": "一言",
-      "image": "images/02.jpg"
-    },
-    {
-      "id": 103,
-      "text": "墙外行人，墙里佳人笑。",
-      "author": "蝶恋花·春景",
-      "source": "一言",
-      "image": "images/03.jpg"
-    },
-    {
-      "id": 104,
-      "text": "一生大笑能几回，斗酒相逢须醉倒。",
-      "author": "凉州馆中与诸判官夜集",
-      "source": "一言",
-      "image": "images/04.jpg"
-    },
-    {
-      "id": 105,
-      "text": "明月几时有？把酒问青天。",
-      "author": "水调歌头·丙辰中秋",
-      "source": "一言",
-      "image": "images/05.jpg"
-    },
-    {
-      "id": 106,
-      "text": "水光潋滟晴方好，山色空蒙雨亦奇。",
-      "author": "饮湖上初晴后雨二首·其二",
-      "source": "一言",
-      "image": "images/06.jpg"
-    },
-    {
-      "id": 107,
-      "text": "回首向来萧瑟处，归去， 也无风雨也无晴。",
-      "author": "定风波",
-      "source": "一言",
-      "image": "images/07.jpg"
-    },
-    {
-      "id": 108,
-      "text": "风摇竹影有声画，雨打梅花无字诗。",
-      "author": "古联",
-      "source": "一言",
-      "image": "images/08.jpg"
-    },
-    {
-      "id": 109,
-      "text": "汴水流，泗水流，流到瓜州古渡头。吴山点点愁。",
-      "author": "长相思·汴水流",
-      "source": "一言",
-      "image": "images/09.jpg"
-    },
-    {
-      "id": 110,
-      "text": "千金纵买相如赋，脉脉此情谁诉。",
-      "author": "摸鱼儿·更能消几番风雨",
-      "source": "一言",
-      "image": "images/10.jpg"
-    },
-    {
-      "id": 111,
-      "text": "此生谁料，心在天山，身老沧洲。",
-      "author": "诉衷情·当年万里觅封侯",
-      "source": "一言",
-      "image": "images/01.jpg"
-    },
-    {
-      "id": 112,
       "text": "回眸一笑百媚生，六宫粉黛无颜色。",
       "author": "长恨歌",
       "source": "一言",
       "image": "images/02.jpg"
     },
     {
-      "id": 113,
+      "id": 93,
+      "text": "沾衣欲湿杏花雨，吹面不寒杨柳风。",
+      "author": "绝句",
+      "source": "一言",
+      "image": "images/03.jpg"
+    },
+    {
+      "id": 94,
+      "text": "行到水穷处，坐看云起时。",
+      "author": "终南别业",
+      "source": "一言",
+      "image": "images/04.jpg"
+    },
+    {
+      "id": 95,
       "text": "蝉噪林逾静，鸟鸣山更幽。",
       "author": "入若耶溪",
+      "source": "一言",
+      "image": "images/05.jpg"
+    },
+    {
+      "id": 96,
+      "text": "同居长干里，两小无嫌猜。",
+      "author": "长干行·其一",
+      "source": "一言",
+      "image": "images/06.jpg"
+    },
+    {
+      "id": 97,
+      "text": "风摇竹影有声画，雨打梅花无字诗。",
+      "author": "古联",
+      "source": "一言",
+      "image": "images/07.jpg"
+    },
+    {
+      "id": 98,
+      "text": "花间一壶酒，独酌无相亲。",
+      "author": "月下独酌四首·其一",
+      "source": "一言",
+      "image": "images/08.jpg"
+    },
+    {
+      "id": 99,
+      "text": "海水梦悠悠，君愁我亦愁。",
+      "author": "西洲曲",
+      "source": "一言",
+      "image": "images/09.jpg"
+    },
+    {
+      "id": 100,
+      "text": "臣心一片磁针石，不指南方不肯休。",
+      "author": "扬子江",
+      "source": "一言",
+      "image": "images/10.jpg"
+    },
+    {
+      "id": 101,
+      "text": "人生天地间，忽如远行客。",
+      "author": "古诗十九首",
+      "source": "一言",
+      "image": "images/01.jpg"
+    },
+    {
+      "id": 102,
+      "text": "雁子南飞时，故人忆往事。",
+      "author": "醉柳引·故人安在兮",
+      "source": "一言",
+      "image": "images/02.jpg"
+    },
+    {
+      "id": 103,
+      "text": "儿童散学归来早，忙趁东风放纸鸢。",
+      "author": "村居",
+      "source": "一言",
+      "image": "images/03.jpg"
+    },
+    {
+      "id": 104,
+      "text": "我心伤悲，莫知我哀！",
+      "author": "采薇",
+      "source": "一言",
+      "image": "images/04.jpg"
+    },
+    {
+      "id": 105,
+      "text": "少无适俗韵，性本爱丘山。",
+      "author": "归园田居·其一",
+      "source": "一言",
+      "image": "images/05.jpg"
+    },
+    {
+      "id": 106,
+      "text": "二十四桥明月夜，玉人何处教吹箫？",
+      "author": "寄扬州韩绰判官",
+      "source": "一言",
+      "image": "images/06.jpg"
+    },
+    {
+      "id": 107,
+      "text": "叶落辞柯，人生几何。",
+      "author": "人生几何赋",
+      "source": "一言",
+      "image": "images/07.jpg"
+    },
+    {
+      "id": 108,
+      "text": "上古有大椿者，以八千岁为春，八千岁为秋。",
+      "author": "逍遥游",
+      "source": "一言",
+      "image": "images/08.jpg"
+    },
+    {
+      "id": 109,
+      "text": "盛年不重来，一日难再晨。",
+      "author": "杂诗·人生无根蒂",
+      "source": "一言",
+      "image": "images/09.jpg"
+    },
+    {
+      "id": 110,
+      "text": "功名万里外，心事一杯中。",
+      "author": "送李侍御赴安西",
+      "source": "一言",
+      "image": "images/10.jpg"
+    },
+    {
+      "id": 111,
+      "text": "十年磨一剑，霜刃未曾试。",
+      "author": "剑客 / 述剑",
+      "source": "一言",
+      "image": "images/01.jpg"
+    },
+    {
+      "id": 112,
+      "text": "锦瑟无端五十弦，一弦一柱思华年。",
+      "author": "锦瑟",
+      "source": "一言",
+      "image": "images/02.jpg"
+    },
+    {
+      "id": 113,
+      "text": "知我者，谓我心忧；不知我者，谓我何求。",
+      "author": "诗经·国风·王风·黍离",
       "source": "一言",
       "image": "images/03.jpg"
     },
     {
       "id": 114,
-      "text": "苟有恒，何必三更眠五更起；最无益，只怕一日曝十日寒。",
-      "author": "自勉联",
+      "text": "众口铄金，积毁销骨。",
+      "author": "史记·张仪列传",
       "source": "一言",
       "image": "images/04.jpg"
     },
     {
       "id": 115,
-      "text": "兴，百姓苦；亡，百姓苦。",
-      "author": "山坡羊·潼关怀古",
+      "text": "泉涸，鱼相与处于陆，相呴以湿，相濡以沫，不如相忘于江湖。",
+      "author": "庄子·内篇·大宗师",
       "source": "一言",
       "image": "images/05.jpg"
     },
     {
       "id": 116,
-      "text": "众口铄金，积毁销骨。",
-      "author": "史记·张仪列传",
+      "text": "伤心桥下春波绿，曾是惊鸿照影来。",
+      "author": "《沈园二首》(其一)",
       "source": "一言",
       "image": "images/06.jpg"
     },
     {
       "id": 117,
-      "text": "红泪偷垂，满眼春风百事非。",
-      "author": "采桑子·当时错",
+      "text": "身不得，男儿列，心却比，男儿烈。",
+      "author": "满江红（小住京华）",
       "source": "一言",
       "image": "images/07.jpg"
     },
     {
       "id": 118,
-      "text": "垂死病中惊坐起，暗风吹雨入寒窗。",
-      "author": "闻乐天授江州司马",
+      "text": "祸不妄至，福不徒来。",
+      "author": "史记·龟策列传",
       "source": "一言",
       "image": "images/08.jpg"
     },
     {
       "id": 119,
-      "text": "独乐乐不如众乐乐。",
-      "author": "孟子·梁惠王下",
+      "text": "曾与美人桥上别，恨无消息到今朝。",
+      "author": "杨柳枝 / 柳枝词",
       "source": "一言",
       "image": "images/09.jpg"
     },
     {
       "id": 120,
-      "text": "什么是尘土？从大地之肺发出的一声叹息。",
-      "author": "阿多尼斯诗集",
+      "text": "悲时俗之迫阨兮，愿轻举而远游。",
+      "author": "远游",
       "source": "一言",
       "image": "images/10.jpg"
     },
     {
       "id": 121,
-      "text": "参差荇菜，左右采之。窈窕淑女，琴瑟友之。",
-      "author": "关雎",
+      "text": "玲珑骰子安红豆，入骨相思知不知。",
+      "author": "南歌子词二首",
       "source": "一言",
       "image": "images/01.jpg"
     },
     {
       "id": 122,
-      "text": "恰同学少年，风华正茂；书生意气，挥斥方遒。",
-      "author": "沁园春·长沙",
+      "text": "浮云游子意，落日故人情。",
+      "author": "送友人",
       "source": "一言",
       "image": "images/02.jpg"
     },
     {
       "id": 123,
-      "text": "莫道不销魂，帘卷西风，人比黄花瘦。",
-      "author": "醉花阴·薄雾浓云愁永昼",
+      "text": "银烛秋光冷画屏，轻罗小扇扑流萤。",
+      "author": "秋夕",
       "source": "一言",
       "image": "images/03.jpg"
     },
     {
       "id": 124,
-      "text": "兰有秀兮菊有芳，怀佳人兮不能忘。",
-      "author": "秋风辞",
+      "text": "殷勤昨夜三更雨，又得浮生一日凉。",
+      "author": "鹧鸪天·林断山明竹隐墙",
       "source": "一言",
       "image": "images/04.jpg"
     },
     {
       "id": 125,
-      "text": "乐夫天命复奚疑！",
-      "author": "归去来兮辞",
+      "text": "千古是非输蝶梦，一轮风雨属渔舟。",
+      "author": "金陵晚眺（又作怀古）",
       "source": "一言",
       "image": "images/05.jpg"
     },
     {
       "id": 126,
-      "text": "世间无限丹青手，一片伤心画不成。",
-      "author": "金陵晚望",
+      "text": "无奈被些名利缚，无奈被些情担阁，可惜风流总闲却。",
+      "author": "千秋岁引·秋景",
       "source": "一言",
       "image": "images/06.jpg"
     },
     {
       "id": 127,
-      "text": "朔风如解意，容易莫摧残。",
-      "author": "梅花",
+      "text": "只解沙场为国死，何须马革裹尸还。",
+      "author": "出塞",
       "source": "一言",
       "image": "images/07.jpg"
     },
     {
       "id": 128,
-      "text": "野旷天低树，江清月近人。",
-      "author": "宿建德江",
+      "text": "易求无价宝，难得有心郎。",
+      "author": "赠邻女 / 寄李亿员外",
       "source": "一言",
       "image": "images/08.jpg"
     },
     {
       "id": 129,
-      "text": "羡青山有思，白鹤忘机。",
-      "author": "八声甘州·摘青梅荐酒",
+      "text": "梅须逊雪三分白，雪却输梅一段香。",
+      "author": "雪梅·其一",
       "source": "一言",
       "image": "images/09.jpg"
     },
     {
       "id": 130,
-      "text": "等闲识得东风面，万紫千红总是春。",
-      "author": "春日",
+      "text": "人间有味是清欢。",
+      "author": "浣溪沙·细雨斜风作晓寒",
       "source": "一言",
       "image": "images/10.jpg"
     },
     {
       "id": 131,
-      "text": "一壶酒，一竿身，快活如侬有几人。",
-      "author": "渔父·浪花有意千里雪",
+      "text": "自在飞花轻似梦，无边丝雨细如愁。",
+      "author": "浣溪沙·漠漠轻寒上小楼",
       "source": "一言",
       "image": "images/01.jpg"
     },
     {
       "id": 132,
-      "text": "两情若是久长时，又岂在朝朝暮暮。",
-      "author": "鹊桥仙·纤云弄巧",
+      "text": "草长莺飞二月天，拂堤杨柳醉春烟。",
+      "author": "村居",
       "source": "一言",
       "image": "images/02.jpg"
     },
     {
       "id": 133,
-      "text": "朝阳不再盛，白日忽西幽。",
-      "author": "咏怀八十二首・其三十二",
+      "text": "羡青山有思，白鹤忘机。",
+      "author": "八声甘州·摘青梅荐酒",
       "source": "一言",
       "image": "images/03.jpg"
     },
     {
       "id": 134,
-      "text": "花，不知道自己就是春天。",
-      "author": "春天",
+      "text": "黄沙百战穿金甲，不破楼兰终不还。",
+      "author": "从军行七首·其四",
       "source": "一言",
       "image": "images/04.jpg"
     },
     {
       "id": 135,
-      "text": "看朱成碧思纷纷，憔悴支离为忆君。",
-      "author": "如意娘",
+      "text": "同是天涯沦落人，相逢何必曾相识！",
+      "author": "琵琶行 / 琵琶引",
       "source": "一言",
       "image": "images/05.jpg"
     },
     {
       "id": 136,
-      "text": "系我一生心，负你千行泪。",
-      "author": "忆帝京·薄衾小枕凉天气",
+      "text": "生当复来归，死当长相思。",
+      "author": "留别妻",
       "source": "一言",
       "image": "images/06.jpg"
     },
     {
       "id": 137,
-      "text": "悟已往之不谏，知来者之可追。",
-      "author": "归去来兮辞",
+      "text": "糁径杨花铺白毡，点溪荷叶叠青钱。",
+      "author": "绝句漫兴九首·其七",
       "source": "一言",
       "image": "images/07.jpg"
     },
     {
       "id": 138,
-      "text": "试问岭南应不好，却道：此心安处是吾乡。",
-      "author": "少年游·南海归赠王定国侍人寓娘",
+      "text": "不要说我们一无所有，我们要做天下的主人！",
+      "author": "国际歌",
       "source": "一言",
       "image": "images/08.jpg"
     },
     {
       "id": 139,
-      "text": "出师未捷身先死，长使英雄泪满襟。",
-      "author": "蜀相",
+      "text": "相见争如不见，多情何似无情。",
+      "author": "西江月·宝髻松松挽就",
       "source": "一言",
       "image": "images/09.jpg"
     },
     {
       "id": 140,
-      "text": "红酥手，黄縢酒，满城春色宫墙柳。",
-      "author": "钗头凤·红酥手",
+      "text": "春潮带雨晚来急，野渡无人舟自横。",
+      "author": "滁州西涧",
       "source": "一言",
       "image": "images/10.jpg"
     },
     {
       "id": 141,
-      "text": "昔我往矣，杨柳依依。",
-      "author": "采薇",
+      "text": "春心莫共花争发，一寸相思一寸灰！",
+      "author": "无题·飒飒东风细雨来",
       "source": "一言",
       "image": "images/01.jpg"
     },
     {
       "id": 142,
-      "text": "滚滚长江东逝水，浪花淘尽英雄。",
-      "author": "临江仙·滚滚长江东逝水",
+      "text": "此时相望不相闻，愿逐月华流照君。",
+      "author": "春江花月夜",
       "source": "一言",
       "image": "images/02.jpg"
     },
     {
       "id": 143,
-      "text": "直道相思了无益，未妨惆怅是清狂。",
-      "author": "无题·重帏深下莫愁堂",
+      "text": "山不在高，有仙则名。水不在深，有龙则灵。",
+      "author": "陋室铭",
       "source": "一言",
       "image": "images/03.jpg"
     },
     {
       "id": 144,
-      "text": "去年今日此门中，人面桃花相映红。",
-      "author": "题都城南庄",
+      "text": "一切有为法，如梦幻泡影，如露亦如电，应作如是观。",
+      "author": "金刚经",
       "source": "一言",
       "image": "images/04.jpg"
     },
     {
       "id": 145,
-      "text": "乱花渐欲迷人眼，浅草才能没马蹄。",
-      "author": "钱塘湖春行",
+      "text": "春水碧于天，画船听雨眠。",
+      "author": "菩萨蛮·人人尽说江南好",
       "source": "一言",
       "image": "images/05.jpg"
     },
     {
       "id": 146,
-      "text": "呜呼！楚虽三户能亡秦，岂有堂堂中国空无人！",
-      "author": "金错刀行",
+      "text": "情人怨遥夜，竟夕起相思。",
+      "author": "望月怀远",
       "source": "一言",
       "image": "images/06.jpg"
     },
     {
       "id": 147,
-      "text": "近水楼台先得月，向阳花木易为春。",
-      "author": "断句",
+      "text": "吾道本无我，未曾嫌世人。如今到尘世，弥觉此心真",
+      "author": "寓言",
       "source": "一言",
       "image": "images/07.jpg"
     },
     {
       "id": 148,
-      "text": "思君如满月，夜夜减清辉。",
-      "author": "赋得自君之出矣",
+      "text": "见贤思齐焉，见不贤而内自省也。",
+      "author": "论语·里仁篇",
       "source": "一言",
       "image": "images/08.jpg"
     },
     {
       "id": 149,
-      "text": "酒入愁肠，化作相思泪。",
-      "author": "苏幕遮·怀旧",
+      "text": "浮萍漂泊本无根，天涯游子君莫问。",
+      "author": "浣溪沙",
       "source": "一言",
       "image": "images/09.jpg"
     },
     {
       "id": 150,
-      "text": "枯藤老树昏鸦，小桥流水人家，古道西风瘦马。",
-      "author": "天净沙·秋思",
-      "source": "一言",
-      "image": "images/10.jpg"
-    },
-    {
-      "id": 151,
-      "text": "谁共我，醉明月。",
-      "author": "贺新郎·别茂嘉十二弟",
-      "source": "一言",
-      "image": "images/01.jpg"
-    },
-    {
-      "id": 152,
-      "text": "君埋泉下泥销骨，我寄人间雪满头。",
-      "author": "梦微之",
-      "source": "一言",
-      "image": "images/02.jpg"
-    },
-    {
-      "id": 153,
-      "text": "情动于中而形于言，言之不足，故嗟叹之，嗟叹之不足，故永歌之。",
-      "author": "人民日报",
-      "source": "一言",
-      "image": "images/03.jpg"
-    },
-    {
-      "id": 154,
-      "text": "宁不知倾城与倾国。佳人难再得。",
-      "author": "李延年歌",
-      "source": "一言",
-      "image": "images/04.jpg"
-    },
-    {
-      "id": 155,
-      "text": "山远天高烟水寒，相思枫叶丹。",
-      "author": "长相思·一重山",
-      "source": "一言",
-      "image": "images/05.jpg"
-    },
-    {
-      "id": 156,
-      "text": "稻花香里说丰年。听取蛙声一片。",
-      "author": "西江月·夜行黄沙道中",
-      "source": "一言",
-      "image": "images/06.jpg"
-    },
-    {
-      "id": 157,
-      "text": "馀情渺渺，茂林觞咏如今悄。",
-      "author": "南浦·春水",
-      "source": "一言",
-      "image": "images/07.jpg"
-    },
-    {
-      "id": 158,
-      "text": "美人自古如名将，不许人间见白头。",
-      "author": "随园诗话·卷四",
-      "source": "一言",
-      "image": "images/08.jpg"
-    },
-    {
-      "id": 159,
-      "text": "不登高山，不知天之高也；不临深溪，不知地之厚也。",
-      "author": "劝学",
-      "source": "一言",
-      "image": "images/09.jpg"
-    },
-    {
-      "id": 160,
-      "text": "若教眼底无离恨，不信人间有白头。",
-      "author": "鹧鸪天·晚日寒鸦一片愁",
-      "source": "一言",
-      "image": "images/10.jpg"
-    },
-    {
-      "id": 161,
-      "text": "梧桐叶上三更雨，叶叶声声是别离。",
-      "author": "鹧鸪天·一点残红欲尽时",
-      "source": "一言",
-      "image": "images/01.jpg"
-    },
-    {
-      "id": 162,
-      "text": "肠已断，泪难收。相思重上小红楼。",
-      "author": "鹧鸪天·晚日寒鸦一片愁",
-      "source": "一言",
-      "image": "images/02.jpg"
-    },
-    {
-      "id": 163,
-      "text": "身既死兮神以灵，魂魄毅兮为鬼雄。",
-      "author": "国殇",
-      "source": "一言",
-      "image": "images/03.jpg"
-    },
-    {
-      "id": 164,
-      "text": "绿杨烟外晓寒轻，红杏枝头春意闹。",
-      "author": "玉楼春·春景",
-      "source": "一言",
-      "image": "images/04.jpg"
-    },
-    {
-      "id": 165,
-      "text": "山外青山楼外楼，西湖歌舞几时休？",
-      "author": "题临安邸",
-      "source": "一言",
-      "image": "images/05.jpg"
-    },
-    {
-      "id": 166,
-      "text": "枕上诗书闲处好，门前风景雨来佳。",
-      "author": "摊破浣溪沙·病起萧萧两鬓华",
-      "source": "一言",
-      "image": "images/06.jpg"
-    },
-    {
-      "id": 167,
-      "text": "桃李不言，下自成蹊。",
-      "author": "史记·李将军列传",
-      "source": "一言",
-      "image": "images/07.jpg"
-    },
-    {
-      "id": 168,
-      "text": "金风玉露一相逢，便胜却人间无数。",
-      "author": "鹊桥仙·纤云弄巧",
-      "source": "一言",
-      "image": "images/08.jpg"
-    },
-    {
-      "id": 169,
-      "text": "暂时因缘，百年之后，各随六道，不相系属。",
-      "author": "受十诫文",
-      "source": "一言",
-      "image": "images/09.jpg"
-    },
-    {
-      "id": 170,
-      "text": "清江一曲抱村流，长夏江村事事幽。",
-      "author": "江村",
-      "source": "一言",
-      "image": "images/10.jpg"
-    },
-    {
-      "id": 171,
-      "text": "落叶别树，飘零随风。客无所托，悲与此同。",
-      "author": "独漉篇",
-      "source": "一言",
-      "image": "images/01.jpg"
-    },
-    {
-      "id": 172,
-      "text": "山重水复疑无路，柳暗花明又一村。",
-      "author": "游山西村",
-      "source": "一言",
-      "image": "images/02.jpg"
-    },
-    {
-      "id": 173,
-      "text": "今宵酒醒何处？杨柳岸，晓风残月。",
-      "author": "雨霖铃·寒蝉凄切",
-      "source": "一言",
-      "image": "images/03.jpg"
-    },
-    {
-      "id": 174,
-      "text": "小楼一夜听春雨，深巷明朝卖杏花。",
-      "author": "临安春雨初霁",
-      "source": "一言",
-      "image": "images/04.jpg"
-    },
-    {
-      "id": 175,
-      "text": "众里寻他千百度，蓦然回首，那人却在，灯火阑珊处。",
-      "author": "青玉案·元夕",
-      "source": "一言",
-      "image": "images/05.jpg"
-    },
-    {
-      "id": 176,
-      "text": "读书不觉已春深，一寸光阴一寸金。",
-      "author": "白鹿洞二首·其一",
-      "source": "一言",
-      "image": "images/06.jpg"
-    },
-    {
-      "id": 177,
-      "text": "浮生只合尊前老。雪满长安道。",
-      "author": "虞美人·寄公度",
-      "source": "一言",
-      "image": "images/07.jpg"
-    },
-    {
-      "id": 178,
-      "text": "成事不说，遂事不谏，既往不咎。",
-      "author": "论语·八佾篇",
-      "source": "一言",
-      "image": "images/08.jpg"
-    },
-    {
-      "id": 179,
-      "text": "试问卷帘人，却道海棠依旧。",
-      "author": "如梦令",
-      "source": "一言",
-      "image": "images/09.jpg"
-    },
-    {
-      "id": 180,
-      "text": "众里寻他千百度。蓦然回首，那人却在，灯火阑珊处。",
-      "author": "青玉案·元夕",
-      "source": "一言",
-      "image": "images/10.jpg"
-    },
-    {
-      "id": 181,
-      "text": "往者不可谏，来者犹可追。",
-      "author": "论语·微子篇",
-      "source": "一言",
-      "image": "images/01.jpg"
-    },
-    {
-      "id": 182,
-      "text": "迟日江山丽，春风花草香。",
-      "author": "绝句二首",
-      "source": "一言",
-      "image": "images/02.jpg"
-    },
-    {
-      "id": 183,
-      "text": "风烟俱净，天山共色。从流飘荡，任意东西。",
-      "author": "与朱元思书",
-      "source": "一言",
-      "image": "images/03.jpg"
-    },
-    {
-      "id": 184,
-      "text": "欲寄彩笺兼尺素，山长水阔知何处。",
-      "author": "蝶恋花·槛菊愁烟兰泣露",
-      "source": "一言",
-      "image": "images/04.jpg"
-    },
-    {
-      "id": 185,
-      "text": "当年不肯嫁春风，无端却被秋风误。",
-      "author": "芳心苦·杨柳回塘",
-      "source": "一言",
-      "image": "images/05.jpg"
-    },
-    {
-      "id": 186,
-      "text": "居高声自远，非是藉秋风。",
-      "author": "蝉",
-      "source": "一言",
-      "image": "images/06.jpg"
-    },
-    {
-      "id": 187,
-      "text": "人面不知何处去，桃花依旧笑春风。",
-      "author": "题都城南庄",
-      "source": "一言",
-      "image": "images/07.jpg"
-    },
-    {
-      "id": 188,
-      "text": "不畏浮云遮望眼，只缘身在最高层。",
-      "author": "登飞来峰",
-      "source": "一言",
-      "image": "images/08.jpg"
-    },
-    {
-      "id": 189,
-      "text": "祸不妄至，福不徒来。",
-      "author": "史记·龟策列传",
-      "source": "一言",
-      "image": "images/09.jpg"
-    },
-    {
-      "id": 190,
-      "text": "离离原上草，一岁一枯荣。",
-      "author": "草 / 赋得古原草送别",
-      "source": "一言",
-      "image": "images/10.jpg"
-    },
-    {
-      "id": 191,
-      "text": "云中谁寄锦书来，雁字回时，月满西楼。",
-      "author": "一剪梅·红藕香残玉簟秋",
-      "source": "一言",
-      "image": "images/01.jpg"
-    },
-    {
-      "id": 192,
-      "text": "山川同一色，浩若涉大荒。",
-      "author": "牛口见月",
-      "source": "一言",
-      "image": "images/02.jpg"
-    },
-    {
-      "id": 193,
-      "text": "合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。",
-      "author": "老子·德经·第六十四章",
-      "source": "一言",
-      "image": "images/03.jpg"
-    },
-    {
-      "id": 194,
-      "text": "南风知我意，吹梦到西洲。",
-      "author": "西洲曲",
-      "source": "一言",
-      "image": "images/04.jpg"
-    },
-    {
-      "id": 195,
-      "text": "古人学问无遗力，少壮工夫老始成。",
-      "author": "冬夜读书示子聿",
-      "source": "一言",
-      "image": "images/05.jpg"
-    },
-    {
-      "id": 196,
-      "text": "金风玉露一相逢，便胜却、人间无数。",
-      "author": "鹊桥仙·纤云弄巧",
-      "source": "一言",
-      "image": "images/06.jpg"
-    },
-    {
-      "id": 197,
-      "text": "一别之后，两地相思，只道是三四月，又谁知五六年。",
-      "author": "怨郎诗",
-      "source": "一言",
-      "image": "images/07.jpg"
-    },
-    {
-      "id": 198,
-      "text": "惟有岩风来，吹我还醒然。",
-      "author": "题滁州醉翁亭",
-      "source": "一言",
-      "image": "images/08.jpg"
-    },
-    {
-      "id": 199,
-      "text": "诗万首，酒千觞，几曾着眼看侯王？",
-      "author": "鹧鸪天·西都作",
-      "source": "一言",
-      "image": "images/09.jpg"
-    },
-    {
-      "id": 200,
       "text": "大漠孤烟直，长河落日圆。",
       "author": "使至塞上",
       "source": "一言",
       "image": "images/10.jpg"
     },
     {
-      "id": 201,
+      "id": 151,
+      "text": "红颜未老恩先断，斜倚薰笼坐到明。",
+      "author": "后宫词",
+      "source": "一言",
+      "image": "images/01.jpg"
+    },
+    {
+      "id": 152,
+      "text": "我也不登天子船，我也不上长安眠。",
+      "author": "把酒对月歌",
+      "source": "一言",
+      "image": "images/02.jpg"
+    },
+    {
+      "id": 153,
+      "text": "楼船夜雪瓜洲渡，铁马秋风大散关。",
+      "author": "书愤五首·其一",
+      "source": "一言",
+      "image": "images/03.jpg"
+    },
+    {
+      "id": 154,
+      "text": "了却君王天下事，赢得生前身后名。可怜白发生！",
+      "author": "破阵子·为陈同甫赋壮词以寄之",
+      "source": "一言",
+      "image": "images/04.jpg"
+    },
+    {
+      "id": 155,
+      "text": "壶穴潭潭泛绿，连环处、银瀑中分。",
+      "author": "满庭芳·游铜铃山",
+      "source": "一言",
+      "image": "images/05.jpg"
+    },
+    {
+      "id": 156,
+      "text": "与天奋斗，其乐无穷！与地奋斗，其乐无穷！与人奋斗，其乐无穷！",
+      "author": "奋斗自勉",
+      "source": "一言",
+      "image": "images/06.jpg"
+    },
+    {
+      "id": 157,
+      "text": "南国有佳人，容华若桃李。",
+      "author": "杂诗·南国有佳人",
+      "source": "一言",
+      "image": "images/07.jpg"
+    },
+    {
+      "id": 158,
+      "text": "若似月轮终皎洁，不辞冰雪为卿热。",
+      "author": "蝶恋花·辛苦最怜天上月",
+      "source": "一言",
+      "image": "images/08.jpg"
+    },
+    {
+      "id": 159,
+      "text": "小楼昨夜又东风，故国不堪回首月明中。",
+      "author": "虞美人·春花秋月何时了",
+      "source": "一言",
+      "image": "images/09.jpg"
+    },
+    {
+      "id": 160,
+      "text": "天接云涛连晓雾，星河欲转千帆舞。",
+      "author": "渔家傲",
+      "source": "一言",
+      "image": "images/10.jpg"
+    },
+    {
+      "id": 161,
+      "text": "野旷天低树，江清月近人。",
+      "author": "宿建德江",
+      "source": "一言",
+      "image": "images/01.jpg"
+    },
+    {
+      "id": 162,
+      "text": "莫道不销魂，帘卷西风，人比黄花瘦。",
+      "author": "醉花阴·薄雾浓云愁永昼",
+      "source": "一言",
+      "image": "images/02.jpg"
+    },
+    {
+      "id": 163,
+      "text": "天长地久有时尽，此恨绵绵无绝期。",
+      "author": "长恨歌",
+      "source": "一言",
+      "image": "images/03.jpg"
+    },
+    {
+      "id": 164,
+      "text": "草木有本心，何求美人折！",
+      "author": "感遇十二首·其一",
+      "source": "一言",
+      "image": "images/04.jpg"
+    },
+    {
+      "id": 165,
+      "text": "桃李春风一杯酒，江湖夜雨十年灯。",
+      "author": "寄黄几复",
+      "source": "一言",
+      "image": "images/05.jpg"
+    },
+    {
+      "id": 166,
+      "text": "天下熙熙，皆为利来；天下攘攘，皆为利往。",
+      "author": "史记·货殖列传",
+      "source": "一言",
+      "image": "images/06.jpg"
+    },
+    {
+      "id": 167,
+      "text": "入我相思门，知我相思苦。",
+      "author": "三五七言 / 秋风词",
+      "source": "一言",
+      "image": "images/07.jpg"
+    },
+    {
+      "id": 168,
+      "text": "欲把西湖比西子，淡妆浓抹总相宜。",
+      "author": "饮湖上初晴后雨二首·其二",
+      "source": "一言",
+      "image": "images/08.jpg"
+    },
+    {
+      "id": 169,
+      "text": "他尸骨犹未凉，我此恨怎能偿。",
+      "author": "汉宫秋",
+      "source": "一言",
+      "image": "images/09.jpg"
+    },
+    {
+      "id": 170,
+      "text": "灯把黑夜，烫了一个洞。",
+      "author": "灯",
+      "source": "一言",
+      "image": "images/10.jpg"
+    },
+    {
+      "id": 171,
+      "text": "春赏百花秋望月，夏沐凉风冬听雪。",
+      "author": "《无门关》第十九则",
+      "source": "一言",
+      "image": "images/01.jpg"
+    },
+    {
+      "id": 172,
+      "text": "接天莲叶无穷碧，映日荷花别样红。",
+      "author": "晓出净慈寺送林子方",
+      "source": "一言",
+      "image": "images/02.jpg"
+    },
+    {
+      "id": 173,
+      "text": "执手相看泪眼，竟无语凝噎。",
+      "author": "雨霖铃·寒蝉凄切",
+      "source": "一言",
+      "image": "images/03.jpg"
+    },
+    {
+      "id": 174,
+      "text": "高山仰止，景行行止。",
+      "author": "诗经",
+      "source": "一言",
+      "image": "images/04.jpg"
+    },
+    {
+      "id": 175,
+      "text": "窗外日光弹指过，席前花影坐前移。",
+      "author": "水浒传·第二回",
+      "source": "一言",
+      "image": "images/05.jpg"
+    },
+    {
+      "id": 176,
+      "text": "黑云翻墨未遮山，白雨跳珠乱入船。",
+      "author": "六月二十七日望湖楼醉书",
+      "source": "一言",
+      "image": "images/06.jpg"
+    },
+    {
+      "id": 177,
+      "text": "迟日江山丽，春风花草香。",
+      "author": "绝句二首",
+      "source": "一言",
+      "image": "images/07.jpg"
+    },
+    {
+      "id": 178,
+      "text": "秋风起兮白云飞，草木黄落兮雁南归。",
+      "author": "秋风辞",
+      "source": "一言",
+      "image": "images/08.jpg"
+    },
+    {
+      "id": 179,
+      "text": "墙角数枝梅，凌寒独自开。",
+      "author": "梅花 / 梅",
+      "source": "一言",
+      "image": "images/09.jpg"
+    },
+    {
+      "id": 180,
+      "text": "为天地立心，为生民立命，为往圣继绝学，为万世开太平。",
+      "author": "横渠语录",
+      "source": "一言",
+      "image": "images/10.jpg"
+    },
+    {
+      "id": 181,
+      "text": "风烟俱净，天山共色。从流飘荡，任意东西。",
+      "author": "与朱元思书",
+      "source": "一言",
+      "image": "images/01.jpg"
+    },
+    {
+      "id": 182,
+      "text": "如何肯到清秋日，已带斜阳又带蝉。",
+      "author": "柳",
+      "source": "一言",
+      "image": "images/02.jpg"
+    },
+    {
+      "id": 183,
+      "text": "换我心，为你心，始知相忆深。",
+      "author": "诉衷情·永夜抛人何处去",
+      "source": "一言",
+      "image": "images/03.jpg"
+    },
+    {
+      "id": 184,
+      "text": "无言独上西楼，月如钩。寂寞梧桐深院锁清秋。",
+      "author": "相见欢·无言独上西楼",
+      "source": "一言",
+      "image": "images/04.jpg"
+    },
+    {
+      "id": 185,
+      "text": "江南可采莲，莲叶何田田。",
+      "author": "江南",
+      "source": "一言",
+      "image": "images/05.jpg"
+    },
+    {
+      "id": 186,
+      "text": "两个黄鹂鸣翠柳，一行白鹭上青天。",
+      "author": "绝句",
+      "source": "一言",
+      "image": "images/06.jpg"
+    },
+    {
+      "id": 187,
+      "text": "嫦娥应悔偷灵药，碧海青天夜夜心。",
+      "author": "嫦娥",
+      "source": "一言",
+      "image": "images/07.jpg"
+    },
+    {
+      "id": 188,
+      "text": "急雨收残暑，梧桐一叶惊。",
+      "author": "西游记",
+      "source": "一言",
+      "image": "images/08.jpg"
+    },
+    {
+      "id": 189,
+      "text": "呜呼！楚虽三户能亡秦，岂有堂堂中国空无人！",
+      "author": "金错刀行",
+      "source": "一言",
+      "image": "images/09.jpg"
+    },
+    {
+      "id": 190,
+      "text": "居高声自远，非是藉秋风。",
+      "author": "蝉",
+      "source": "一言",
+      "image": "images/10.jpg"
+    },
+    {
+      "id": 191,
       "text": "流水落花春去也，天上人间。",
       "author": "浪淘沙令·帘外雨潺潺",
       "source": "一言",
       "image": "images/01.jpg"
     },
     {
+      "id": 192,
+      "text": "出师未捷身先死，长使英雄泪满襟。",
+      "author": "蜀相",
+      "source": "一言",
+      "image": "images/02.jpg"
+    },
+    {
+      "id": 193,
+      "text": "长恨此身非我有，何时忘却营营。",
+      "author": "临江仙·夜饮东坡醒复醉",
+      "source": "一言",
+      "image": "images/03.jpg"
+    },
+    {
+      "id": 194,
+      "text": "我寄愁心与明月，随风直到夜郎西。",
+      "author": "闻王昌龄左迁龙标遥有此寄",
+      "source": "一言",
+      "image": "images/04.jpg"
+    },
+    {
+      "id": 195,
+      "text": "明月出天山，苍茫云海间。",
+      "author": "关山月",
+      "source": "一言",
+      "image": "images/05.jpg"
+    },
+    {
+      "id": 196,
+      "text": "兴，百姓苦；亡，百姓苦。",
+      "author": "山坡羊·潼关怀古",
+      "source": "一言",
+      "image": "images/06.jpg"
+    },
+    {
+      "id": 197,
+      "text": "引刀成一快，不负少年头。",
+      "author": "被逮口占",
+      "source": "一言",
+      "image": "images/07.jpg"
+    },
+    {
+      "id": 198,
+      "text": "若教眼底无离恨，不信人间有白头。",
+      "author": "鹧鸪天·晚日寒鸦一片愁",
+      "source": "一言",
+      "image": "images/08.jpg"
+    },
+    {
+      "id": 199,
+      "text": "少年易老学难成，一寸光阴不可轻。",
+      "author": "劝学诗 / 偶成",
+      "source": "一言",
+      "image": "images/09.jpg"
+    },
+    {
+      "id": 200,
+      "text": "人生亦有命，安能行叹复坐愁？",
+      "author": "拟行路难·其四",
+      "source": "一言",
+      "image": "images/10.jpg"
+    },
+    {
+      "id": 201,
+      "text": "独自莫凭栏，无限江山，别时容易见时难。",
+      "author": "浪淘沙令·帘外雨潺潺",
+      "source": "一言",
+      "image": "images/01.jpg"
+    },
+    {
       "id": 202,
-      "text": "雁过也，正伤心，却是旧时相识。",
-      "author": "声声慢",
+      "text": "昔去雪如花，今来花似雪。",
+      "author": "别诗",
       "source": "一言",
       "image": "images/02.jpg"
     },
     {
       "id": 203,
-      "text": "渔舟唱晚，响穷彭蠡之滨；雁阵惊寒，声断衡阳之浦。",
-      "author": "滕王阁序",
+      "text": "我住长江头，君住长江尾。",
+      "author": "卜算子·我住长江头",
       "source": "一言",
       "image": "images/03.jpg"
     },
     {
       "id": 204,
-      "text": "伤心桥下春波绿，曾是惊鸿照影来。",
-      "author": "《沈园二首》(其一)",
+      "text": "借问江潮与海水，何似君情与妾心？",
+      "author": "浪淘沙·借问江潮与海水",
       "source": "一言",
       "image": "images/04.jpg"
     },
     {
       "id": 205,
-      "text": "一声梧叶一声秋，一点芭蕉一点愁，三更归梦三更后。",
-      "author": "水仙子·夜雨",
+      "text": "朝阳不再盛，白日忽西幽。",
+      "author": "咏怀八十二首・其三十二",
       "source": "一言",
       "image": "images/05.jpg"
     },
     {
       "id": 206,
-      "text": "他尸骨犹未凉，我此恨怎能偿。",
-      "author": "汉宫秋",
+      "text": "慈母手中线，游子身上衣。",
+      "author": "游子吟 / 迎母漂上作",
       "source": "一言",
       "image": "images/06.jpg"
     },
     {
       "id": 207,
-      "text": "江畔何人初见月？江月何年初照人？",
-      "author": "春江花月夜",
+      "text": "枕上诗书闲处好，门前风景雨来佳。",
+      "author": "摊破浣溪沙·病起萧萧两鬓华",
       "source": "一言",
       "image": "images/07.jpg"
     },
     {
       "id": 208,
-      "text": "井蛙不可以语于海者，拘于虚也；夏虫不可以语于冰者，笃于时也",
-      "author": "庄子·外篇·秋水",
+      "text": "一往情深深几许？深山夕照深秋雨。",
+      "author": "蝶恋花·出塞",
       "source": "一言",
       "image": "images/08.jpg"
     },
     {
       "id": 209,
-      "text": "闺中风暖，陌上草薰。",
-      "author": "别赋",
+      "text": "上善若水，水善利万物而不争。",
+      "author": "老子·道经·第八章",
       "source": "一言",
       "image": "images/09.jpg"
     },
     {
       "id": 210,
-      "text": "博观而约取，厚积而薄发",
-      "author": "稼说送张琥",
+      "text": "山有木兮木有枝，心悦君兮君不知。",
+      "author": "越人歌",
       "source": "一言",
       "image": "images/10.jpg"
     },
     {
       "id": 211,
-      "text": "同是天涯沦落人，相逢何必曾相识。",
-      "author": "琵琶行",
+      "text": "路曼曼其修远兮，吾将上下而求索。",
+      "author": "离骚",
       "source": "一言",
       "image": "images/01.jpg"
     },
     {
       "id": 212,
-      "text": "一坝截水成湖，风光千里，妩媚招春妒。",
-      "author": "念奴娇·飞云江",
+      "text": "寂寞空庭春欲晚，梨花满地不开门。",
+      "author": "春怨",
       "source": "一言",
       "image": "images/02.jpg"
+    },
+    {
+      "id": 213,
+      "text": "昔我往矣，杨柳依依。",
+      "author": "采薇",
+      "source": "一言",
+      "image": "images/03.jpg"
+    },
+    {
+      "id": 214,
+      "text": "天阶夜色凉如水，卧看牵牛织女星。",
+      "author": "秋夕",
+      "source": "一言",
+      "image": "images/04.jpg"
     }
   ]
 }
